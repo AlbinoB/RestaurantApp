@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="140dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="6dp"
+    app:cardCornerRadius="4dp">
+
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:weightSum="6">
+    android:layout_height="wrap_content"
+    android:weightSum="6"
+    android:id="@+id/llContent">
 
     <ImageView
         android:layout_width="0dp"
@@ -24,7 +35,7 @@
             android:layout_height="wrap_content"
             android:text="Garbar Burgars"
             android:textSize="20sp"
-            android:id="@+id/restaurantName"
+            android:id="@+id/textViewRestaurantName"
             android:textStyle="bold"
             android:layout_margin="5dp"
             android:padding="5dp"
@@ -37,7 +48,7 @@
         android:layout_marginLeft="20dp"
         android:textSize="15sp"
         android:padding="6dp"
-        android:layout_below="@id/restaurantName"
+        android:layout_below="@id/textViewRestaurantName"
         android:id="@+id/textViewPricePerPerson"
         android:layout_margin="5dp"
 
@@ -78,3 +89,5 @@
 
 
 </LinearLayout>
+
+</androidx.cardview.widget.CardView>

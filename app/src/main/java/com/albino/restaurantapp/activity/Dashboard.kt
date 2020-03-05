@@ -72,7 +72,7 @@ class Dashboard : AppCompatActivity() {
 
             when(it.itemId){//it holds the id of the currently selected item
                 R.id.homee ->{
-                    DashboardFragment()//function called below as the same code is present in the oncreate of the activity
+                    openDashboard()//function called below as the same code is present in the oncreate of the activity
                     drawerLayout.closeDrawers()
                     Toast.makeText(this@Dashboard,"Dashboard", Toast.LENGTH_SHORT).show()
                 }
@@ -145,7 +145,7 @@ class Dashboard : AppCompatActivity() {
         val currentFragment = supportFragmentManager.findFragmentById(R.id.frameLayout)//gets the id og=f the current fragment
 
         when(currentFragment){
-            !is DashboardFragment -> DashboardFragment()
+            !is DashboardFragment -> openDashboard()
             else ->super.onBackPressed()
         }
     }
