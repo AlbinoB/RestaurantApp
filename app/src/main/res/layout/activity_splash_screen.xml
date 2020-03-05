@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    tools:context=".activity.SplashScreenActivity">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true">
+
+        <ImageView
+            android:id="@+id/imageViewAppIcon"
+            android:layout_width="115dp"
+            android:layout_height="115dp"
+            android:layout_marginBottom="45dp"
+            android:layout_centerInParent="true"
+            android:padding="10dp"
+            android:src="@drawable/app_icon_log_white" />
+
+
+        <TextView
+            android:id="@+id/textViewSplashScreen"
+            android:layout_width="290dp"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="30dp"
+            android:fontFamily="sans-serif"
+            android:text="FoodRunner"
+            android:textAlignment="center"
+            android:textColor="@android:color/background_light"
+            android:textSize="35sp"
+            android:textStyle="bold"
+            android:layout_margin="20dp"
+            android:layout_below="@id/imageViewAppIcon"/>
+
+    </RelativeLayout>
+</RelativeLayout>
