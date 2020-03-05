@@ -1,6 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.recyclerview.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
-</androidx.recyclerview.widget.RecyclerView>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="85dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="6dp"
+    app:cardCornerRadius="4dp">
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="80dp">
+
+
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        android:layout_weight="1.6"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="46dp"
+            android:layout_centerInParent="true"
+            android:text="1"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:id="@+id/textViewSerialNumber"
+            />
+
+
+    </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:orientation="vertical"
+            android:layout_weight="4"
+
+            >
+
+            <TextView
+                android:id="@+id/textViewItemName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Panner Masala"
+                android:layout_margin="5dp"
+                android:padding="5dp"
+                android:textSize="20sp"/>
+
+            <TextView
+                android:id="@+id/textViewItemPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rs.200"
+                android:layout_marginLeft="20dp"
+                android:padding="5dp"
+
+                android:textSize="15sp"/>
+
+
+
+        </LinearLayout>
+
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="80dp"
+            android:layout_weight="1.4">
+
+
+            <Button
+                android:id="@+id/buttonAddToCart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add to cart"
+                android:textStyle="bold"
+                android:textSize="12sp"
+                android:padding="5dp"
+                android:layout_centerInParent="true"
+                android:background="@color/colorPrimary"
+                android:textColor="#fff"
+                />
+        </RelativeLayout>
+
+
+</LinearLayout>
+
+</androidx.cardview.widget.CardView>

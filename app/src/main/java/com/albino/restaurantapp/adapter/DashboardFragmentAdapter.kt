@@ -1,6 +1,7 @@
 package com.albino.restaurantapp.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,12 +9,16 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.albino.restaurantapp.R
+import com.albino.restaurantapp.activity.Dashboard
+import com.albino.restaurantapp.activity.RestaurantMenuActivity
 import com.albino.restaurantapp.model.Restaurant
+import com.albino.restaurantapp.model.RestaurantMenu
 import com.squareup.picasso.Picasso
 
-class DashboardFragmentAdapter(context:Context,val itemList:ArrayList<Restaurant>):RecyclerView.Adapter<DashboardFragmentAdapter.ViewHolderDashboard>() {
+class DashboardFragmentAdapter(val context:Context,val itemList:ArrayList<Restaurant>):RecyclerView.Adapter<DashboardFragmentAdapter.ViewHolderDashboard>() {
 
     class ViewHolderDashboard(view:View):RecyclerView.ViewHolder(view){
 
@@ -51,6 +56,15 @@ class DashboardFragmentAdapter(context:Context,val itemList:ArrayList<Restaurant
         holder.llContent.setOnClickListener(View.OnClickListener {
 
             println(holder.textViewRestaurantName.getTag().toString())
+
+
+            val intent=Intent(context,RestaurantMenuActivity::class.java)
+
+            intent.putExtra("restaurantId",holder.textViewRestaurantName.getTag().toString())
+
+            context.startActivity(intent)
+
+
 
         })
 
