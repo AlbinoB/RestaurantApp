@@ -34,6 +34,8 @@ class RestaurantMenuActivity : AppCompatActivity() {
     lateinit var menuAdapter: RestaurantMenuAdapter
     lateinit var restaurantId:String
 
+    lateinit var restaurantName:String
+
     lateinit var proceedToCart:RelativeLayout
 
     lateinit var buttonProceedToCart:Button
@@ -55,18 +57,14 @@ class RestaurantMenuActivity : AppCompatActivity() {
 
 
 
-        buttonProceedToCart.setOnClickListener(View.OnClickListener {
-
-            val intent=Intent(this,CartActivity::class.java)
-
-            startActivity(intent)
-
-        })
 
         setToolBar()
 
 
         restaurantId = intent.getStringExtra("restaurantId")
+        restaurantName=intent.getStringExtra("restaurantName")
+
+
 
 
 
@@ -118,6 +116,8 @@ class RestaurantMenuActivity : AppCompatActivity() {
 
                                 menuAdapter = RestaurantMenuAdapter(
                                     this,
+                                    restaurantId,//pass the restaurant Id
+                                    restaurantName,//pass restaurantName
                                     proceedToCart,//pass the relativelayout which has the button to enable it later
                                     restaurantMenuList
                                 )//set the adapter with the data
@@ -193,6 +193,12 @@ class RestaurantMenuActivity : AppCompatActivity() {
         supportActionBar?.setHomeButtonEnabled(true)//enables the button on the tool bar
         supportActionBar?.setDisplayHomeAsUpEnabled(true)//displays the icon on the button
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_back_arrow)//change icon to custom
+    }
+
+
+
+    fun callCartActivity(){
+
     }
 
 

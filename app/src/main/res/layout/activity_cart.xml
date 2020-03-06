@@ -75,13 +75,11 @@
                 android:id="@+id/recyclerViewCart"/>
 
 
-
-
             <RelativeLayout
+                android:id="@+id/relativeLayoutProceedToCart"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="0.15"
-                android:id="@+id/relativeLayoutProceedToCart"
+                android:layout_weight="0.20"
 
                 >
 
@@ -90,9 +88,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/colorPrimary"
-                    android:textColor="#fff"
+                    android:text="@string/place_order"
+                    android:layout_alignParentBottom="true"
                     android:textAlignment="center"
-                    android:text="@string/place_order" />
+                    android:textColor="#fff" />
 
             </RelativeLayout>
 

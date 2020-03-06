@@ -7,6 +7,7 @@ import android.provider.Settings
 import android.view.View
 import android.widget.Button
 import android.widget.RelativeLayout
+import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -27,14 +28,23 @@ import org.json.JSONException
 lateinit var toolbar:androidx.appcompat.widget.Toolbar
 
 
+lateinit var textViewOrderingFrom:TextView
+lateinit var buttonPlaceOrder:Button
+
 lateinit var recyclerView: RecyclerView
 lateinit var layoutManager: RecyclerView.LayoutManager
 lateinit var menuAdapter: CartAdapter
 lateinit var restaurantId:String
+lateinit var restaurantName:String
 
-lateinit var buttonPlaceOrder: Button
+var totalAmount=0
+
+
 
 var cartListItems = arrayListOf<CartItems>()
+
+
+
 
 class CartActivity : AppCompatActivity() {
 
@@ -42,10 +52,22 @@ class CartActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cart)
 
+
         buttonPlaceOrder=findViewById(R.id.buttonPlaceOrder)
+        textViewOrderingFrom=findViewById(R.id.textViewOrderingFrom)
 
         toolbar=findViewById(R.id.toolBar)
 
+        restaurantId=intent.getStringExtra("restaurantId")
+        restaurantName=intent.getStringExtra("restaurantName")
+
+
+        //set the restaurant name
+        textViewOrderingFrom.text="Ordering from:"+ restaurantName
+
+
+
+        val selectedItemsId= intent.getStringArrayListExtra("selectedItemsId")
 
 
         buttonPlaceOrder.setOnClickListener(View.OnClickListener {
@@ -57,6 +79,8 @@ class CartActivity : AppCompatActivity() {
         })
 
         setToolBar()
+
+
 
 
 
@@ -78,9 +102,9 @@ class CartActivity : AppCompatActivity() {
 
 
 
-                //val restaurantId:String=""
 
-                val url = "http://13.235.250.119/v2/restaurants/fetch_result/1" //+ restaurantId
+
+                val url = "http://13.235.250.119/v2/restaurants/fetch_result/" + restaurantId
 
                 val jsonObjectRequest = object : JsonObjectRequest(
                     Request.Method.GET,
@@ -98,16 +122,27 @@ class CartActivity : AppCompatActivity() {
                             val data = responseJsonObjectData.getJSONArray("data")
 
                             for (i in 0 until data.length()) {
-                                val bookJsonObject = data.getJSONObject(i)
-                                val menuObject = CartItems(
-                                    bookJsonObject.getString("id"),
-                                    bookJsonObject.getString("name"),
-                                    bookJsonObject.getString("cost_for_one"),
-                                    bookJsonObject.getString("restaurant_id")
+                                val cartItemJsonObject = data.getJSONObject(i)
+
+                                if(selectedItemsId.contains(cartItemJsonObject.getString("id")))//if the fetched id is present in the selected id save
+                                    {
+
+                                            val menuObject = CartItems(
+                                            cartItemJsonObject.getString("id"),
+                                            cartItemJsonObject.getString("name"),
+                                            cartItemJsonObject.getString("cost_for_one"),
+                                            cartItemJsonObject.getString("restaurant_id"))
+
+                                        totalAmount= totalAmount+cartItemJsonObject.getString("cost_for_one").toString().toInt()
 
 
-                                )
-                                cartListItems.add(menuObject)
+                                        cartListItems.add(menuObject)
+
+                                    }
+
+
+
+
 
                                 //progressBar.visibility = View.GONE
 
@@ -130,6 +165,10 @@ class CartActivity : AppCompatActivity() {
                                     )
                                 )*/
                             }
+
+                            //set the total on the button
+                            buttonPlaceOrder.text="Place Order(Total:Rs."+ totalAmount+")"
+
 
 
                         }

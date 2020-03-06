@@ -62,6 +62,9 @@ class DashboardFragmentAdapter(val context:Context,val itemList:ArrayList<Restau
 
             intent.putExtra("restaurantId",holder.textViewRestaurantName.getTag().toString())
 
+            intent.putExtra("restaurantName",holder.textViewRestaurantName.text.toString())
+
+
             context.startActivity(intent)
 
 
