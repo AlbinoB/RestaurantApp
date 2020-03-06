@@ -112,7 +112,7 @@ class DashboardFragment : Fragment() {
 
                         Toast.makeText(
                             activity as Context,
-                            "Some Error occurred!!!",
+                            "mSome Error occurred!!!",
                             Toast.LENGTH_SHORT
                         ).show()
                     })
