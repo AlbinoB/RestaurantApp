@@ -59,13 +59,13 @@ class CartActivity : AppCompatActivity() {
         setToolBar()
 
 
-        restaurantId = intent.getStringExtra("restaurantId")
+
 
 
 
         layoutManager = LinearLayoutManager(this)//set the layout manager
 
-        recyclerView = findViewById(R.id.recyclerViewRestaurantMenu)
+        recyclerView = findViewById(R.id.recyclerViewCart)
 
 
 
@@ -80,7 +80,7 @@ class CartActivity : AppCompatActivity() {
 
                 //val restaurantId:String=""
 
-                val url = "http://13.235.250.119/v2/restaurants/fetch_result/" + restaurantId
+                val url = "http://13.235.250.119/v2/restaurants/fetch_result/1" //+ restaurantId
 
                 val jsonObjectRequest = object : JsonObjectRequest(
                     Request.Method.GET,
@@ -103,7 +103,7 @@ class CartActivity : AppCompatActivity() {
                                     bookJsonObject.getString("id"),
                                     bookJsonObject.getString("name"),
                                     bookJsonObject.getString("cost_for_one"),
-                                    bookJsonObject.getString("cost_for_one")
+                                    bookJsonObject.getString("restaurant_id")
 
 
                                 )

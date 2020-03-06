@@ -57,7 +57,7 @@ class RestaurantMenuActivity : AppCompatActivity() {
 
         buttonProceedToCart.setOnClickListener(View.OnClickListener {
 
-            val intent=Intent(this,RestaurantMenuActivity::class.java)
+            val intent=Intent(this,CartActivity::class.java)
 
             startActivity(intent)
 
