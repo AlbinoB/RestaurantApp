@@ -3,29 +3,34 @@
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="85dp"
+    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_margin="6dp"
+    android:layout_margin="0dp"
     app:cardCornerRadius="4dp">
 
-
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/relativeLayoutParent"
+    >
+<LinearLayout
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="80dp">
+    android:layout_height="wrap_content">
 
 
 
     <RelativeLayout
         android:layout_width="0dp"
-        android:layout_height="80dp"
-        android:layout_weight="1.6"
+        android:layout_height="match_parent"
+        android:layout_weight="1.4"
         >
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="46dp"
+            android:layout_height="wrap_content"
             android:layout_centerInParent="true"
+            android:paddingTop="4dp"
             android:text="1"
             android:textStyle="bold"
             android:textSize="18sp"
@@ -37,28 +42,34 @@
 
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_height="80dp"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_weight="4"
+            android:layout_weight="4.6"
 
             >
 
             <TextView
                 android:id="@+id/textViewItemName"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Panner Masala"
-                android:layout_margin="5dp"
-                android:padding="5dp"
-                android:textSize="20sp"/>
+                android:layout_margin="4dp"
+                android:textStyle="bold"
+                android:padding="2dp"
+                android:textSize="16sp"
+                android:textColor="#000"
+                android:layout_marginLeft="10dp"
+                android:layout_alignParentTop="true"/>
 
             <TextView
                 android:id="@+id/textViewItemPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Rs.200"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginBottom="5dp"
                 android:padding="5dp"
+                android:textColor="@color/cost_for_one"
 
                 android:textSize="15sp"/>
 
@@ -67,27 +78,31 @@
         </LinearLayout>
 
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="80dp"
-            android:layout_weight="1.4">
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
 
 
-            <Button
-                android:id="@+id/buttonAddToCart"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Add to cart"
-                android:textStyle="bold"
-                android:textSize="12sp"
-                android:padding="5dp"
-                android:layout_centerInParent="true"
-                android:background="@color/colorPrimary"
-                android:textColor="#fff"
-                />
-        </RelativeLayout>
+        <Button
+            android:id="@+id/buttonAddToCart"
+            android:layout_width="67dp"
+            android:layout_height="28dp"
+            android:layout_centerInParent="true"
+            android:background="@color/colorPrimary"
+            android:padding="2dp"
+            android:text="@string/add_to_cart_btn"
+            android:textColor="#fff"
+            android:textSize="15sp"
+             />
+    </RelativeLayout>
 
 
 </LinearLayout>
+
+
+
+
+</RelativeLayout>
 
 </androidx.cardview.widget.CardView>

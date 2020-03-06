@@ -4,7 +4,12 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.Settings
+import android.widget.Button
+import android.widget.FrameLayout
+import android.widget.RelativeLayout
 import android.widget.Toast
+import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.albino.restaurantapp.R
@@ -15,9 +20,12 @@ import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
+import com.google.android.material.navigation.NavigationView
 import org.json.JSONException
 
 class RestaurantMenuActivity : AppCompatActivity() {
+
+    lateinit var toolbar:androidx.appcompat.widget.Toolbar
 
 
     lateinit var recyclerView: RecyclerView
@@ -25,7 +33,10 @@ class RestaurantMenuActivity : AppCompatActivity() {
     lateinit var menuAdapter: RestaurantMenuAdapter
     lateinit var restaurantId:String
 
+    lateinit var proceedToCart:RelativeLayout
+
     var restaurantMenuList = arrayListOf<RestaurantMenu>()
+
 
 
 
@@ -33,8 +44,12 @@ class RestaurantMenuActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_restaurant_menu)
 
+        proceedToCart=findViewById(R.id.relativeLayoutProceedToCart)
 
         //openDashboard()
+        toolbar=findViewById(R.id.toolBar)
+
+        setToolBar()
 
 
         restaurantId = intent.getStringExtra("restaurantId")
@@ -53,7 +68,7 @@ class RestaurantMenuActivity : AppCompatActivity() {
 
                 val queue = Volley.newRequestQueue(this)
 
-                val restaurantMenuActivity = RestaurantMenuActivity()
+
 
 
                 //val restaurantId:String=""
@@ -89,6 +104,7 @@ class RestaurantMenuActivity : AppCompatActivity() {
 
                                 menuAdapter = RestaurantMenuAdapter(
                                     this,
+                                    proceedToCart,
                                     restaurantMenuList
                                 )//set the adapter with the data
 
@@ -153,23 +169,16 @@ class RestaurantMenuActivity : AppCompatActivity() {
 
         }
 
-        fun openDashboard() {
-            val transaction = supportFragmentManager.beginTransaction()
+
+    }
 
 
-
-
-            transaction.replace(
-                R.id.frameLayout,
-                RestaurantMenuFragment()
-            )//replace the old layout with the new frag  layout
-
-            transaction.commit()//apply changes
-
-            supportActionBar?.title = "Menu"//change the title when each new fragment is opened
-
-
-        }
+    fun setToolBar(){
+        setSupportActionBar(toolbar)
+        supportActionBar?.title="Tool Bar"
+        supportActionBar?.setHomeButtonEnabled(true)//enables the button on the tool bar
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)//displays the icon on the button
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_back_arrow)//change icon to custom
     }
 
 

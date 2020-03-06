@@ -1,16 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/frameLayout"
-    tools:context=".activity.RestaurantMenuActivity">
+    tools:context=".activity.RestaurantMenuActivity"
+    android:id="@+id/drawerLayout"
+    >
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/coordinatorLayout"
+        >
+
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark"
+            android:elevation="0dp"
+            >
+            <!-- elivation raise the appbar and gives a shadow -->
+
+
+            <androidx.appcompat.widget.Toolbar
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="?attr/actionBarSize"
+                android:background="@color/colorPrimary"
+                android:id="@+id/toolBar"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark"
+                app:layout_scrollFlags="scroll|enterAlways"
+                />
+            <!--app:layout_scrollFlags="scroll|enterAlways" scrollBar scrolls along with the list-->
+        </com.google.android.material.appbar.AppBarLayout>
+
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            android:id="@+id/frameLayout">
+
+            <TextView
+                android:id="@+id/textViewChoose"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+
+                android:text="@string/choose_from_menu_listed_below"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
 
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/textViewChoose"
         android:id="@+id/recyclerViewRestaurantMenu"/>
 
+
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/relativeLayoutProceedToCart"
+                android:visibility="invisible"
+                android:layout_marginBottom="56dp"
+                android:layout_alignParentBottom="true"
+                >
+
+                <Button
+                    android:id="@+id/buttonProceedToCart"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorPrimary"
+                    android:textColor="#fff"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/proceed_to_cart_btn" />
+
+            </RelativeLayout>
+
+
 </RelativeLayout>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+</androidx.drawerlayout.widget.DrawerLayout>

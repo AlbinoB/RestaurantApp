@@ -8,5 +8,9 @@
     <string name="close_drawer">Close Drawer</string>
     <string name="open_drawer">Open Drawer</string>
 
+    <string name="add_to_cart_btn">Add</string>
+    <string name="proceed_to_cart_btn">Proceed to Cart</string>
+    <string name="choose_from_menu_listed_below">Choose from menu listed below:</string>
+
 
 </resources>

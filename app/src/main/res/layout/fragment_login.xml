@@ -37,7 +37,7 @@
             android:drawableLeft="@drawable/ic_phone"
             android:background="#fff"
             android:textSize="20sp"
-            android:padding="4dp"
+            android:padding="10dp"
             android:drawablePadding="4dp"
             android:layout_below="@id/imageViewAppIcon"
 
@@ -53,9 +53,10 @@
             android:layout_marginBottom="20dp"
             android:background="#fff"
             android:textSize="20sp"
-            android:padding="4dp"
+            android:padding="10dp"
             android:hint="Password"
             android:drawablePadding="4dp"
+
             android:drawableLeft="@drawable/ic_lock"
             android:layout_below="@id/editTextMobileNumber"
 
@@ -66,8 +67,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Login"
+            android:textSize="20sp"
             android:textColor="#fff"
-            android:textStyle="bold"
+            android:textStyle="normal"
             android:layout_marginBottom="20dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
@@ -80,8 +82,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#fff"
-            android:textSize="20sp"
-            android:text="Forgot password"
+            android:textSize="15sp"
+            android:text="Forgot Password?"
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/buttonLogin"/>
 
@@ -96,9 +98,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="#fff"
-        android:textSize="20sp"
+        android:textSize="15sp"
+
+
         android:layout_margin="20dp"
-        android:text="Don't have an account? Sign Up!"
+        android:text="Don't have account?Sign up now"
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"/>
 
