@@ -2,6 +2,7 @@ package com.albino.restaurantapp.adapter
 
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
@@ -11,14 +12,18 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.albino.restaurantapp.R
+import com.albino.restaurantapp.activity.CartActivity
 import com.albino.restaurantapp.activity.RestaurantMenuActivity
 import com.albino.restaurantapp.model.RestaurantMenu
 
-class RestaurantMenuAdapter(val context:Context,val proceedToCartPassed:RelativeLayout,val restaurantMenu:ArrayList<RestaurantMenu>):RecyclerView.Adapter<RestaurantMenuAdapter.ViewHolderRestaurantMenu>() {
+class RestaurantMenuAdapter(val context:Context,val restaurantId:String,val restaurantName:String,val proceedToCartPassed:RelativeLayout,val buttonProceedToCart:Button,val restaurantMenu:ArrayList<RestaurantMenu>):RecyclerView.Adapter<RestaurantMenuAdapter.ViewHolderRestaurantMenu>() {
 
 
     var itemSelectedCount:Int=0
     lateinit var proceedToCart:RelativeLayout
+
+
+    var itemsSelectedId= arrayListOf<String>()
 
 
     class ViewHolderRestaurantMenu(view:View):RecyclerView.ViewHolder(view){
@@ -47,16 +52,34 @@ class RestaurantMenuAdapter(val context:Context,val proceedToCartPassed:Relative
         proceedToCart=proceedToCartPassed
 
 
+
+        //click listener to the relative layout which has the button proceed to cart
+        buttonProceedToCart.setOnClickListener(View.OnClickListener {
+
+            val intent= Intent(context, CartActivity::class.java)
+
+
+
+            println("clicked rel")
+
+            intent.putExtra("restaurantId",restaurantId.toString())// pass the restaurant id to the next acticity
+
+            intent.putExtra("restaurantName",restaurantName)
+
+            intent.putExtra("selectedItemsId",itemsSelectedId)//pass all the items selected by the user
+
+            context.startActivity(intent)
+
+        })
+
+
         holder.buttonAddToCart.setOnClickListener(View.OnClickListener {
 
-
-
-
-            if(holder.buttonAddToCart.getTag().toString().equals("true"))
+            if(holder.buttonAddToCart.text.toString().equals("Remove"))
             {
                 itemSelectedCount--//unselected
 
-                holder.buttonAddToCart.setTag("false")
+                itemsSelectedId.remove(holder.buttonAddToCart.getTag().toString())
 
                 holder.buttonAddToCart.text="Add"
 
@@ -68,13 +91,12 @@ class RestaurantMenuAdapter(val context:Context,val proceedToCartPassed:Relative
             {
                 itemSelectedCount++//selected
 
-                holder.buttonAddToCart.setTag("true")
+                itemsSelectedId.add(holder.buttonAddToCart.getTag().toString())
+
 
                 holder.buttonAddToCart.text="Remove"
 
-                holder.buttonAddToCart.setBackgroundColor(Color.YELLOW)
-
-
+                holder.buttonAddToCart.setBackgroundColor(Color.rgb(255, 235, 59))
 
             }
 
@@ -90,12 +112,11 @@ class RestaurantMenuAdapter(val context:Context,val proceedToCartPassed:Relative
 
 
 
-        holder.textViewItemName.setTag(restaurantMenuItem.id+"")//save the item id in textViewName Tag ,will be used to add to cart
+        holder.buttonAddToCart.setTag(restaurantMenuItem.id+"")//save the item id in textViewName Tag ,will be used to add to cart
         holder.textViewSerialNumber.text=(position+1).toString()//position starts from 0
         holder.textViewItemName.text=restaurantMenuItem.name
         holder.textViewItemPrice.text="Rs."+restaurantMenuItem.cost_for_one
 
-        holder.buttonAddToCart.setTag("false")
 
 
     }

@@ -34,7 +34,9 @@ class RestaurantMenuActivity : AppCompatActivity() {
     lateinit var menuAdapter: RestaurantMenuAdapter
     lateinit var restaurantId:String
 
-    lateinit var proceedToCart:RelativeLayout
+    lateinit var restaurantName:String
+
+    lateinit var proceedToCartLayout:RelativeLayout
 
     lateinit var buttonProceedToCart:Button
 
@@ -47,7 +49,7 @@ class RestaurantMenuActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_restaurant_menu)
 
-        proceedToCart=findViewById(R.id.relativeLayoutProceedToCart)
+        proceedToCartLayout=findViewById(R.id.relativeLayoutProceedToCart)
         buttonProceedToCart=findViewById(R.id.buttonProceedToCart)
 
         //openDashboard()
@@ -55,18 +57,14 @@ class RestaurantMenuActivity : AppCompatActivity() {
 
 
 
-        buttonProceedToCart.setOnClickListener(View.OnClickListener {
-
-            val intent=Intent(this,CartActivity::class.java)
-
-            startActivity(intent)
-
-        })
 
         setToolBar()
 
 
         restaurantId = intent.getStringExtra("restaurantId")
+        restaurantName=intent.getStringExtra("restaurantName")
+
+
 
 
 
@@ -118,7 +116,10 @@ class RestaurantMenuActivity : AppCompatActivity() {
 
                                 menuAdapter = RestaurantMenuAdapter(
                                     this,
-                                    proceedToCart,//pass the relativelayout which has the button to enable it later
+                                    restaurantId,//pass the restaurant Id
+                                    restaurantName,//pass restaurantName
+                                    proceedToCartLayout,//pass the relativelayout which has the button to enable it later
+                                    buttonProceedToCart,
                                     restaurantMenuList
                                 )//set the adapter with the data
 
@@ -193,6 +194,12 @@ class RestaurantMenuActivity : AppCompatActivity() {
         supportActionBar?.setHomeButtonEnabled(true)//enables the button on the tool bar
         supportActionBar?.setDisplayHomeAsUpEnabled(true)//displays the icon on the button
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_back_arrow)//change icon to custom
+    }
+
+
+
+    fun callCartActivity(){
+
     }
 
 
