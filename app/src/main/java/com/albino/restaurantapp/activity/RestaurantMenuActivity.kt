@@ -36,7 +36,7 @@ class RestaurantMenuActivity : AppCompatActivity() {
 
     lateinit var restaurantName:String
 
-    lateinit var proceedToCart:RelativeLayout
+    lateinit var proceedToCartLayout:RelativeLayout
 
     lateinit var buttonProceedToCart:Button
 
@@ -49,7 +49,7 @@ class RestaurantMenuActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_restaurant_menu)
 
-        proceedToCart=findViewById(R.id.relativeLayoutProceedToCart)
+        proceedToCartLayout=findViewById(R.id.relativeLayoutProceedToCart)
         buttonProceedToCart=findViewById(R.id.buttonProceedToCart)
 
         //openDashboard()
@@ -118,7 +118,8 @@ class RestaurantMenuActivity : AppCompatActivity() {
                                     this,
                                     restaurantId,//pass the restaurant Id
                                     restaurantName,//pass restaurantName
-                                    proceedToCart,//pass the relativelayout which has the button to enable it later
+                                    proceedToCartLayout,//pass the relativelayout which has the button to enable it later
+                                    buttonProceedToCart,
                                     restaurantMenuList
                                 )//set the adapter with the data
 

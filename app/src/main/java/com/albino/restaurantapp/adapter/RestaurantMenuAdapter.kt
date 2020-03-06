@@ -16,11 +16,12 @@ import com.albino.restaurantapp.activity.CartActivity
 import com.albino.restaurantapp.activity.RestaurantMenuActivity
 import com.albino.restaurantapp.model.RestaurantMenu
 
-class RestaurantMenuAdapter(val context:Context,val restaurantId:String,val restaurantName:String,val proceedToCartPassed:RelativeLayout,val restaurantMenu:ArrayList<RestaurantMenu>):RecyclerView.Adapter<RestaurantMenuAdapter.ViewHolderRestaurantMenu>() {
+class RestaurantMenuAdapter(val context:Context,val restaurantId:String,val restaurantName:String,val proceedToCartPassed:RelativeLayout,val buttonProceedToCart:Button,val restaurantMenu:ArrayList<RestaurantMenu>):RecyclerView.Adapter<RestaurantMenuAdapter.ViewHolderRestaurantMenu>() {
 
 
     var itemSelectedCount:Int=0
     lateinit var proceedToCart:RelativeLayout
+
 
     var itemsSelectedId= arrayListOf<String>()
 
@@ -53,7 +54,7 @@ class RestaurantMenuAdapter(val context:Context,val restaurantId:String,val rest
 
 
         //click listener to the relative layout which has the button proceed to cart
-        proceedToCart.setOnClickListener(View.OnClickListener {
+        buttonProceedToCart.setOnClickListener(View.OnClickListener {
 
             val intent= Intent(context, CartActivity::class.java)
 
