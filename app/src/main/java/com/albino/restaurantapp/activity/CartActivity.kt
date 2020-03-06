@@ -6,58 +6,51 @@ import android.os.Bundle
 import android.provider.Settings
 import android.view.View
 import android.widget.Button
-import android.widget.FrameLayout
 import android.widget.RelativeLayout
 import android.widget.Toast
-import androidx.coordinatorlayout.widget.CoordinatorLayout
-import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.albino.restaurantapp.R
+import com.albino.restaurantapp.adapter.CartAdapter
 import com.albino.restaurantapp.adapter.RestaurantMenuAdapter
+import com.albino.restaurantapp.model.CartItems
 import com.albino.restaurantapp.model.RestaurantMenu
 import com.albino.restaurantapp.utils.ConnectionManager
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
-import com.google.android.material.navigation.NavigationView
 import org.json.JSONException
 
-class RestaurantMenuActivity : AppCompatActivity() {
-
-    lateinit var toolbar:androidx.appcompat.widget.Toolbar
 
 
-    lateinit var recyclerView: RecyclerView
-    lateinit var layoutManager: RecyclerView.LayoutManager
-    lateinit var menuAdapter: RestaurantMenuAdapter
-    lateinit var restaurantId:String
-
-    lateinit var proceedToCart:RelativeLayout
-
-    lateinit var buttonProceedToCart:Button
-
-    var restaurantMenuList = arrayListOf<RestaurantMenu>()
+lateinit var toolbar:androidx.appcompat.widget.Toolbar
 
 
+lateinit var recyclerView: RecyclerView
+lateinit var layoutManager: RecyclerView.LayoutManager
+lateinit var menuAdapter: CartAdapter
+lateinit var restaurantId:String
 
+lateinit var buttonPlaceOrder: Button
+
+var cartListItems = arrayListOf<CartItems>()
+
+class CartActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_restaurant_menu)
+        setContentView(R.layout.activity_cart)
 
-        proceedToCart=findViewById(R.id.relativeLayoutProceedToCart)
-        buttonProceedToCart=findViewById(R.id.buttonProceedToCart)
+        buttonPlaceOrder=findViewById(R.id.buttonPlaceOrder)
 
-        //openDashboard()
         toolbar=findViewById(R.id.toolBar)
 
 
 
-        buttonProceedToCart.setOnClickListener(View.OnClickListener {
+        buttonPlaceOrder.setOnClickListener(View.OnClickListener {
 
-            val intent=Intent(this,RestaurantMenuActivity::class.java)
+            val intent= Intent(this,Dashboard::class.java)
 
             startActivity(intent)
 
@@ -106,20 +99,21 @@ class RestaurantMenuActivity : AppCompatActivity() {
 
                             for (i in 0 until data.length()) {
                                 val bookJsonObject = data.getJSONObject(i)
-                                val menuObject = RestaurantMenu(
+                                val menuObject = CartItems(
                                     bookJsonObject.getString("id"),
                                     bookJsonObject.getString("name"),
+                                    bookJsonObject.getString("cost_for_one"),
                                     bookJsonObject.getString("cost_for_one")
 
+
                                 )
-                                restaurantMenuList.add(menuObject)
+                                cartListItems.add(menuObject)
 
                                 //progressBar.visibility = View.GONE
 
-                                menuAdapter = RestaurantMenuAdapter(
-                                    this,
-                                    proceedToCart,//pass the relativelayout which has the button to enable it later
-                                    restaurantMenuList
+                                menuAdapter = CartAdapter(
+                                    this,//pass the relativelayout which has the button to enable it later
+                                    cartListItems
                                 )//set the adapter with the data
 
                                 recyclerView.adapter =
@@ -196,4 +190,5 @@ class RestaurantMenuActivity : AppCompatActivity() {
     }
 
 
-}
+    }
+

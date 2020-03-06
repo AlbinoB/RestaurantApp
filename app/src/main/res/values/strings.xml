@@ -11,6 +11,8 @@
     <string name="add_to_cart_btn">Add</string>
     <string name="proceed_to_cart_btn">Proceed to Cart</string>
     <string name="choose_from_menu_listed_below">Choose from menu listed below:</string>
+    <string name="ordering_from">Ordering from:</string>
+    <string name="place_order">Place Order (Rs)</string>
 
 
 </resources>
