@@ -21,7 +21,7 @@
         android:id="@+id/faqs"
         android:icon="@drawable/ic_faqs"
         />
-    <item android:title="Logout"
+    <item android:title="Log out"
         android:id="@+id/logout"
         android:icon="@drawable/ic_back_arrow"
         />

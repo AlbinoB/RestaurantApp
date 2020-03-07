@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.provider.Settings
 import android.view.MenuItem
 import android.widget.FrameLayout
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -29,6 +30,8 @@ class Dashboard : AppCompatActivity() {
     lateinit var frameLayout: FrameLayout
     lateinit var navigationView: NavigationView
     lateinit var drawerLayout: DrawerLayout
+    lateinit var textViewcurrentUser:TextView
+    lateinit var textViewMobileNumber:TextView
     lateinit var sharedPreferencess:SharedPreferences
 
 
@@ -46,9 +49,19 @@ class Dashboard : AppCompatActivity() {
         frameLayout=findViewById(R.id.frameLayout)
         navigationView=findViewById(R.id.navigationView)
         drawerLayout=findViewById(R.id.drawerLayout)
+        val headerView=navigationView.getHeaderView(0)
+        textViewcurrentUser=headerView.findViewById(R.id.textViewcurrentUser)
+        textViewMobileNumber=headerView.findViewById(R.id.textViewMobileNumber)
 
 
+
+        //set tool bar
         setToolBar()
+
+
+        //set user details
+        textViewcurrentUser.text=sharedPreferencess.getString("name","Albino Braganza")
+        textViewMobileNumber.text="+91-"+sharedPreferencess.getString("mobile_number","9999999999")
 
 
         val actionBarDrawerToggle=  ActionBarDrawerToggle(
@@ -175,7 +188,7 @@ class Dashboard : AppCompatActivity() {
 
     fun setToolBar(){
         setSupportActionBar(toolbar)
-        supportActionBar?.title="Tool Bar"
+        supportActionBar?.title="All Restaurants"
         supportActionBar?.setHomeButtonEnabled(true)//enables the button on the tool bar
         supportActionBar?.setDisplayHomeAsUpEnabled(true)//displays the icon on the button
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_menu)//change icon to custom
