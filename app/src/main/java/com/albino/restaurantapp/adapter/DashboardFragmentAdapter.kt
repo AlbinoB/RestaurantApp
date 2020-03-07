@@ -76,7 +76,7 @@ class DashboardFragmentAdapter(val context:Context,val itemList:ArrayList<Restau
 
         holder.textViewRestaurantName.setTag(restaurant.restaurantId+"")
         holder.textViewRestaurantName.text=restaurant.restaurantName
-        holder.textViewPricePerPerson.text="Rs."+restaurant.cost_for_one+" per person "
+        holder.textViewPricePerPerson.text=restaurant.cost_for_one+"/Person "
         holder.textViewRating.text=restaurant.restaurantRating
         //holder.imageViewBook.setBackgroundResource(book.bookImage)
         Picasso.get().load(restaurant.restaurantImage).error(R.drawable.ic_default_image_restaurant).into(holder.imageViewRestaurant);//if the image is not displayed properly we display default image in the error part

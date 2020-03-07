@@ -216,17 +216,6 @@ class CartActivity : AppCompatActivity() {
         setToolBar()
 
 
-
-
-
-
-
-
-
-
-
-
-
         layoutManager = LinearLayoutManager(this)//set the layout manager
 
         recyclerView = findViewById(R.id.recyclerViewCart)

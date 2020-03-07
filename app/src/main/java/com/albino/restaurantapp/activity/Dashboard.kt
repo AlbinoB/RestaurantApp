@@ -132,6 +132,9 @@ class Dashboard : AppCompatActivity() {
                     Toast.makeText(this@Dashboard,"Favourite Restaurants", Toast.LENGTH_SHORT).show()
                 }
                 R.id.orderHistory ->{
+                    val intent= Intent(this, OrderHistoryActivity::class.java)
+
+                    startActivity(intent)
                     Toast.makeText(this@Dashboard,"Order History", Toast.LENGTH_SHORT).show()
                 }
                 R.id.faqs ->{
