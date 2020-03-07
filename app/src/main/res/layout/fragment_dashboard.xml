@@ -6,9 +6,22 @@
     tools:context=".fragment.DashboardFragment">
 
 
+    <EditText
+        android:id="@+id/editTextSearch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Search"
+        android:padding="4dp"
+        android:textSize="18sp"/>
+
+
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/recyclerViewDashboard"/>
+        android:layout_below="@id/editTextSearch"
+        android:id="@+id/recyclerViewDashboard"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        />
 
 </RelativeLayout>

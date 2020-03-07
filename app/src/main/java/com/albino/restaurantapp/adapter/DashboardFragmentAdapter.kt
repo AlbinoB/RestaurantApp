@@ -18,7 +18,7 @@ import com.albino.restaurantapp.model.Restaurant
 import com.albino.restaurantapp.model.RestaurantMenu
 import com.squareup.picasso.Picasso
 
-class DashboardFragmentAdapter(val context:Context,val itemList:ArrayList<Restaurant>):RecyclerView.Adapter<DashboardFragmentAdapter.ViewHolderDashboard>() {
+class DashboardFragmentAdapter(val context:Context,var itemList:ArrayList<Restaurant>):RecyclerView.Adapter<DashboardFragmentAdapter.ViewHolderDashboard>() {
 
     class ViewHolderDashboard(view:View):RecyclerView.ViewHolder(view){
 
@@ -83,5 +83,10 @@ class DashboardFragmentAdapter(val context:Context,val itemList:ArrayList<Restau
 
 
 
+    }
+
+    fun filterList(filteredList:ArrayList<Restaurant>){
+        itemList=filteredList
+        notifyDataSetChanged()
     }
 }

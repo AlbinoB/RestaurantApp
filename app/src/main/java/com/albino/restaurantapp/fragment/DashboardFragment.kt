@@ -6,7 +6,10 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.provider.Settings
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.*
+import android.widget.EditText
 import androidx.fragment.app.Fragment
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
@@ -21,6 +24,7 @@ import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
+import kotlinx.android.synthetic.main.fragment_dashboard.view.*
 import org.json.JSONException
 import java.util.*
 import kotlin.Comparator
@@ -35,6 +39,7 @@ class DashboardFragment : Fragment() {
     lateinit var recyclerView:RecyclerView
     lateinit var layoutManager:RecyclerView.LayoutManager
     lateinit var dashboardAdapter:DashboardFragmentAdapter
+    lateinit var editTextSearch:EditText
 
     var restaurantInfoList= arrayListOf<Restaurant>()
 
@@ -71,6 +76,48 @@ class DashboardFragment : Fragment() {
         layoutManager = LinearLayoutManager(activity)//set the layout manager
 
         recyclerView = view.findViewById(R.id.recyclerViewDashboard)//recycler view from Dashboard fragment
+
+        editTextSearch=view.findViewById(R.id.editTextSearch)
+
+
+
+        fun filterFun(strTyped:String){//to filter the recycler view depending on what is typed
+            val filteredList= arrayListOf<Restaurant>()
+
+            for (item in restaurantInfoList){
+                if(item.restaurantName.toLowerCase().contains(strTyped.toLowerCase())){//to ignore case and if contained add to new list
+
+                    filteredList.add(item)
+
+
+                }
+            }
+            dashboardAdapter.filterList(filteredList)
+
+        }
+
+
+
+
+        editTextSearch.addTextChangedListener(object :TextWatcher{
+            override fun afterTextChanged(strTyped: Editable?) {
+                filterFun(strTyped.toString())
+            }
+
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+            }
+
+        }
+
+        )
+
+
+
 
 
         if (ConnectionManager().checkConnectivity(activity as Context)) {
