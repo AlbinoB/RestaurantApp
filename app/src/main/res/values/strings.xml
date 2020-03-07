@@ -15,6 +15,7 @@
     <string name="place_order">Place Order (Rs)</string>
 
     <string name="shared_preferences">RestaurantPreference</string>
+    <string name="your_previous_orders_are_listed_below">Your previous orders are listed below:</string>
 
 
 </resources>
