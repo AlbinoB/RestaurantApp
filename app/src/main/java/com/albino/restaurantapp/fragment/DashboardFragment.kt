@@ -36,10 +36,12 @@ import kotlin.collections.HashMap
 class DashboardFragment : Fragment() {
 
 
+
     lateinit var recyclerView:RecyclerView
     lateinit var layoutManager:RecyclerView.LayoutManager
     lateinit var dashboardAdapter:DashboardFragmentAdapter
     lateinit var editTextSearch:EditText
+
 
     var restaurantInfoList= arrayListOf<Restaurant>()
 
