@@ -1,13 +1,18 @@
 package com.albino.restaurantapp.activity
 
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.Settings
 import android.view.MenuItem
 import android.widget.FrameLayout
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.core.app.ActivityCompat
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.albino.restaurantapp.R
@@ -24,6 +29,7 @@ class Dashboard : AppCompatActivity() {
     lateinit var frameLayout: FrameLayout
     lateinit var navigationView: NavigationView
     lateinit var drawerLayout: DrawerLayout
+    lateinit var sharedPreferencess:SharedPreferences
 
 
 
@@ -32,6 +38,8 @@ class Dashboard : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dashboard)
+         sharedPreferencess=getSharedPreferences(getString(R.string.shared_preferences),
+            Context.MODE_PRIVATE)
 
         coordinatorLayout=findViewById(R.id.coordinatorLayout)
         toolbar=findViewById(R.id.toolBar)
@@ -117,7 +125,22 @@ class Dashboard : AppCompatActivity() {
                     Toast.makeText(this@Dashboard,"FAQs", Toast.LENGTH_SHORT).show()
                 }
                 R.id.logout ->{
-                    Toast.makeText(this@Dashboard,"Logout", Toast.LENGTH_SHORT).show()
+                    val alterDialog=androidx.appcompat.app.AlertDialog.Builder(this)
+
+                    alterDialog.setTitle("Confirmation")
+                    alterDialog.setMessage("Are you sure you want to exit?")
+                    alterDialog.setPositiveButton("Yes"){text,listener->
+                        sharedPreferencess.edit().putBoolean("user_logged_in",false).apply()
+
+                        ActivityCompat.finishAffinity(this)//closes all the instances of the app and the app closes completely
+                    }
+
+                    alterDialog.setNegativeButton("No"){ text,listener->
+
+                    }
+                    alterDialog.create()
+                    alterDialog.show()
+
                 }
             }
 
