@@ -166,7 +166,7 @@
 
 
     <Button
-        android:id="@+id/buttonRegister"
+        android:id="@+id/buttonSubmit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"

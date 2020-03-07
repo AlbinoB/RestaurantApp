@@ -18,9 +18,6 @@ import androidx.core.app.ActivityCompat
 
 import com.albino.restaurantapp.R
 import com.albino.restaurantapp.activity.Dashboard
-import com.albino.restaurantapp.activity.LoginRegisterActivity
-import com.albino.restaurantapp.adapter.DashboardFragmentAdapter
-import com.albino.restaurantapp.model.Restaurant
 import com.albino.restaurantapp.utils.ConnectionManager
 import com.android.volley.Request
 import com.android.volley.Response
@@ -63,7 +60,7 @@ class RegisterFragment(val contextParam:Context) : Fragment() {
         editTextDeliveryAddress=view.findViewById(R.id.editTextDeliveryAddress)
         editTextPassword=view.findViewById(R.id.editTextPassword)
         editTextConfirmPassword=view.findViewById(R.id.editTextConfirmPassword)
-        buttonRegister=view.findViewById(R.id.buttonRegister)
+        buttonRegister=view.findViewById(R.id.buttonSubmit)
         toolbar=view.findViewById(R.id.toolBar)
 
 

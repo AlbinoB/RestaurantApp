@@ -54,6 +54,10 @@ class LoginFragment(val contextParam:Context) : Fragment() {
         buttonLogin=view.findViewById(R.id.buttonLogin)
 
 
+        textViewForgotPassword.setOnClickListener(View.OnClickListener {
+            openForgotPasswordInputFragment()
+        })
+
 
         textViewSignUp.setOnClickListener(View.OnClickListener {
             openRegisterFragment()
@@ -71,9 +75,21 @@ class LoginFragment(val contextParam:Context) : Fragment() {
         return view
     }
 
+
+    fun openForgotPasswordInputFragment(){
+        val transaction = fragmentManager?.beginTransaction()
+
+        transaction?.replace(
+            R.id.frameLayout,
+            ForgotPasswordInputFragment(contextParam)
+        )//replace the old layout with the new frag  layout
+
+        transaction?.commit()//apply changes
+
+    }
+
+
     fun openRegisterFragment() {
-
-
 
         val transaction = fragmentManager?.beginTransaction()
 
