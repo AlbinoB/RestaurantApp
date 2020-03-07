@@ -14,5 +14,7 @@
     <string name="ordering_from">Ordering from:</string>
     <string name="place_order">Place Order (Rs)</string>
 
+    <string name="shared_preferences">RestaurantPreference</string>
+
 
 </resources>

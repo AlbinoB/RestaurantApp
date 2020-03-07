@@ -52,111 +52,117 @@
     android:orientation="vertical">
 
 
+    <EditText
+        android:id="@+id/editTextName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="#fff"
+        android:drawableLeft="@drawable/ic_person"
+        android:drawablePadding="4dp"
+        android:hint="Name (Min 3 characters)"
+        android:inputType="text"
+        android:maxLength="20"
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/editTextName"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="20dp"
-            android:hint="Name (Min 3 characters)"
-            android:drawableLeft="@drawable/ic_person"
-            android:background="#fff"
-            android:textSize="20sp"
-            android:padding="4dp"
-            android:drawablePadding="4dp"
 
-
-            />
+        android:padding="4dp"
+        android:textSize="20sp" />
 
 
     <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/editTextEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="20dp"
-        android:hint="Email Address"
+        android:background="#fff"
         android:drawableLeft="@drawable/ic_email"
-        android:background="#fff"
-        android:textSize="20sp"
-        android:padding="4dp"
         android:drawablePadding="4dp"
+        android:hint="Email Address"
+        android:inputType="textEmailAddress"
+        android:maxLength="30"
 
 
-        />
+        android:padding="4dp"
+        android:textSize="20sp" />
 
     <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/editTextMobileNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="20dp"
-        android:hint="Mobile Number (10 digits)"
+        android:background="#fff"
         android:drawableLeft="@drawable/ic_phone"
-        android:background="#fff"
-        android:textSize="20sp"
-        android:padding="4dp"
         android:drawablePadding="4dp"
+        android:hint="Mobile Number (10 digits)"
+        android:inputType="number"
+        android:maxLength="10"
 
 
-        />
+        android:padding="4dp"
+        android:textSize="20sp" />
 
 
     <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/editTextDeliveryAddress"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="20dp"
-        android:hint="Delivery Address"
-        android:drawableLeft="@drawable/ic_location"
-        android:background="#fff"
-        android:textSize="20sp"
-        android:padding="4dp"
-        android:drawablePadding="4dp"
-
-
-        />
-
-
-    <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/editTextPassword"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="20dp"
-            android:background="#fff"
-            android:textSize="20sp"
-            android:padding="4dp"
-            android:hint="Password"
-            android:drawablePadding="4dp"
-            android:drawableLeft="@drawable/ic_lock"
-            android:layout_below="@id/editTextMobileNumber"
-
-            />
-
-    <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/editTextConfirmPassword"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="20dp"
-        android:hint="Confirm Password"
-        android:drawableLeft="@drawable/ic_lock"
         android:background="#fff"
-        android:textSize="20sp"
-        android:padding="4dp"
+        android:drawableLeft="@drawable/ic_location"
         android:drawablePadding="4dp"
+        android:hint="Delivery Address"
+        android:inputType="text"
+        android:padding="4dp"
 
 
-        />
+        android:singleLine="true"
+        android:textSize="20sp" />
+
+
+    <EditText
+        android:id="@+id/editTextPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editTextMobileNumber"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="#fff"
+        android:drawableLeft="@drawable/ic_lock"
+        android:drawablePadding="4dp"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:maxLength="8"
+
+        android:padding="4dp"
+        android:singleLine="true"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/editTextConfirmPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="#fff"
+        android:drawableLeft="@drawable/ic_lock"
+        android:drawablePadding="4dp"
+        android:hint="Confirm Password"
+        android:inputType="textPassword"
+        android:maxLength="8"
+
+
+        android:padding="4dp"
+        android:textSize="20sp" />
 
 
     <Button

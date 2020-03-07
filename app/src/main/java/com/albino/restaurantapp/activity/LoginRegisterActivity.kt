@@ -1,5 +1,7 @@
 package com.albino.restaurantapp.activity
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.EditText
@@ -8,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.albino.restaurantapp.R
 import com.albino.restaurantapp.fragment.LoginFragment
 import com.albino.restaurantapp.fragment.RegisterFragment
+
 
 
 class LoginRegisterActivity : AppCompatActivity() {
@@ -19,19 +22,28 @@ class LoginRegisterActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login_register)
 
 
+        val sharedPreferencess=getSharedPreferences(getString(R.string.shared_preferences),
+            Context.MODE_PRIVATE)
 
 
-        openLoginFragment()
+        if(sharedPreferencess.getBoolean("user_logged_in",false)){
+            val intent= Intent(this,Dashboard::class.java)
+            startActivity(intent)
+            finish();
+        }else{
+            openLoginFragment()
+        }
+
     }
 
 
     fun openLoginFragment() {
-        val fragment = LoginFragment()
+
         val transaction =supportFragmentManager.beginTransaction()
 
         transaction.replace(
             R.id.frameLayout,
-            LoginFragment()
+            LoginFragment(this)
         )//replace the old layout with the new frag  layout
 
 

@@ -19,7 +19,7 @@ import com.albino.restaurantapp.activity.LoginRegisterActivity
 /**
  * A simple [Fragment] subclass.
  */
-class LoginFragment : Fragment() {
+class LoginFragment(val contextParam:Context) : Fragment() {
 
     lateinit var textViewSignUp: TextView
     lateinit var editTextMobileNumber: EditText
@@ -65,16 +65,20 @@ class LoginFragment : Fragment() {
     fun openRegisterFragment() {
 
 
-        val fragment = RegisterFragment()
+
         val transaction = fragmentManager?.beginTransaction()
 
         transaction?.replace(
             R.id.frameLayout,
-            RegisterFragment()
+            RegisterFragment(contextParam)
         )//replace the old layout with the new frag  layout
 
         transaction?.commit()//apply changes
 
+
+    }
+
+    fun checkErrors(){
 
     }
 
