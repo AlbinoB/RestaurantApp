@@ -1,14 +1,14 @@
 package com.albino.restaurantapp.activity
 
+import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.Settings
 import android.view.View
-import android.widget.Button
-import android.widget.RelativeLayout
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
+import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.albino.restaurantapp.R
@@ -21,27 +21,29 @@ import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
+import org.json.JSONArray
 import org.json.JSONException
-
+import org.json.JSONObject
 
 
 lateinit var toolbar:androidx.appcompat.widget.Toolbar
-
-
 lateinit var textViewOrderingFrom:TextView
 lateinit var buttonPlaceOrder:Button
-
+lateinit var orderSuccessfullyPlaced:RelativeLayout
+lateinit var buttonOkay:Button
 lateinit var recyclerView: RecyclerView
 lateinit var layoutManager: RecyclerView.LayoutManager
 lateinit var menuAdapter: CartAdapter
 lateinit var restaurantId:String
 lateinit var restaurantName:String
+lateinit var linearLayout:LinearLayout
 
 var totalAmount=0
 
 
 
 var cartListItems = arrayListOf<CartItems>()
+lateinit var selectedItemsId:ArrayList<String>
 
 
 
@@ -55,11 +57,16 @@ class CartActivity : AppCompatActivity() {
 
         buttonPlaceOrder=findViewById(R.id.buttonPlaceOrder)
         textViewOrderingFrom=findViewById(R.id.textViewOrderingFrom)
+        orderSuccessfullyPlaced=findViewById(R.id.orderSuccessfullyPlaced)
+        buttonOkay=findViewById(R.id.buttonOkay)
+        linearLayout=findViewById(R.id.linearLayout)
 
         toolbar=findViewById(R.id.toolBar)
 
         restaurantId=intent.getStringExtra("restaurantId")
         restaurantName=intent.getStringExtra("restaurantName")
+        selectedItemsId= intent.getStringArrayListExtra("selectedItemsId")
+
 
 
         //set the restaurant name
@@ -67,18 +74,151 @@ class CartActivity : AppCompatActivity() {
 
 
 
-        val selectedItemsId= intent.getStringArrayListExtra("selectedItemsId")
-
-
         buttonPlaceOrder.setOnClickListener(View.OnClickListener {
+
+
+
+
+
+
+                val sharedPreferencess=this.getSharedPreferences(getString(R.string.shared_preferences),
+                    Context.MODE_PRIVATE)
+
+
+                if (ConnectionManager().checkConnectivity(this)) {
+
+                    try {
+
+                        val foodJsonArray=JSONArray()
+                        for (foodItem in selectedItemsId){
+                            val singleItemObject=JSONObject()
+                            singleItemObject.put("food_item_id",foodItem)
+                            foodJsonArray.put(singleItemObject)
+
+                        }
+
+                        val sendOrder = JSONObject()
+
+                        sendOrder.put("user_id",sharedPreferencess.getString("user_id","0"))
+                        sendOrder.put("restaurant_id",restaurantId.toString())
+                        sendOrder.put("total_cost", totalAmount)
+                        sendOrder.put("food",foodJsonArray)
+
+
+
+                        val queue = Volley.newRequestQueue(this)
+
+                        val url = "http://13.235.250.119/v2/place_order/fetch_result"
+
+                        val jsonObjectRequest = object : JsonObjectRequest(
+                            Request.Method.POST,
+                            url,
+                            sendOrder,
+                            Response.Listener {
+                                println("Response12 is " + it)
+
+                                val responseJsonObjectData = it.getJSONObject("data")
+
+                                val success = responseJsonObjectData.getBoolean("success")
+
+
+                                if (success) {
+
+
+
+                                    Toast.makeText(
+                                        this,
+                                        "Order Placed",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+
+                                    toolbar.visibility=View.INVISIBLE
+                                    linearLayout.visibility=View.INVISIBLE
+                                    orderSuccessfullyPlaced.visibility=View.VISIBLE//after we get a response we show the order place view
+
+
+                                } else {
+                                    val responseMessageServer =
+                                        responseJsonObjectData.getString("errorMessage")
+                                    Toast.makeText(
+                                        this,
+                                        responseMessageServer.toString(),
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+
+                                }
+                            },
+                            Response.ErrorListener {
+                                println("Error12 is " + it)
+
+                                Toast.makeText(
+                                    this,
+                                    "mSome Error occurred!!!",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+
+
+
+                            }) {
+                            override fun getHeaders(): MutableMap<String, String> {
+                                val headers = HashMap<String, String>()
+
+                                headers["Content-type"] = "application/json"
+                                headers["token"] = "acdc385cfd7264"
+
+                                return headers
+                            }
+                        }
+
+                        queue.add(jsonObjectRequest)
+
+                    } catch (e: JSONException) {
+                        Toast.makeText(
+                            this,
+                            "Some unexpected error occured!!!",
+                            Toast.LENGTH_SHORT
+                        ).show()
+
+                    }
+
+                }else
+                {
+                    val alterDialog=androidx.appcompat.app.AlertDialog.Builder(this)
+
+                    alterDialog.setTitle("No Internet")
+                    alterDialog.setMessage("Internet Connection can't be establish!")
+                    alterDialog.setPositiveButton("Open Settings"){text,listener->
+                        val settingsIntent= Intent(Settings.ACTION_WIRELESS_SETTINGS)//open wifi settings
+                        startActivity(settingsIntent)
+                        finish()
+                    }
+
+                    alterDialog.setNegativeButton("Exit"){ text,listener->
+                        ActivityCompat.finishAffinity(this)//closes all the instances of the app and the app closes completely
+                    }
+                    alterDialog.create()
+                    alterDialog.show()
+
+
+
+                }
+
+
+        })
+
+        buttonOkay.setOnClickListener(View.OnClickListener {
 
             val intent= Intent(this,Dashboard::class.java)
 
             startActivity(intent)
-
         })
 
         setToolBar()
+
+
+
+
+
 
 
 
@@ -222,7 +362,7 @@ class CartActivity : AppCompatActivity() {
 
     fun setToolBar(){
         setSupportActionBar(toolbar)
-        supportActionBar?.title="Tool Bar"
+        supportActionBar?.title="Your Cart"
         supportActionBar?.setHomeButtonEnabled(true)//enables the button on the tool bar
         supportActionBar?.setDisplayHomeAsUpEnabled(true)//displays the icon on the button
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_back_arrow)//change icon to custom
