@@ -50,9 +50,11 @@
             android:background="#fff"
             android:drawablePadding="4dp"
             android:hint="Mobile Number(10 digits)"
+            android:inputType="number"
+            android:maxLength="10"
+            android:maxLines="1"
             android:padding="10dp"
             android:paddingStart="10dp"
-
             android:textSize="20sp" />
 
 
@@ -67,10 +69,11 @@
             android:background="#fff"
             android:drawablePadding="4dp"
             android:hint="Email Address"
-            android:padding="10dp"
-            android:textSize="20sp"
+            android:inputType="textEmailAddress"
+            android:maxLines="1"
 
-            />
+            android:padding="10dp"
+            android:textSize="20sp" />
 
         <Button
             android:id="@+id/buttonNext"

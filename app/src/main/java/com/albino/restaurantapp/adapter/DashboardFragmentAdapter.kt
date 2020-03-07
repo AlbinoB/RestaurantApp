@@ -89,4 +89,6 @@ class DashboardFragmentAdapter(val context:Context,var itemList:ArrayList<Restau
         itemList=filteredList
         notifyDataSetChanged()
     }
+
+
 }

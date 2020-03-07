@@ -121,4 +121,8 @@ class RestaurantMenuAdapter(val context:Context,val restaurantId:String,val rest
 
     }
 
+    fun getSelectedItemCount():Int{
+        return itemSelectedCount
+    }
+
 }
