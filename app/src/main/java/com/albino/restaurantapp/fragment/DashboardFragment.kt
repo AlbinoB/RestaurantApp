@@ -31,9 +31,11 @@ import org.json.JSONException
 class DashboardFragment : Fragment() {
 
 
+
     lateinit var recyclerView:RecyclerView
     lateinit var layoutManager:RecyclerView.LayoutManager
     lateinit var dashboardAdapter:DashboardFragmentAdapter
+
 
     var restaurantInfoList= arrayListOf<Restaurant>()
 
