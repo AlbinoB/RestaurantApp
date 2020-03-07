@@ -6,10 +6,8 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.provider.Settings
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -24,6 +22,9 @@ import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import org.json.JSONException
+import java.util.*
+import kotlin.Comparator
+import kotlin.collections.HashMap
 
 /**
  * A simple [Fragment] subclass.
@@ -37,11 +38,33 @@ class DashboardFragment : Fragment() {
 
     var restaurantInfoList= arrayListOf<Restaurant>()
 
+
+    var ratingComparator= Comparator<Restaurant> { rest1, rest2 ->
+
+        if(rest1.restaurantRating.compareTo(rest2.restaurantRating,true)==0){
+            rest1.restaurantName.compareTo(rest2.restaurantName,true)
+        }
+        else{
+            rest1.restaurantRating.compareTo(rest2.restaurantRating,true)
+        }
+
+    }
+
+    var costComparator= Comparator<Restaurant> { rest1, rest2 ->
+
+            rest1.cost_for_one.compareTo(rest2.cost_for_one,true)
+
+    }
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+
+        setHasOptionsMenu(true)
+
 
         val view = inflater.inflate(R.layout.fragment_dashboard, container, false)
 
@@ -156,5 +179,38 @@ class DashboardFragment : Fragment() {
 
             return view
 
+    }
+
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater?.inflate(R.menu.menu_dashboard,menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        val id=item.itemId
+
+        when(id){
+            R.id.rating_sort->{
+                Collections.sort(restaurantInfoList,ratingComparator)
+                restaurantInfoList.reverse()
+                dashboardAdapter.notifyDataSetChanged()//updates the adapter
+
+            }
+            R.id.low_to_high_cost_sort->{
+                Collections.sort(restaurantInfoList,costComparator)
+                dashboardAdapter.notifyDataSetChanged()//updates the adapter
+
+            }
+            R.id.high_to_low_cost_sort->{
+                Collections.sort(restaurantInfoList,costComparator)
+                restaurantInfoList.reverse()
+                dashboardAdapter.notifyDataSetChanged()//updates the adapter
+
+            }
+
+        }
+
+        return super.onOptionsItemSelected(item)
     }
 }

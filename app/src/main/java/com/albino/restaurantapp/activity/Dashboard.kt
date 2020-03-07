@@ -7,6 +7,8 @@ import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.Settings
+import android.view.LayoutInflater
+import android.view.Menu
 import android.view.MenuItem
 import android.widget.FrameLayout
 import android.widget.TextView
@@ -214,5 +216,8 @@ class Dashboard : AppCompatActivity() {
 
         navigationView.setCheckedItem(R.id.faqs)//is used to set the default dashboard to checked when the app opens or the back btn is pressed to go to the previous fragment
     }
+
+
+
 
 }
