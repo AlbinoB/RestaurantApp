@@ -153,7 +153,7 @@ class RegisterFragment(val contextParam:Context) : Fragment() {
 
                                 Toast.makeText(
                                     contextParam,
-                                    "Insert sucessfully",
+                                    "Registered sucessfully",
                                     Toast.LENGTH_SHORT
                                 ).show()
 

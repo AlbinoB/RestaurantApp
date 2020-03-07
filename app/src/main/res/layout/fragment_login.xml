@@ -24,43 +24,41 @@
             android:src="@drawable/app_icon_log_white" />
 
 
-
-
         <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:id="@+id/editTextMobileNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/imageViewAppIcon"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginBottom="20dp"
-            android:hint="Mobile Number"
-            android:drawableLeft="@drawable/ic_phone"
             android:background="#fff"
-            android:textSize="20sp"
-            android:padding="10dp"
+            android:drawableLeft="@drawable/ic_phone"
             android:drawablePadding="4dp"
-            android:layout_below="@id/imageViewAppIcon"
+            android:hint="Mobile Number"
+            android:inputType="number"
+            android:padding="10dp"
 
-            />
+            android:textSize="20sp" />
 
 
         <EditText
+            android:id="@+id/editTextPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/editTextPassword"
+            android:layout_below="@id/editTextMobileNumber"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginBottom="20dp"
             android:background="#fff"
-            android:textSize="20sp"
-            android:padding="10dp"
-            android:hint="Password"
-            android:drawablePadding="4dp"
-
             android:drawableLeft="@drawable/ic_lock"
-            android:layout_below="@id/editTextMobileNumber"
+            android:drawablePadding="4dp"
+            android:hint="Password"
 
-            />
+            android:inputType="textPassword"
+            android:padding="10dp"
+
+            android:textSize="20sp" />
 
         <Button
             android:id="@+id/buttonLogin"
