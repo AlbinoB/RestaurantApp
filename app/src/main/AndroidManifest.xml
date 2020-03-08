@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.OrderHistoryActivity"></activity>
+        <activity android:name=".activity.ProfileActivity"></activity>
+        <activity android:name=".activity.OrderHistoryActivity" />
         <activity android:name=".activity.CartActivity" />
         <activity android:name=".activity.RestaurantMenuActivity" />
         <activity android:name=".activity.Dashboard" />
