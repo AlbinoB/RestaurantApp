@@ -263,7 +263,7 @@ class DashboardFragment(val contextParam: Context) : Fragment() {
                             }
                         }
                         .setNegativeButton("CANCEL") { text, listener ->
-                            
+
                         }
                         .create()
                         .show()

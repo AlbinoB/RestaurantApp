@@ -95,7 +95,6 @@ class Dashboard : AppCompatActivity() {
                 R.id.homee ->{
                     openDashboard()//function called below as the same code is present in the oncreate of the activity
                     drawerLayout.closeDrawers()
-                    Toast.makeText(this@Dashboard,"Dashboard", Toast.LENGTH_SHORT).show()
                 }
                 R.id.myProfile ->{
                     //the supportFragmentManager is responsible for starting a new fragment and each call is called a transaction
@@ -220,7 +219,7 @@ class Dashboard : AppCompatActivity() {
 
         transaction .commit()//apply changes
 
-        supportActionBar?.title="DashBoard"//change the title when each new fragment is opened
+        supportActionBar?.title="All Restaurants"//change the title when each new fragment is opened
 
 
 

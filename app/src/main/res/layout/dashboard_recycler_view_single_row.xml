@@ -24,6 +24,7 @@
         android:scaleType="centerCrop"
         android:layout_margin="10dp"
         android:padding="4dp"
+
         android:src="@drawable/ic_default_image_restaurant"
         android:layout_weight="1.3"
         android:id="@+id/imageViewRestaurant"/>
