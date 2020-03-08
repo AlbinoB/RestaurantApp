@@ -205,7 +205,7 @@ class Dashboard : AppCompatActivity() {
 
         transaction.replace(
             R.id.frameLayout,
-            DashboardFragment()
+            DashboardFragment(this)
         )//replace the old layout with the new frag  layout
 
         transaction .commit()//apply changes

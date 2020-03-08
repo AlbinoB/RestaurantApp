@@ -185,7 +185,7 @@ class ForgotPasswordFragment(val contextParam:Context,val mobile_number:String) 
 
         transaction?.replace(
             R.id.frameLayout,
-            DashboardFragment()
+            LoginFragment(contextParam)
         )//replace the old layout with the new frag  layout
 
         transaction?.commit()//apply changes

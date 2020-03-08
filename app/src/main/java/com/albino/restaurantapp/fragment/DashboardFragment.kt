@@ -4,6 +4,7 @@ package com.albino.restaurantapp.fragment
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.os.AsyncTask
 import android.os.Bundle
 import android.provider.Settings
 import android.text.Editable
@@ -15,9 +16,12 @@ import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.room.Room
 
 import com.albino.restaurantapp.R
 import com.albino.restaurantapp.adapter.DashboardFragmentAdapter
+import com.albino.restaurantapp.database.RestaurantDatabase
+import com.albino.restaurantapp.database.RestaurantEntity
 import com.albino.restaurantapp.model.Restaurant
 import com.albino.restaurantapp.utils.ConnectionManager
 import com.android.volley.Request
@@ -33,7 +37,7 @@ import kotlin.collections.HashMap
 /**
  * A simple [Fragment] subclass.
  */
-class DashboardFragment : Fragment() {
+class DashboardFragment(val contextParam: Context) : Fragment() {
 
 
 
@@ -146,15 +150,15 @@ class DashboardFragment : Fragment() {
                             val data = responseJsonObjectData.getJSONArray("data")
 
                             for (i in 0 until data.length()) {
-                                val bookJsonObject = data.getJSONObject(i)
-                                val bookObject = Restaurant(
-                                    bookJsonObject.getString("id"),
-                                    bookJsonObject.getString("name"),
-                                    bookJsonObject.getString("rating"),
-                                    bookJsonObject.getString("cost_for_one"),
-                                    bookJsonObject.getString("image_url")
+                                val restaurantJsonObject = data.getJSONObject(i)
+                                val restaurantObject = Restaurant(
+                                    restaurantJsonObject.getString("id"),
+                                    restaurantJsonObject.getString("name"),
+                                    restaurantJsonObject.getString("rating"),
+                                    restaurantJsonObject.getString("cost_for_one"),
+                                    restaurantJsonObject.getString("image_url")
                                 )
-                                restaurantInfoList.add(bookObject)
+                                restaurantInfoList.add(restaurantObject)
 
                                 //progressBar.visibility = View.GONE
 
@@ -167,13 +171,6 @@ class DashboardFragment : Fragment() {
 
                                 recyclerView.layoutManager = layoutManager //bind the  recyclerView to the layoutManager
 
-
-                                //spacing between list items
-                                /*recyclerDashboard.addItemDecoration(
-                                    DividerItemDecoration(
-                                        recyclerDashboard.context,(layoutManager as LinearLayoutManager).orientation
-                                    )
-                                )*/
                             }
 
 
@@ -265,4 +262,9 @@ class DashboardFragment : Fragment() {
 
 
 
-}
+        }
+
+
+
+
+
