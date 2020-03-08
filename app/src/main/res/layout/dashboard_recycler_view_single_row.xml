@@ -75,11 +75,11 @@
         <TextView
             android:id="@+id/textViewfavourite"
             android:layout_width="25dp"
-            android:layout_height="50dp"
+            android:layout_height="25dp"
             android:layout_margin="10dp"
             android:layout_centerHorizontal="true"
-
-            android:drawableEnd="@drawable/fav_outline"
+            android:tag="unliked"
+            android:background="@drawable/ic_fav_outline"
 
             />
 
@@ -93,6 +93,7 @@
             android:drawablePadding="4dp"
             android:layout_centerHorizontal="true"
             android:padding="4dp"
+            android:layout_marginTop="15dp"
             android:textSize="15sp"
             android:layout_below="@+id/textViewfavourite"
             android:id="@+id/textViewRating"

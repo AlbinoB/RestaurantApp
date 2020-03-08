@@ -27,6 +27,7 @@ class DashboardFragmentAdapter(val context:Context,var itemList:ArrayList<Restau
         val textViewPricePerPerson: TextView =view.findViewById(R.id.textViewPricePerPerson)
         val textViewRating: TextView =view.findViewById(R.id.textViewRating)
         val llContent:LinearLayout=view.findViewById(R.id.llContent)
+        val textViewfavourite:TextView=view.findViewById(R.id.textViewfavourite)
 
 
 
@@ -51,6 +52,16 @@ class DashboardFragmentAdapter(val context:Context,var itemList:ArrayList<Restau
         val restaurant=itemList[position]//gets the item from the itemList sent in the constructor at the position
         //holder.textView.text=text//fill in the recieved data in the holder
 
+
+        holder.textViewfavourite.setOnClickListener(View.OnClickListener {
+            if(holder.textViewfavourite.getTag().equals("unliked")){
+                holder.textViewfavourite.setTag("liked")
+                holder.textViewfavourite.background=context.resources.getDrawable(R.drawable.ic_fav_fill)
+            }else{
+                holder.textViewfavourite.setTag("unliked")
+                holder.textViewfavourite.background=context.resources.getDrawable(R.drawable.ic_fav_outline)
+            }
+        })
 
 
         holder.llContent.setOnClickListener(View.OnClickListener {

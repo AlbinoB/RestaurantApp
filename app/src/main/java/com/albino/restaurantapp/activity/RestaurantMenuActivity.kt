@@ -219,5 +219,10 @@ class RestaurantMenuActivity : AppCompatActivity() {
 
     }
 
+    /*override fun onPause() {
+        menuAdapter.itemsSelectedId.clear()//clear all the items if the user comes back to the MenuRestaurantActivity
+        super.onPause()
+    }*/
+
 
 }

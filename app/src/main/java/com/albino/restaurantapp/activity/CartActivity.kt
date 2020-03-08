@@ -67,6 +67,9 @@ class CartActivity : AppCompatActivity() {
         restaurantName=intent.getStringExtra("restaurantName")
         selectedItemsId= intent.getStringArrayListExtra("selectedItemsId")
 
+        println(".......................")
+        for (i in selectedItemsId)
+            println(i)
 
 
         //set the restaurant name
@@ -228,11 +231,6 @@ class CartActivity : AppCompatActivity() {
 
                 val queue = Volley.newRequestQueue(this)
 
-
-
-
-
-
                 val url = "http://13.235.250.119/v2/restaurants/fetch_result/" + restaurantId
 
                 val jsonObjectRequest = object : JsonObjectRequest(
@@ -249,6 +247,10 @@ class CartActivity : AppCompatActivity() {
                         if (success) {
 
                             val data = responseJsonObjectData.getJSONArray("data")
+
+                            cartListItems.clear()//clear all items to get updated values
+
+                            totalAmount=0
 
                             for (i in 0 until data.length()) {
                                 val cartItemJsonObject = data.getJSONObject(i)
@@ -268,11 +270,6 @@ class CartActivity : AppCompatActivity() {
                                         cartListItems.add(menuObject)
 
                                     }
-
-
-
-
-
                                 //progressBar.visibility = View.GONE
 
                                 menuAdapter = CartAdapter(
@@ -286,13 +283,6 @@ class CartActivity : AppCompatActivity() {
                                 recyclerView.layoutManager =
                                     layoutManager //bind the  recyclerView to the layoutManager
 
-
-                                //spacing between list items
-                                /*recyclerDashboard.addItemDecoration(
-                                    DividerItemDecoration(
-                                        recyclerDashboard.context,(layoutManager as LinearLayoutManager).orientation
-                                    )
-                                )*/
                             }
 
                             //set the total on the button
@@ -356,6 +346,12 @@ class CartActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)//displays the icon on the button
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_back_arrow)//change icon to custom
     }
+
+    /*override fun onBackPressed() {
+        finish()
+        super.onBackPressed()
+    }*/
+
 
 
     }

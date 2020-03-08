@@ -66,6 +66,9 @@ class RestaurantMenuAdapter(val context:Context,val restaurantId:String,val rest
 
             intent.putExtra("restaurantName",restaurantName)
 
+            for (i in itemsSelectedId)
+                println(i)
+
             intent.putExtra("selectedItemsId",itemsSelectedId)//pass all the items selected by the user
 
             context.startActivity(intent)
