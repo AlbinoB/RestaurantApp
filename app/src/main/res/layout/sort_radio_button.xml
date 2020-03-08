@@ -19,7 +19,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:id="@+id/radio_low_to_high"
-            android:text="Cost (Low to High)"
+            android:text="Cost(Low to High)"
             android:padding="5dp"
             android:layout_margin="5dp"
             android:textSize="20sp"/>
@@ -28,7 +28,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:id="@+id/radio_high_to_low"
-            android:text="Cost (High to Low)"
+            android:text="Cost(High to Low)"
             android:padding="5dp"
             android:layout_margin="5dp"
             android:textSize="20sp"/>
@@ -41,6 +41,7 @@
             android:padding="5dp"
             android:layout_margin="5dp"
             android:textSize="20sp"/>
+
 
     </RadioGroup>
 
