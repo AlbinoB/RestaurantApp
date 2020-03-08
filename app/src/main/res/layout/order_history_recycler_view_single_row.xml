@@ -47,9 +47,8 @@
             <RelativeLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.25"
-
-
+                android:layout_weight="0.40"
+                android:layout_alignParentRight="true"
                 >
 
                 <TextView
@@ -60,7 +59,10 @@
                     android:padding="5dp"
                     android:paddingStart="10dp"
                     android:text="22/12/2018"
-                    android:textSize="15sp" />
+                    android:textAlignment="textEnd"
+                    android:paddingLeft="5dp"
+                    android:textSize="15sp"
+                    />
 
 
             </RelativeLayout>

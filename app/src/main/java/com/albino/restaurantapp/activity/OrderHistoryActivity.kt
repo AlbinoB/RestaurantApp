@@ -82,7 +82,7 @@ class OrderHistoryActivity : AppCompatActivity() {
                                         restaurantItemJsonObject.getString("order_id"),
                                         restaurantItemJsonObject.getString("restaurant_name"),
                                         restaurantItemJsonObject.getString("total_cost"),
-                                        restaurantItemJsonObject.getString("order_placed_at").substring(0,7))// only date is extracted
+                                        restaurantItemJsonObject.getString("order_placed_at").substring(0,10))// only date is extracted
 
 
 

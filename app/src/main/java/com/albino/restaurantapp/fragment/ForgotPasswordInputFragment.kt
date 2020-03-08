@@ -3,7 +3,6 @@ package com.albino.restaurantapp.fragment
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.os.AsyncTask
 import android.os.Bundle
 import android.provider.Settings
 import androidx.fragment.app.Fragment
@@ -37,7 +36,7 @@ class ForgotPasswordInputFragment(val contextParam: Context) : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
 
-        val view=inflater.inflate(R.layout.fragment_forg, container, false)
+        val view=inflater.inflate(R.layout.fragment_forgot_password_input_num_email, container, false)
 
         editTextMobileNumber=view.findViewById(R.id.editTextMobileNumber)
         editTextEmail=view.findViewById(R.id.editTextEmail)

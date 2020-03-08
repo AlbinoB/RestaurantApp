@@ -52,7 +52,10 @@ class OrderHistoryAdapter(val context: Context, val orderedRestaurantList:ArrayL
 
 
         holder.textViewResturantName.text = restaurantObject.restaurantName
-        holder.textViewDate.text =  restaurantObject.orderPlacedAt
+        var formatDate=restaurantObject.orderPlacedAt
+        formatDate=formatDate.replace("-","/")//21-02-20 to 21/02/20
+        formatDate=formatDate.substring(0,6)+"20"+formatDate.substring(6,8)//21/02/20 to 21/02/2020
+        holder.textViewDate.text =  formatDate
 
 
         var layoutManager = LinearLayoutManager(context)
