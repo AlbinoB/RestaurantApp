@@ -122,10 +122,6 @@ class DashboardFragment(val contextParam: Context) : Fragment() {
 
         )
 
-
-
-
-
         if (ConnectionManager().checkConnectivity(activity as Context)) {
 
             try {

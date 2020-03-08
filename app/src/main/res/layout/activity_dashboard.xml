@@ -20,8 +20,9 @@
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark"
+            android:theme="@style/ThemeOverlay.AppCompat.Light"
             android:elevation="0dp"
+            android:translationZ="0.1dp"
             >
             <!-- elivation raise the appbar and gives a shadow -->
 

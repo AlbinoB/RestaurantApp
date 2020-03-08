@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.Settings
+import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import android.widget.FrameLayout
@@ -23,6 +24,8 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.google.android.material.navigation.NavigationView
 import org.json.JSONException
+import java.util.*
+import kotlin.collections.HashMap
 
 class RestaurantMenuActivity : AppCompatActivity() {
 
@@ -55,14 +58,10 @@ class RestaurantMenuActivity : AppCompatActivity() {
         //openDashboard()
         toolbar=findViewById(R.id.toolBar)
 
-
-
-
-        setToolBar()
-
-
         restaurantId = intent.getStringExtra("restaurantId")
         restaurantName=intent.getStringExtra("restaurantName")
+
+        setToolBar()
 
 
 
@@ -190,7 +189,7 @@ class RestaurantMenuActivity : AppCompatActivity() {
 
     fun setToolBar(){
         setSupportActionBar(toolbar)
-        supportActionBar?.title="Tool Bar"
+        supportActionBar?.title=restaurantName
         supportActionBar?.setHomeButtonEnabled(true)//enables the button on the tool bar
         supportActionBar?.setDisplayHomeAsUpEnabled(true)//displays the icon on the button
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_back_arrow)//change icon to custom
@@ -219,10 +218,17 @@ class RestaurantMenuActivity : AppCompatActivity() {
 
     }
 
-    /*override fun onPause() {
-        menuAdapter.itemsSelectedId.clear()//clear all the items if the user comes back to the MenuRestaurantActivity
-        super.onPause()
-    }*/
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        val id=item.itemId
+
+        when(id){
+            android.R.id.home->{
+                super.onBackPressed()
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
 
 }

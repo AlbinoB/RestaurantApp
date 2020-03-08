@@ -6,6 +6,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.Settings
+import android.view.MenuItem
 import android.view.View
 import android.widget.*
 import androidx.core.app.ActivityCompat
@@ -248,6 +249,7 @@ class CartActivity : AppCompatActivity() {
 
                             val data = responseJsonObjectData.getJSONArray("data")
 
+                            //old listener of jsonObjectRequest are still listening therefore clear is used
                             cartListItems.clear()//clear all items to get updated values
 
                             totalAmount=0
@@ -347,10 +349,17 @@ class CartActivity : AppCompatActivity() {
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_back_arrow)//change icon to custom
     }
 
-    /*override fun onBackPressed() {
-        finish()
-        super.onBackPressed()
-    }*/
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        val id=item.itemId
+
+        when(id){
+            android.R.id.home->{
+                super.onBackPressed()
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
 
 
 

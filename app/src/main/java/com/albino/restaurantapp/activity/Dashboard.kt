@@ -17,12 +17,11 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.app.ActivityCompat
 import androidx.core.view.GravityCompat
+import androidx.core.view.get
 import androidx.drawerlayout.widget.DrawerLayout
 import com.albino.restaurantapp.R
 import com.albino.restaurantapp.adapter.DashboardFragmentAdapter
-import com.albino.restaurantapp.fragment.DashboardFragment
-import com.albino.restaurantapp.fragment.FavouriteRestaurantFragment
-import com.albino.restaurantapp.fragment.MyProfileFragment
+import com.albino.restaurantapp.fragment.*
 import com.google.android.material.navigation.NavigationView
 
 class Dashboard : AppCompatActivity() {
@@ -55,6 +54,9 @@ class Dashboard : AppCompatActivity() {
         textViewcurrentUser=headerView.findViewById(R.id.textViewcurrentUser)
         textViewMobileNumber=headerView.findViewById(R.id.textViewMobileNumber)
 
+        //is used to set the default dashboard to checked when the app opens or the back btn is pressed to go to the previous fragment
+        navigationView.menu.getItem(0).setCheckable(true)
+        navigationView.menu.getItem(0).setChecked(true)
 
 
         //set tool bar
@@ -77,11 +79,7 @@ class Dashboard : AppCompatActivity() {
 
         actionBarDrawerToggle.syncState()//to sync with the state of the navigation toggle with the state of the navigation drawer
 
-
-
-
         navigationView.setNavigationItemSelectedListener {
-
 
             if(previousMenuItemSelected!=null){
                 previousMenuItemSelected?.setChecked(false)
@@ -104,7 +102,7 @@ class Dashboard : AppCompatActivity() {
                     supportFragmentManager.beginTransaction()
                         .replace(
                             R.id.frameLayout,
-                            MyProfileFragment()
+                            ProfileFragment(this)
                         )//replace the old layout with the new frag  layout
                         //.addToBackStack("Favourite")//so that the app foesnt close on clicking the backbtn, it store the fragments in backstack and goies to previous fragment
                         .commit()//apply changes
@@ -121,7 +119,7 @@ class Dashboard : AppCompatActivity() {
                     supportFragmentManager.beginTransaction()
                         .replace(
                             R.id.frameLayout,
-                            FavouriteRestaurantFragment()
+                            FavouriteRestaurantFragment(this)
                         )//replace the old layout with the new frag  layout
                         //.addToBackStack("Favourite")//so that the app foesnt close on clicking the backbtn, it store the fragments in backstack and goies to previous fragment
                         .commit()//apply changes
@@ -130,16 +128,26 @@ class Dashboard : AppCompatActivity() {
 
                     drawerLayout.closeDrawers()
 
-
-                    Toast.makeText(this@Dashboard,"Favourite Restaurants", Toast.LENGTH_SHORT).show()
                 }
                 R.id.orderHistory ->{
                     val intent= Intent(this, OrderHistoryActivity::class.java)
 
                     startActivity(intent)
-                    Toast.makeText(this@Dashboard,"Order History", Toast.LENGTH_SHORT).show()
+
                 }
                 R.id.faqs ->{
+
+                    supportFragmentManager.beginTransaction()
+                        .replace(
+                            R.id.frameLayout,
+                            FaqsFragment()
+                        )//replace the old layout with the new frag  layout
+                        //.addToBackStack("Favourite")//so that the app foesnt close on clicking the backbtn, it store the fragments in backstack and goies to previous fragment
+                        .commit()//apply changes
+
+                    supportActionBar?.title="Favourite Restaurants"//change the title when each new fragment is opened
+
+
                     Toast.makeText(this@Dashboard,"FAQs", Toast.LENGTH_SHORT).show()
                 }
                 R.id.logout ->{
@@ -186,7 +194,9 @@ class Dashboard : AppCompatActivity() {
         val currentFragment = supportFragmentManager.findFragmentById(R.id.frameLayout)//gets the id og=f the current fragment
 
         when(currentFragment){
-            !is DashboardFragment -> openDashboard()
+            !is DashboardFragment -> {
+                navigationView.menu.getItem(0).setChecked(true)
+                openDashboard()}
             else ->super.onBackPressed()
         }
     }
@@ -214,7 +224,7 @@ class Dashboard : AppCompatActivity() {
 
 
 
-        navigationView.setCheckedItem(R.id.faqs)//is used to set the default dashboard to checked when the app opens or the back btn is pressed to go to the previous fragment
+        navigationView.setCheckedItem(R.id.homee)
     }
 
 

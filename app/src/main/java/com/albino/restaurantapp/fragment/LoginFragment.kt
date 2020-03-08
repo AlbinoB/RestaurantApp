@@ -67,11 +67,6 @@ class LoginFragment(val contextParam:Context) : Fragment() {
         buttonLogin.setOnClickListener(View.OnClickListener {
             loginUserFun()
         })
-
-
-
-
-
         return view
     }
 
