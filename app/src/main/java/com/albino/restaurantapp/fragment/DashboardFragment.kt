@@ -29,6 +29,7 @@ import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import kotlinx.android.synthetic.main.fragment_dashboard.view.*
+import kotlinx.android.synthetic.main.sort_radio_button.view.*
 import org.json.JSONException
 import java.util.*
 import kotlin.Comparator
@@ -45,6 +46,8 @@ class DashboardFragment(val contextParam: Context) : Fragment() {
     lateinit var layoutManager:RecyclerView.LayoutManager
     lateinit var dashboardAdapter:DashboardFragmentAdapter
     lateinit var editTextSearch:EditText
+    lateinit var radioButtonView:View
+
 
 
     var restaurantInfoList= arrayListOf<Restaurant>()
@@ -84,6 +87,9 @@ class DashboardFragment(val contextParam: Context) : Fragment() {
         recyclerView = view.findViewById(R.id.recyclerViewDashboard)//recycler view from Dashboard fragment
 
         editTextSearch=view.findViewById(R.id.editTextSearch)
+
+
+
 
 
 
@@ -232,6 +238,40 @@ class DashboardFragment(val contextParam: Context) : Fragment() {
 
         val id=item.itemId
 
+
+        when(id){
+
+            R.id.sort->{
+                radioButtonView= View.inflate(contextParam,R.layout.sort_radio_button,null)//radiobutton view for sorting display
+                    androidx.appcompat.app.AlertDialog.Builder(activity as Context)
+                        .setTitle("Sort By?")
+                        .setView(radioButtonView)
+                        .setPositiveButton("OK") { text, listener ->
+                            if (radioButtonView.radio_high_to_low.isChecked) {
+                                Collections.sort(restaurantInfoList, costComparator)
+                                restaurantInfoList.reverse()
+                                dashboardAdapter.notifyDataSetChanged()//updates the adapter
+                            }
+                            if (radioButtonView.radio_low_to_high.isChecked) {
+                                Collections.sort(restaurantInfoList, costComparator)
+                                dashboardAdapter.notifyDataSetChanged()//updates the adapter
+                            }
+                            if (radioButtonView.radio_rating.isChecked) {
+                                Collections.sort(restaurantInfoList, ratingComparator)
+                                restaurantInfoList.reverse()
+                                dashboardAdapter.notifyDataSetChanged()//updates the adapter
+                            }
+                        }
+                        .setNegativeButton("CANCEL") { text, listener ->
+                            
+                        }
+                        .create()
+                        .show()
+            }
+        }
+
+/*
+
         when(id){
             R.id.rating_sort->{
                 Collections.sort(restaurantInfoList,ratingComparator)
@@ -252,6 +292,7 @@ class DashboardFragment(val contextParam: Context) : Fragment() {
             }
 
         }
+*/
 
         return super.onOptionsItemSelected(item)
     }
