@@ -43,6 +43,9 @@ class ForgotPasswordInputFragment(val contextParam: Context) : Fragment() {
         buttonNext=view.findViewById(R.id.buttonNext)
 
         buttonNext.setOnClickListener(View.OnClickListener {
+
+            println("inside click listener next")
+
             if (editTextMobileNumber.text.isBlank())
             {
                 editTextMobileNumber.setError("Mobile Number Missing")
@@ -59,6 +62,9 @@ class ForgotPasswordInputFragment(val contextParam: Context) : Fragment() {
 
                             loginUser.put("mobile_number", editTextMobileNumber.text)
                             loginUser.put("email", editTextEmail.text)
+
+                            println(loginUser.getString("mobile_number"))
+                            println(loginUser.getString("email"))
 
 
 
@@ -77,11 +83,13 @@ class ForgotPasswordInputFragment(val contextParam: Context) : Fragment() {
 
                                     val success = responseJsonObjectData.getBoolean("success")
 
+                                    println("jjjjjj")
+
                                     if (success) {
 
                                         val first_try=responseJsonObjectData.getBoolean("first_try")
 
-                                        if(first_try){
+                                        if(first_try==true){
                                             Toast.makeText(
                                                 contextParam,
                                                 "OTP sent",
@@ -91,9 +99,10 @@ class ForgotPasswordInputFragment(val contextParam: Context) : Fragment() {
                                         }else{
                                             Toast.makeText(
                                                 contextParam,
-                                                "You have the exceeded reset tries",
+                                                "OTP sent already",
                                                 Toast.LENGTH_SHORT
                                             ).show()
+                                            callChangePasswordFragment()
                                         }
 
                                     } else {

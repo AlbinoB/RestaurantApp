@@ -84,7 +84,7 @@
             android:drawableLeft="@drawable/ic_location"
             android:drawablePadding="4dp"
 
-            android:inputType="textPassword"
+            android:inputType="text"
             android:padding="10dp"
 
             android:textSize="20sp" />

@@ -73,15 +73,6 @@ class RegisterFragment(val contextParam:Context) : Fragment() {
             registerUserFun()
         })
 
-
-
-
-
-
-
-
-
-
         return view
     }
 

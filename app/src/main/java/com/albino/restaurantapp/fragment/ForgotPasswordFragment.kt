@@ -52,19 +52,15 @@ class ForgotPasswordFragment(val contextParam:Context,val mobile_number:String) 
             if(editTextOTP.text.isBlank()){
                 editTextOTP.setError("OTP missing")
             }else{
-                if(editTextPassword.text.isBlank())
+                if(editTextNewPassword.text.isBlank())
                 {
-                    editTextPassword.setError("Password Missing")
+                    editTextNewPassword.setError("Password Missing")
                 }else{
-                    if(editTextConfirmPassword.text.isBlank()){
-                        editTextConfirmPassword.setError("Confirm Password Missing")
+                    if(editTextConfirmPasswordForgot.text.isBlank()){
+                        editTextConfirmPasswordForgot.setError("Confirm Password Missing")
                     }else{
-                        if(editTextPassword.text.equals(editTextConfirmPassword.text))
+                        if((editTextNewPassword.text.contains(editTextConfirmPasswordForgot.text)))
                         {
-                            editTextConfirmPassword.setError("Passwords don't match")
-                        }else{
-
-
                             if (ConnectionManager().checkConnectivity(activity as Context)) {
 
                                 try {
@@ -72,7 +68,7 @@ class ForgotPasswordFragment(val contextParam:Context,val mobile_number:String) 
                                     val loginUser = JSONObject()
 
                                     loginUser.put("mobile_number", mobile_number)
-                                    loginUser.put("password", editTextPassword.text.toString())
+                                    loginUser.put("password", editTextNewPassword.text.toString())
                                     loginUser.put("otp", editTextOTP.text.toString())
 
 
@@ -96,11 +92,11 @@ class ForgotPasswordFragment(val contextParam:Context,val mobile_number:String) 
 
                                                 val serverMessage=responseJsonObjectData.getString("successMessage")
 
-                                                    Toast.makeText(
-                                                        contextParam,
-                                                        serverMessage,
-                                                        Toast.LENGTH_SHORT
-                                                    ).show()
+                                                Toast.makeText(
+                                                    contextParam,
+                                                    serverMessage,
+                                                    Toast.LENGTH_SHORT
+                                                ).show()
 
                                                 passwordChanged()
 
@@ -164,9 +160,9 @@ class ForgotPasswordFragment(val contextParam:Context,val mobile_number:String) 
 
                             }
 
+                        }else{
 
-
-
+                            editTextConfirmPasswordForgot.setError("Passwords don't match")
 
                         }
                     }

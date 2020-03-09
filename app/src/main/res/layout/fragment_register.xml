@@ -138,8 +138,8 @@
         android:background="#fff"
         android:drawableLeft="@drawable/ic_lock"
         android:drawablePadding="4dp"
-        android:hint="Password"
-        android:inputType="textPassword"
+        android:hint="Password(Min 6)"
+        android:inputType="number|textPassword"
         android:maxLength="8"
 
         android:padding="4dp"
@@ -156,8 +156,8 @@
         android:background="#fff"
         android:drawableLeft="@drawable/ic_lock"
         android:drawablePadding="4dp"
-        android:hint="Confirm Password"
-        android:inputType="textPassword"
+        android:hint="Confirm Password(Min 6)"
+        android:inputType="number|textPassword"
         android:maxLength="8"
 
 

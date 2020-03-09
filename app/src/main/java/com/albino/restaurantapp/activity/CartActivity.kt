@@ -80,11 +80,6 @@ class CartActivity : AppCompatActivity() {
 
         buttonPlaceOrder.setOnClickListener(View.OnClickListener {
 
-
-
-
-
-
                 val sharedPreferencess=this.getSharedPreferences(getString(R.string.shared_preferences),
                     Context.MODE_PRIVATE)
 
@@ -128,13 +123,13 @@ class CartActivity : AppCompatActivity() {
 
                                 if (success) {
 
-
-
                                     Toast.makeText(
                                         this,
                                         "Order Placed",
                                         Toast.LENGTH_SHORT
                                     ).show()
+
+
 
                                     toolbar.visibility=View.INVISIBLE
                                     linearLayout.visibility=View.INVISIBLE
@@ -194,7 +189,7 @@ class CartActivity : AppCompatActivity() {
                     alterDialog.setPositiveButton("Open Settings"){text,listener->
                         val settingsIntent= Intent(Settings.ACTION_WIRELESS_SETTINGS)//open wifi settings
                         startActivity(settingsIntent)
-                        finish()
+
                     }
 
                     alterDialog.setNegativeButton("Exit"){ text,listener->
@@ -203,11 +198,7 @@ class CartActivity : AppCompatActivity() {
                     alterDialog.create()
                     alterDialog.show()
 
-
-
                 }
-
-
         })
 
         buttonOkay.setOnClickListener(View.OnClickListener {
@@ -215,6 +206,8 @@ class CartActivity : AppCompatActivity() {
             val intent= Intent(this,Dashboard::class.java)
 
             startActivity(intent)
+
+            finishAffinity()//finish all the activities
         })
 
         setToolBar()
@@ -359,6 +352,11 @@ class CartActivity : AppCompatActivity() {
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onBackPressed() {
+        //force user to press okay button to take him to dashboard screen
+        //user can't go back
     }
 
 
