@@ -233,7 +233,21 @@ class RestaurantMenuActivity : AppCompatActivity() {
 
         when(id){
             android.R.id.home->{
-                super.onBackPressed()
+                if(menuAdapter.getSelectedItemCount()>0) {
+
+                    val alterDialog = androidx.appcompat.app.AlertDialog.Builder(this)
+                    alterDialog.setTitle("Alert!")
+                    alterDialog.setMessage("Going back will remove everything from cart")
+                    alterDialog.setPositiveButton("Okay") { text, listener ->
+                        super.onBackPressed()
+                    }
+                    alterDialog.setNegativeButton("No") { text, listener ->
+
+                    }
+                    alterDialog.show()
+                }else{
+                    super.onBackPressed()
+                }
             }
         }
         return super.onOptionsItemSelected(item)

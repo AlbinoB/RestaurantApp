@@ -84,7 +84,7 @@
 
         <Button
             android:id="@+id/buttonAddToCart"
-            android:layout_width="67dp"
+            android:layout_width="wrap_content"
             android:layout_height="28dp"
             android:gravity="center"
             android:layout_centerInParent="true"
