@@ -10,6 +10,7 @@ import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
+import android.view.WindowManager
 import android.widget.FrameLayout
 import android.widget.TextView
 import android.widget.Toast
@@ -229,6 +230,12 @@ class Dashboard : AppCompatActivity() {
         navigationView.setCheckedItem(R.id.homee)
     }
 
+    //to disable auto pop of soft keyboard on the search
+    override fun onResume() {
+        getWindow().setSoftInputMode(WindowManager.
+            LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+        super.onResume()
+    }
 
 
 
