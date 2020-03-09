@@ -37,8 +37,9 @@
             android:drawablePadding="4dp"
             android:hint="Mobile Number"
             android:inputType="number"
-            android:padding="10dp"
+            android:maxLength="10"
 
+            android:padding="10dp"
             android:textSize="20sp" />
 
 
@@ -53,7 +54,7 @@
             android:background="#fff"
             android:drawableLeft="@drawable/ic_lock"
             android:drawablePadding="4dp"
-            android:hint="Password"
+            android:hint="Password (Min 6)"
 
             android:inputType="textPassword"
             android:padding="10dp"

@@ -38,16 +38,11 @@ lateinit var menuAdapter: CartAdapter
 lateinit var restaurantId:String
 lateinit var restaurantName:String
 lateinit var linearLayout:LinearLayout
+lateinit var selectedItemsId:ArrayList<String>
 
 var totalAmount=0
 
-
-
 var cartListItems = arrayListOf<CartItems>()
-lateinit var selectedItemsId:ArrayList<String>
-
-
-
 
 class CartActivity : AppCompatActivity() {
 
@@ -55,34 +50,23 @@ class CartActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cart)
 
-
         buttonPlaceOrder=findViewById(R.id.buttonPlaceOrder)
         textViewOrderingFrom=findViewById(R.id.textViewOrderingFrom)
         orderSuccessfullyPlaced=findViewById(R.id.orderSuccessfullyPlaced)
         buttonOkay=findViewById(R.id.buttonOkay)
         linearLayout=findViewById(R.id.linearLayout)
-
         toolbar=findViewById(R.id.toolBar)
 
         restaurantId=intent.getStringExtra("restaurantId")
         restaurantName=intent.getStringExtra("restaurantName")
         selectedItemsId= intent.getStringArrayListExtra("selectedItemsId")
 
-        println(".......................")
-        for (i in selectedItemsId)
-            println(i)
-
-
         //set the restaurant name
-        textViewOrderingFrom.text="Ordering from:"+ restaurantName
-
-
+        textViewOrderingFrom.text= restaurantName
 
         buttonPlaceOrder.setOnClickListener(View.OnClickListener {
 
-                val sharedPreferencess=this.getSharedPreferences(getString(R.string.shared_preferences),
-                    Context.MODE_PRIVATE)
-
+                val sharedPreferencess=this.getSharedPreferences(getString(R.string.shared_preferences), Context.MODE_PRIVATE)
 
                 if (ConnectionManager().checkConnectivity(this)) {
 
@@ -102,8 +86,6 @@ class CartActivity : AppCompatActivity() {
                         sendOrder.put("restaurant_id",restaurantId.toString())
                         sendOrder.put("total_cost", totalAmount)
                         sendOrder.put("food",foodJsonArray)
-
-
 
                         val queue = Volley.newRequestQueue(this)
 
@@ -129,8 +111,6 @@ class CartActivity : AppCompatActivity() {
                                         Toast.LENGTH_SHORT
                                     ).show()
 
-
-
                                     toolbar.visibility=View.INVISIBLE
                                     linearLayout.visibility=View.INVISIBLE
                                     orderSuccessfullyPlaced.visibility=View.VISIBLE//after we get a response we show the order place view
@@ -155,8 +135,6 @@ class CartActivity : AppCompatActivity() {
                                     "mSome Error occurred!!!",
                                     Toast.LENGTH_SHORT
                                 ).show()
-
-
 
                             }) {
                             override fun getHeaders(): MutableMap<String, String> {
@@ -212,12 +190,9 @@ class CartActivity : AppCompatActivity() {
 
         setToolBar()
 
-
         layoutManager = LinearLayoutManager(this)//set the layout manager
 
         recyclerView = findViewById(R.id.recyclerViewCart)
-
-
 
         if (ConnectionManager().checkConnectivity(this)) {
 
@@ -232,7 +207,6 @@ class CartActivity : AppCompatActivity() {
                     url,
                     null,
                     Response.Listener {
-                        println("Response12menu is " + it)
 
                         val responseJsonObjectData = it.getJSONObject("data")
 
@@ -281,14 +255,11 @@ class CartActivity : AppCompatActivity() {
                             }
 
                             //set the total on the button
-                            buttonPlaceOrder.text="Place Order(Total:Rs."+ totalAmount+")"
-
-
+                            buttonPlaceOrder.text="Place Order(Total:Rs. "+ totalAmount+")"
 
                         }
                     },
                     Response.ErrorListener {
-                        println("Error12menu is " + it)
 
                         Toast.makeText(
                             this,
@@ -327,12 +298,9 @@ class CartActivity : AppCompatActivity() {
                 finish()
             }
 
-
         }
 
-
     }
-
 
     fun setToolBar(){
         setSupportActionBar(toolbar)

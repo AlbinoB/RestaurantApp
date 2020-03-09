@@ -18,7 +18,6 @@ class SplashScreenActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_splash_screen)
 
-
         //Remove notification bar
 
         this.window.setFlags(
@@ -34,7 +33,7 @@ class SplashScreenActivity : AppCompatActivity() {
                 Intent(this@SplashScreenActivity, LoginRegisterActivity::class.java)
             finish()
             startActivity(mainIntent)
-        }, 3500)
+        }, 2000)
 
 
     }

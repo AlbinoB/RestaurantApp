@@ -164,7 +164,7 @@ class RegisterFragment(val contextParam:Context) : Fragment() {
 
                             Toast.makeText(
                                 contextParam,
-                                "mSome Error occurred!!!",
+                                "Some Error occurred!!!",
                                 Toast.LENGTH_SHORT
                             ).show()
 
@@ -261,10 +261,10 @@ class RegisterFragment(val contextParam:Context) : Fragment() {
             errorPassCount++
         }
 
-        if(!editTextPassword.text.contains(editTextConfirmPassword.text.toString())){
-            editTextConfirmPassword.setError("Password don't match")
-        }else{
+        if(editTextPassword.text.toString().toInt()==editTextConfirmPassword.text.toString().toInt()){
             errorPassCount++
+        }else{
+            editTextConfirmPassword.setError("Password don't match")
         }
 
 

@@ -5,6 +5,9 @@
     android:orientation="vertical"
     tools:context=".fragment.FaqsFragment">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -26,7 +29,7 @@
                 android:layout_centerInParent="true"
                 android:padding="5dp"
                 android:text="@string/question1"
-                android:textColor="@color/colorAccent"
+                android:textColor="@color/colorPrimary"
                 android:textSize="16sp" />
 
 
@@ -36,6 +39,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:padding="5dp"
+                android:textColor="@color/black"
                 android:text="@string/answer1"
                 android:textSize="16sp" />
 
@@ -64,7 +68,7 @@
                 android:layout_centerInParent="true"
                 android:padding="5dp"
                 android:text="@string/question2"
-                android:textColor="@color/colorAccent"
+                android:textColor="@color/colorPrimary"
                 android:textSize="16sp" />
 
 
@@ -74,13 +78,89 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:padding="5dp"
+                android:textColor="@color/black"
                 android:text="@string/answer2"
                 android:textSize="16sp" />
 
 
         </LinearLayout>
 
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="12dip"
+            android:background="#00000000"
+            android:orientation="vertical"
+            android:weightSum="1">
+
+            <TextView
+                android:id="@+id/textViewFAQ3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:padding="5dp"
+                android:text="@string/question3"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp" />
+
+
+            <TextView
+                android:id="@+id/textViewFAQA3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:padding="5dp"
+                android:textColor="@color/black"
+                android:text="@string/answer3"
+                android:textSize="16sp" />
+
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="5dp"
+            android:background="#909090"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="12dip"
+            android:background="#00000000"
+            android:orientation="vertical"
+            android:weightSum="1">
+
+            <TextView
+                android:id="@+id/textViewFAQ4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:padding="5dp"
+                android:text="@string/question4"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp" />
+
+
+            <TextView
+                android:id="@+id/textViewFAQA4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:padding="5dp"
+                android:textColor="@color/black"
+                android:text="@string/answer4"
+                android:textSize="16sp" />
+
+
+        </LinearLayout>
+
     </LinearLayout>
+
+    </ScrollView>
+
 </LinearLayout>
 
 

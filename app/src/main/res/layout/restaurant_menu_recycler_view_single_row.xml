@@ -54,10 +54,9 @@
                 android:layout_height="wrap_content"
                 android:text="Panner Masala"
                 android:layout_margin="4dp"
-                android:textStyle="bold"
                 android:padding="2dp"
                 android:textSize="16sp"
-                android:textColor="#000"
+                android:textColor="@color/black"
                 android:layout_marginLeft="10dp"
                 android:layout_alignParentTop="true"/>
 
@@ -70,8 +69,7 @@
                 android:layout_marginBottom="5dp"
                 android:padding="5dp"
                 android:textColor="@color/cost_for_one"
-
-                android:textSize="15sp"/>
+                android:textSize="14sp"/>
 
 
 
@@ -88,9 +86,10 @@
             android:id="@+id/buttonAddToCart"
             android:layout_width="67dp"
             android:layout_height="28dp"
+            android:gravity="center"
             android:layout_centerInParent="true"
             android:background="@color/colorPrimary"
-            android:padding="2dp"
+            android:padding="4dp"
             android:text="@string/add_to_cart_btn"
             android:textColor="#fff"
             android:textSize="15sp"

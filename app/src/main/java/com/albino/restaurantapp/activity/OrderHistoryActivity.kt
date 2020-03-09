@@ -19,10 +19,6 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import org.json.JSONException
 
-
-
-
-
 lateinit var layoutManager1: RecyclerView.LayoutManager
 lateinit var menuAdapter1: OrderHistoryAdapter
 lateinit var recyclerViewAllOrders:RecyclerView
@@ -41,15 +37,12 @@ class OrderHistoryActivity : AppCompatActivity() {
 
         setToolBar()
 
-
-
         setItemsForEachRestaurant()
 
     }
 
 
     fun setItemsForEachRestaurant(){
-
 
         layoutManager1=LinearLayoutManager(this)
 
@@ -83,8 +76,18 @@ class OrderHistoryActivity : AppCompatActivity() {
 
                             val data = responseJsonObjectData.getJSONArray("data")
 
-                            for (i in 0 until data.length()) {
-                                val restaurantItemJsonObject = data.getJSONObject(i)
+                            if(data.length()==0){//no items present display toast
+
+                                Toast.makeText(
+                                    this,
+                                    "No Orders Placed yet!!!",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+
+                            }else
+                            {
+                                for (i in 0 until data.length()) {
+                                    val restaurantItemJsonObject = data.getJSONObject(i)
 
                                     val eachRestaurantObject = OrderHistoryRestaurant(
                                         restaurantItemJsonObject.getString("order_id"),
@@ -92,22 +95,20 @@ class OrderHistoryActivity : AppCompatActivity() {
                                         restaurantItemJsonObject.getString("total_cost"),
                                         restaurantItemJsonObject.getString("order_placed_at").substring(0,10))// only date is extracted
 
+                                    orderedRestaurantList.add(eachRestaurantObject)
 
+                                    menuAdapter1 = OrderHistoryAdapter(
+                                        this,
+                                        orderedRestaurantList
+                                    )//set the adapter with the data
 
-                                orderedRestaurantList.add(eachRestaurantObject)
+                                    recyclerViewAllOrders.adapter = menuAdapter1//bind the  recyclerView to the adapter
 
+                                    recyclerViewAllOrders.layoutManager = layoutManager1 //bind the  recyclerView to the layoutManager
 
-                                menuAdapter1 = OrderHistoryAdapter(
-                                    this,
-                                    orderedRestaurantList
-                                )//set the adapter with the data
-
-                                recyclerViewAllOrders.adapter = menuAdapter1//bind the  recyclerView to the adapter
-
-                                recyclerViewAllOrders.layoutManager =
-                                    layoutManager1 //bind the  recyclerView to the layoutManager
-
+                                }
                             }
+
                         }
                     },
                     Response.ErrorListener {
@@ -150,9 +151,7 @@ class OrderHistoryActivity : AppCompatActivity() {
                 finish()
             }
 
-
         }
-
 
     }
 
@@ -163,6 +162,5 @@ class OrderHistoryActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)//displays the icon on the button
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_menu)//change icon to custom
     }
-
 
 }

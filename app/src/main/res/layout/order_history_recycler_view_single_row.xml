@@ -34,6 +34,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Pind Tadka"
+                    android:textColor="@color/black"
                     android:textSize="20sp"
                     android:layout_centerInParent="true"
                     android:padding="5dp"
@@ -61,6 +62,7 @@
                     android:text="22/12/2018"
                     android:textAlignment="textEnd"
                     android:paddingLeft="5dp"
+                    android:textColor="@color/black"
                     android:textSize="15sp"
                     />
 
@@ -77,6 +79,7 @@
                 android:layout_weight="0.895"
                 android:layout_below="@+id/textViewHorizontalLine"
                 android:id="@+id/recyclerViewItemsOrdered"
+                android:paddingBottom="5dp"
 
                 />
 

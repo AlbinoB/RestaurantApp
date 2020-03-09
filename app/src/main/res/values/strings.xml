@@ -11,7 +11,7 @@
     <string name="add_to_cart_btn">Add</string>
     <string name="proceed_to_cart_btn">Proceed to Cart</string>
     <string name="choose_from_menu_listed_below">Choose from menu listed below:</string>
-    <string name="ordering_from">Ordering from:</string>
+    <string name="ordering_from">Ordering From: </string>
     <string name="place_order">Place Order (Rs)</string>
 
     <string name="shared_preferences">RestaurantPreference</string>
@@ -20,6 +20,10 @@
     <string name="answer1">A1. At Food Runner we strive to add value to your business. We understand the challenges you face on a daily basis in sourcing the best quality packaging material. Food Runner Packaging Assist is to take care of all your packaging needs.</string>
     <string name="question2">Q2. How are you guys are different?</string>
     <string name="answer2">A2. Best products - We only list the products which have passed our tests and are the best suitable for delivery. They will help in giving a better consumer experience, so you can get get repeated orders. Best prices - We have negotiated rates with our distributors exclusive for Food Runner Restaurant. Convenience - No need to haggle for prices. No need to follow-up on delivery. We track all orders to ensure you have a hassle free experience.</string>
+    <string name="question3">Q3. Why is Food Runner doing this?</string>
+    <string name="answer3">A3. At Food Runner we strive to add value to your business. We understand the challenges you face on a daily basis in sourcing the best quality packaging material. Food Runner Packaging Assist is to take care of all your packaging needs.</string>
+    <string name="question4">Q4. How are you guys are different?</string>
+    <string name="answer4">A4. Best products - We only list the products which have passed our tests and are the best suitable for delivery. They will help in giving a better consumer experience, so you can get get repeated orders. Best prices - We have negotiated rates with our distributors exclusive for Food Runner Restaurant. Convenience - No need to haggle for prices. No need to follow-up on delivery. We track all orders to ensure you have a hassle free experience.</string>
 
 
 </resources>

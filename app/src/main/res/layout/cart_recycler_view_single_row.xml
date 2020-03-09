@@ -10,14 +10,12 @@
     <RelativeLayout
         android:layout_width="0dp"
         android:layout_weight="0.15"
-        android:layout_height="15dp"
-        android:layout_marginTop="13dp"
-
+        android:layout_height="match_parent"
         >
 
         <TextView
             android:layout_width="14dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="8dp"
             android:layout_height="4dp"
             android:layout_centerInParent="true"
             android:background="@color/colorPrimary"
@@ -29,8 +27,6 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="0.60"
-
-
         >
 
         <TextView
@@ -39,6 +35,7 @@
             android:layout_height="wrap_content"
             android:text="Panner Masala"
             android:textSize="18sp"
+            android:textColor="@color/black"
             android:layout_centerInParent="true"
             android:padding="5dp"
             />
@@ -63,6 +60,7 @@
             android:text="Rs.200"
             android:textSize="18sp"
             android:layout_centerInParent="true"
+            android:textColor="@color/black"
             android:padding="5dp"
             />
 

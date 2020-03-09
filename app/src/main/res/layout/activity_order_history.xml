@@ -57,7 +57,7 @@
                 android:padding="10dp"
                 android:layout_weight="0.09"
                 android:text="@string/your_previous_orders_are_listed_below"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:textStyle="bold" />
 
             <TextView

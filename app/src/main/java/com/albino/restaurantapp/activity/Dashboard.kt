@@ -85,7 +85,7 @@ class Dashboard : AppCompatActivity() {
                 previousMenuItemSelected?.setChecked(false)
             }
 
-            previousMenuItemSelected=it//the current fragment will be previos fragment when a user clicks a new fragment
+            previousMenuItemSelected=it//the current fragment will be previous fragment when a user clicks a new fragment
 
             it.setCheckable(true)//if not the first time set the current to checked
             it.setChecked(true)
@@ -120,7 +120,7 @@ class Dashboard : AppCompatActivity() {
                             R.id.frameLayout,
                             FavouriteRestaurantFragment(this)
                         )//replace the old layout with the new frag  layout
-                        //.addToBackStack("Favourite")//so that the app foesnt close on clicking the backbtn, it store the fragments in backstack and goies to previous fragment
+                        //.addToBackStack("Favourite")//so that the app doesnt close on clicking the backbtn, it store the fragments in backstack and goies to previous fragment
                         .commit()//apply changes
 
                     supportActionBar?.title="Favourite Restaurants"//change the title when each new fragment is opened
@@ -144,8 +144,9 @@ class Dashboard : AppCompatActivity() {
                         //.addToBackStack("Favourite")//so that the app foesnt close on clicking the backbtn, it store the fragments in backstack and goies to previous fragment
                         .commit()//apply changes
 
-                    supportActionBar?.title="Favourite Restaurants"//change the title when each new fragment is opened
+                    supportActionBar?.title="Frequently Asked Questions"//change the title when each new fragment is opened
 
+                    drawerLayout.closeDrawers()
 
                     Toast.makeText(this@Dashboard,"FAQs", Toast.LENGTH_SHORT).show()
                 }

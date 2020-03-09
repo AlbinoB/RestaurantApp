@@ -49,25 +49,16 @@ class RestaurantMenuAdapter(val context:Context,val restaurantId:String,val rest
     override fun onBindViewHolder(holder: ViewHolderRestaurantMenu, position: Int) {
         val restaurantMenuItem=restaurantMenu[position]
 
-        proceedToCart=proceedToCartPassed
+        proceedToCart=proceedToCartPassed//button view passed from the RestaurantMenuActivity
 
-
-
-        //click listener to the relative layout which has the button proceed to cart
+        //click listener to the button view Passed from activity which has the button proceed to cart
         buttonProceedToCart.setOnClickListener(View.OnClickListener {
 
             val intent= Intent(context, CartActivity::class.java)
 
-
-
-            println("clicked rel")
-
             intent.putExtra("restaurantId",restaurantId.toString())// pass the restaurant id to the next acticity
 
             intent.putExtra("restaurantName",restaurantName)
-
-            for (i in itemsSelectedId)
-                println(i)
 
             intent.putExtra("selectedItemsId",itemsSelectedId)//pass all the items selected by the user
 
@@ -86,7 +77,7 @@ class RestaurantMenuAdapter(val context:Context,val restaurantId:String,val rest
 
                 holder.buttonAddToCart.text="Add"
 
-                holder.buttonAddToCart.setBackgroundColor(Color.rgb(255, 61, 0))
+                holder.buttonAddToCart.setBackgroundColor(Color.rgb(244, 67, 54))//primary colour to rgb
 
             }
             else
@@ -98,7 +89,7 @@ class RestaurantMenuAdapter(val context:Context,val restaurantId:String,val rest
 
                 holder.buttonAddToCart.text="Remove"
 
-                holder.buttonAddToCart.setBackgroundColor(Color.rgb(244, 67, 54))
+                holder.buttonAddToCart.setBackgroundColor(Color.rgb(255,196,0))//yellow colour to rgb
 
             }
 
@@ -109,17 +100,12 @@ class RestaurantMenuAdapter(val context:Context,val restaurantId:String,val rest
                 proceedToCart.visibility=View.INVISIBLE
             }
 
-
         })
-
-
 
         holder.buttonAddToCart.setTag(restaurantMenuItem.id+"")//save the item id in textViewName Tag ,will be used to add to cart
         holder.textViewSerialNumber.text=(position+1).toString()//position starts from 0
         holder.textViewItemName.text=restaurantMenuItem.name
         holder.textViewItemPrice.text="Rs."+restaurantMenuItem.cost_for_one
-
-
 
     }
 

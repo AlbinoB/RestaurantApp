@@ -36,7 +36,7 @@ class CartAdapter(val context: Context, val cartItems:ArrayList<CartItems>):Recy
 
 
         holder.textViewOrderItem.text=cartItemObject.itemName
-        holder.textViewOrderItemPrice.text="Rs."+cartItemObject.itemPrice
+        holder.textViewOrderItemPrice.text="Rs. "+cartItemObject.itemPrice
     }
 
 

@@ -88,15 +88,43 @@
             android:weightSum="1"
             >
 
-            <TextView
-                android:id="@+id/textViewOrderingFrom"
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:padding="10dp"
                 android:layout_weight="0.09"
-                android:text="@string/ordering_from"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+
+                <TextView
+                    android:id="@+id/textViewOrderingFromText"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.4"
+                    android:padding="10dp"
+                    android:paddingRight="3dp"
+                    android:text="@string/ordering_from"
+                    android:textAlignment="center"
+
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+                <TextView
+                    android:id="@+id/textViewOrderingFrom"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:textStyle="bold"
+                    android:padding="10dp"
+                    android:paddingLeft="3dp"
+                    android:layout_weight="0.6"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    />
+
+            </LinearLayout>
+
+
+
 
             <TextView
                 android:layout_width="match_parent"
