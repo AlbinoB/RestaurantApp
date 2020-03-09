@@ -111,10 +111,6 @@ class CartActivity : AppCompatActivity() {
                                         Toast.LENGTH_SHORT
                                     ).show()
 
-                                    activity_cart_Progressdialog.visibility=View.INVISIBLE
-
-
-
                                     val intent= Intent(this,OrderPlacedActivity::class.java)
 
                                     startActivity(intent)
@@ -131,9 +127,8 @@ class CartActivity : AppCompatActivity() {
                                         Toast.LENGTH_SHORT
                                     ).show()
 
-                                    activity_cart_Progressdialog.visibility=View.INVISIBLE
-
                                 }
+                                activity_cart_Progressdialog.visibility=View.INVISIBLE
                             },
                             Response.ErrorListener {
                                 println("Error12 is " + it)

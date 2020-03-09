@@ -73,9 +73,10 @@
             android:drawablePadding="4dp"
             android:hint="Password (Min 6)"
 
-            android:inputType="textPassword"
-            android:padding="10dp"
+            android:inputType="numberPassword"
+            android:maxLength="8"
 
+            android:padding="10dp"
             android:textSize="20sp" />
 
         <Button

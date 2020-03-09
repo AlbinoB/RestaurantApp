@@ -62,7 +62,7 @@ class ForgotPasswordFragment(val contextParam:Context,val mobile_number:String) 
                     if(editTextConfirmPasswordForgot.text.isBlank()){
                         editTextConfirmPasswordForgot.setError("Confirm Password Missing")
                     }else{
-                        if((editTextNewPassword.text.contains(editTextConfirmPasswordForgot.text)))
+                        if((editTextNewPassword.text.toString().toInt()==editTextConfirmPasswordForgot.text.toString().toInt()))
                         {
                             if (ConnectionManager().checkConnectivity(activity as Context)) {
 
@@ -101,8 +101,6 @@ class ForgotPasswordFragment(val contextParam:Context,val mobile_number:String) 
                                                     Toast.LENGTH_SHORT
                                                 ).show()
 
-                                                forgot_password_fragment_Progressdialog.visibility=View.INVISIBLE
-
                                                 passwordChanged()
 
 
@@ -115,8 +113,8 @@ class ForgotPasswordFragment(val contextParam:Context,val mobile_number:String) 
                                                     Toast.LENGTH_SHORT
                                                 ).show()
 
-
                                             }
+                                            forgot_password_fragment_Progressdialog.visibility=View.INVISIBLE
                                         },
                                         Response.ErrorListener {
 

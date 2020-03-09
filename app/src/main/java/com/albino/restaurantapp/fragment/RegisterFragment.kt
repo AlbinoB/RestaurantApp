@@ -143,7 +143,6 @@ class RegisterFragment(val contextParam:Context) : Fragment() {
                                 sharedPreferencess.edit().putString("mobile_number", data.getString("mobile_number")).apply()
                                 sharedPreferencess.edit().putString("address", data.getString("address")).apply()
 
-                                register_fragment_Progressdialog.visibility=View.INVISIBLE
 
                                 Toast.makeText(
                                     contextParam,
@@ -164,6 +163,7 @@ class RegisterFragment(val contextParam:Context) : Fragment() {
                                 ).show()
 
                             }
+                            register_fragment_Progressdialog.visibility=View.INVISIBLE
                         },
                         Response.ErrorListener {
                             println("Error12 is " + it)

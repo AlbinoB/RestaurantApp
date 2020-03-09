@@ -148,20 +148,17 @@ class LoginFragment(val contextParam:Context) : Fragment() {
                                 sharedPreferencess.edit().putString("mobile_number", data.getString("mobile_number")).apply()
                                 sharedPreferencess.edit().putString("address", data.getString("address")).apply()
 
-                                login_fragment_Progressdialog.visibility=View.INVISIBLE
-
                                 Toast.makeText(
                                     contextParam,
-                                    "Logged in sucessfully",
+                                    "Welcome "+data.getString("name"),
                                     Toast.LENGTH_SHORT
                                 ).show()
 
                                 userSuccessfullyLoggedIn()//after we get a response we call the Log the user in
 
-
                             } else {
 
-                                login_fragment_Progressdialog.visibility=View.INVISIBLE
+
 
                                 val responseMessageServer =
                                     responseJsonObjectData.getString("errorMessage")
@@ -172,6 +169,7 @@ class LoginFragment(val contextParam:Context) : Fragment() {
                                 ).show()
 
                             }
+                            login_fragment_Progressdialog.visibility=View.INVISIBLE
                         },
                         Response.ErrorListener {
                             login_fragment_Progressdialog.visibility=View.INVISIBLE

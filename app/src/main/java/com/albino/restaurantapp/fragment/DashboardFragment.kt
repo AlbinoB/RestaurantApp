@@ -180,9 +180,8 @@ class DashboardFragment(val contextParam: Context) : Fragment() {
 
                             }
 
-
-                            dashboard_fragment_Progressdialog.visibility=View.INVISIBLE
                         }
+                        dashboard_fragment_Progressdialog.visibility=View.INVISIBLE
                     },
                     Response.ErrorListener {
                         dashboard_fragment_Progressdialog.visibility=View.INVISIBLE

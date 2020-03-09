@@ -115,10 +115,11 @@ class OrderHistoryActivity : AppCompatActivity() {
                                     recyclerViewAllOrders.layoutManager = layoutManager1 //bind the  recyclerView to the layoutManager
 
                                 }
-                                order_activity_history_Progressdialog.visibility=View.INVISIBLE
+
                             }
 
                         }
+                        order_activity_history_Progressdialog.visibility=View.INVISIBLE
                     },
                     Response.ErrorListener {
                         order_activity_history_Progressdialog.visibility=View.INVISIBLE

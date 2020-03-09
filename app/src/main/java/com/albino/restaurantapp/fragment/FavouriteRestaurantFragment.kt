@@ -120,9 +120,10 @@ class FavouriteRestaurantFragment(val contextParam:Context) : Fragment() {
                                     "Nothing is added to Favourites",
                                     Toast.LENGTH_SHORT
                                 ).show()
-                                favourite_restaurant_fragment_Progressdialog.visibility=View.INVISIBLE
+
                             }
                         }
+                        favourite_restaurant_fragment_Progressdialog.visibility=View.INVISIBLE
                     },
                     Response.ErrorListener {
                         println("Error12 is " + it)

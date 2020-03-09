@@ -105,7 +105,7 @@ class ForgotPasswordInputFragment(val contextParam: Context) : Fragment() {
                                                 Toast.LENGTH_SHORT
                                             ).show()
 
-                                            forgot_password_input_fragment_Progressdialog.visibility=View.INVISIBLE
+
 
                                             callChangePasswordFragment()
                                         }
@@ -118,7 +118,9 @@ class ForgotPasswordInputFragment(val contextParam: Context) : Fragment() {
                                             responseMessageServer.toString(),
                                             Toast.LENGTH_SHORT
                                         ).show()
+
                                     }
+                                    forgot_password_input_fragment_Progressdialog.visibility=View.INVISIBLE
                                 },
                                 Response.ErrorListener {
 
