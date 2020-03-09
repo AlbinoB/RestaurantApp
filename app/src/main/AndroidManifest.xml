@@ -13,6 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".activity.OrderPlacedActivity"></activity>
         <activity android:name=".activity.ProfileActivity" />
         <activity android:name=".activity.OrderHistoryActivity" />
         <activity android:name=".activity.CartActivity" />

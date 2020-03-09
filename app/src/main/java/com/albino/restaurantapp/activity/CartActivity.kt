@@ -29,15 +29,14 @@ import org.json.JSONObject
 
 lateinit var toolbar:androidx.appcompat.widget.Toolbar
 lateinit var textViewOrderingFrom:TextView
-lateinit var buttonPlaceOrder:Button
-lateinit var orderSuccessfullyPlaced:RelativeLayout
-lateinit var buttonOkay:Button
+lateinit var buttonPlaceOrder: Button
 lateinit var recyclerView: RecyclerView
 lateinit var layoutManager: RecyclerView.LayoutManager
 lateinit var menuAdapter: CartAdapter
 lateinit var restaurantId:String
 lateinit var restaurantName:String
 lateinit var linearLayout:LinearLayout
+lateinit var activity_cart_Progressdialog:RelativeLayout
 lateinit var selectedItemsId:ArrayList<String>
 
 var totalAmount=0
@@ -52,10 +51,9 @@ class CartActivity : AppCompatActivity() {
 
         buttonPlaceOrder=findViewById(R.id.buttonPlaceOrder)
         textViewOrderingFrom=findViewById(R.id.textViewOrderingFrom)
-        orderSuccessfullyPlaced=findViewById(R.id.orderSuccessfullyPlaced)
-        buttonOkay=findViewById(R.id.buttonOkay)
         linearLayout=findViewById(R.id.linearLayout)
         toolbar=findViewById(R.id.toolBar)
+        activity_cart_Progressdialog=findViewById(R.id.activity_cart_Progressdialog)
 
         restaurantId=intent.getStringExtra("restaurantId")
         restaurantName=intent.getStringExtra("restaurantName")
@@ -69,6 +67,8 @@ class CartActivity : AppCompatActivity() {
                 val sharedPreferencess=this.getSharedPreferences(getString(R.string.shared_preferences), Context.MODE_PRIVATE)
 
                 if (ConnectionManager().checkConnectivity(this)) {
+
+                    activity_cart_Progressdialog.visibility=View.VISIBLE
 
                     try {
 
@@ -111,9 +111,15 @@ class CartActivity : AppCompatActivity() {
                                         Toast.LENGTH_SHORT
                                     ).show()
 
-                                    toolbar.visibility=View.INVISIBLE
-                                    linearLayout.visibility=View.INVISIBLE
-                                    orderSuccessfullyPlaced.visibility=View.VISIBLE//after we get a response we show the order place view
+                                    activity_cart_Progressdialog.visibility=View.INVISIBLE
+
+
+
+                                    val intent= Intent(this,OrderPlacedActivity::class.java)
+
+                                    startActivity(intent)
+
+                                    finishAffinity()//destory all previous activities
 
 
                                 } else {
@@ -124,6 +130,8 @@ class CartActivity : AppCompatActivity() {
                                         responseMessageServer.toString(),
                                         Toast.LENGTH_SHORT
                                     ).show()
+
+                                    activity_cart_Progressdialog.visibility=View.INVISIBLE
 
                                 }
                             },
@@ -179,14 +187,6 @@ class CartActivity : AppCompatActivity() {
                 }
         })
 
-        buttonOkay.setOnClickListener(View.OnClickListener {
-
-            val intent= Intent(this,Dashboard::class.java)
-
-            startActivity(intent)
-
-            finishAffinity()//finish all the activities
-        })
 
         setToolBar()
 
@@ -195,6 +195,8 @@ class CartActivity : AppCompatActivity() {
         recyclerView = findViewById(R.id.recyclerViewCart)
 
         if (ConnectionManager().checkConnectivity(this)) {
+
+            activity_cart_Progressdialog.visibility=View.VISIBLE
 
             try {
 
@@ -258,6 +260,7 @@ class CartActivity : AppCompatActivity() {
                             buttonPlaceOrder.text="Place Order(Total:Rs. "+ totalAmount+")"
 
                         }
+                        activity_cart_Progressdialog.visibility=View.INVISIBLE
                     },
                     Response.ErrorListener {
 
@@ -266,6 +269,9 @@ class CartActivity : AppCompatActivity() {
                             "Some Error occurred!!!",
                             Toast.LENGTH_SHORT
                         ).show()
+
+                        activity_cart_Progressdialog.visibility=View.INVISIBLE
+
                     }) {
                     override fun getHeaders(): MutableMap<String, String> {
                         val headers = HashMap<String, String>()
@@ -322,10 +328,6 @@ class CartActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    override fun onBackPressed() {
-        //force user to press okay button to take him to dashboard screen
-        //user can't go back
-    }
 
 
 

@@ -7,6 +7,23 @@
     android:background="@color/colorPrimary"
     tools:context="fragment.LoginFragment">
 
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:id="@+id/login_fragment_Progressdialog"
+        android:visibility="invisible"
+        android:elevation="1dp">
+
+        <ProgressBar
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_centerInParent="true"/>
+
+    </RelativeLayout>
+
+
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

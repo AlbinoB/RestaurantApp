@@ -10,10 +10,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.core.app.ActivityCompat
 
 import com.albino.restaurantapp.R
@@ -37,6 +34,9 @@ class LoginFragment(val contextParam:Context) : Fragment() {
     lateinit var editTextPassword: EditText
     lateinit var textViewForgotPassword: TextView
     lateinit var buttonLogin:Button
+    lateinit var login_fragment_Progressdialog:RelativeLayout
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -52,6 +52,10 @@ class LoginFragment(val contextParam:Context) : Fragment() {
         textViewForgotPassword=view.findViewById(R.id.textViewForgotPassword)
         textViewSignUp=view.findViewById(R.id.textViewSignUp)
         buttonLogin=view.findViewById(R.id.buttonLogin)
+        login_fragment_Progressdialog=view.findViewById(R.id.login_fragment_Progressdialog)
+
+        login_fragment_Progressdialog.visibility=View.INVISIBLE
+
 
 
         textViewForgotPassword.setOnClickListener(View.OnClickListener {
@@ -65,6 +69,7 @@ class LoginFragment(val contextParam:Context) : Fragment() {
 
 
         buttonLogin.setOnClickListener(View.OnClickListener {
+
             loginUserFun()
         })
         return view
@@ -107,6 +112,7 @@ class LoginFragment(val contextParam:Context) : Fragment() {
 
         if (ConnectionManager().checkConnectivity(activity as Context)) {
 
+            login_fragment_Progressdialog.visibility=View.VISIBLE
                 try {
 
                     val loginUser = JSONObject()
@@ -142,6 +148,7 @@ class LoginFragment(val contextParam:Context) : Fragment() {
                                 sharedPreferencess.edit().putString("mobile_number", data.getString("mobile_number")).apply()
                                 sharedPreferencess.edit().putString("address", data.getString("address")).apply()
 
+                                login_fragment_Progressdialog.visibility=View.INVISIBLE
 
                                 Toast.makeText(
                                     contextParam,
@@ -153,6 +160,9 @@ class LoginFragment(val contextParam:Context) : Fragment() {
 
 
                             } else {
+
+                                login_fragment_Progressdialog.visibility=View.INVISIBLE
+
                                 val responseMessageServer =
                                     responseJsonObjectData.getString("errorMessage")
                                 Toast.makeText(
@@ -164,7 +174,7 @@ class LoginFragment(val contextParam:Context) : Fragment() {
                             }
                         },
                         Response.ErrorListener {
-                            println("Error12 is " + it)
+                            login_fragment_Progressdialog.visibility=View.INVISIBLE
 
                             Toast.makeText(
                                 contextParam,

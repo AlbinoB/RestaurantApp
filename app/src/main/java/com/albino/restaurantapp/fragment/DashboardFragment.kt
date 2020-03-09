@@ -11,6 +11,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.*
 import android.widget.EditText
+import android.widget.RelativeLayout
 import androidx.fragment.app.Fragment
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
@@ -47,6 +48,7 @@ class DashboardFragment(val contextParam: Context) : Fragment() {
     lateinit var dashboardAdapter:DashboardFragmentAdapter
     lateinit var editTextSearch:EditText
     lateinit var radioButtonView:View
+    lateinit var dashboard_fragment_Progressdialog:RelativeLayout
 
 
 
@@ -87,6 +89,8 @@ class DashboardFragment(val contextParam: Context) : Fragment() {
         recyclerView = view.findViewById(R.id.recyclerViewDashboard)//recycler view from Dashboard fragment
 
         editTextSearch=view.findViewById(R.id.editTextSearch)
+
+        dashboard_fragment_Progressdialog=view.findViewById(R.id.dashboard_fragment_Progressdialog)
 
 
 
@@ -130,6 +134,7 @@ class DashboardFragment(val contextParam: Context) : Fragment() {
 
         if (ConnectionManager().checkConnectivity(activity as Context)) {
 
+            dashboard_fragment_Progressdialog.visibility=View.VISIBLE
             try {
 
                 val queue = Volley.newRequestQueue(activity as Context)
@@ -176,10 +181,11 @@ class DashboardFragment(val contextParam: Context) : Fragment() {
                             }
 
 
+                            dashboard_fragment_Progressdialog.visibility=View.INVISIBLE
                         }
                     },
                     Response.ErrorListener {
-                        println("Error12 is " + it)
+                        dashboard_fragment_Progressdialog.visibility=View.INVISIBLE
 
                         Toast.makeText(
                             activity as Context,

@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RelativeLayout
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -33,6 +34,7 @@ import org.json.JSONException
 lateinit var recyclerView:RecyclerView
 lateinit var layoutManager: RecyclerView.LayoutManager
 lateinit var favouriteAdapter: DashboardFragmentAdapter//using the same adapter here as it has the same functionality
+lateinit var favourite_restaurant_fragment_Progressdialog:RelativeLayout
 
 var restaurantInfoList= arrayListOf<Restaurant>()
 
@@ -49,8 +51,11 @@ class FavouriteRestaurantFragment(val contextParam:Context) : Fragment() {
 
         recyclerView = view.findViewById(R.id.recyclerViewFavouriteRestaurant)//recycler view from Dashboard fragment
 
+        favourite_restaurant_fragment_Progressdialog=view.findViewById(R.id.favourite_restaurant_fragment_Progressdialog)
+
         if (ConnectionManager().checkConnectivity(activity as Context)) {
 
+            favourite_restaurant_fragment_Progressdialog.visibility=View.VISIBLE
             try {
 
                 val queue = Volley.newRequestQueue(activity as Context)
@@ -115,6 +120,7 @@ class FavouriteRestaurantFragment(val contextParam:Context) : Fragment() {
                                     "Nothing is added to Favourites",
                                     Toast.LENGTH_SHORT
                                 ).show()
+                                favourite_restaurant_fragment_Progressdialog.visibility=View.INVISIBLE
                             }
                         }
                     },
@@ -126,6 +132,8 @@ class FavouriteRestaurantFragment(val contextParam:Context) : Fragment() {
                             "mSome Error occurred!!!",
                             Toast.LENGTH_SHORT
                         ).show()
+
+                        favourite_restaurant_fragment_Progressdialog.visibility=View.INVISIBLE
                     })
 
                 {

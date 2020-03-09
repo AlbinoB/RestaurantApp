@@ -131,6 +131,8 @@ class Dashboard : AppCompatActivity() {
                 R.id.orderHistory ->{
                     val intent= Intent(this, OrderHistoryActivity::class.java)
 
+                    drawerLayout.closeDrawers()
+
                     startActivity(intent)
 
                 }

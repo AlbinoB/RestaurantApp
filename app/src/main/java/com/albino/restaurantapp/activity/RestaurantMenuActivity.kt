@@ -43,6 +43,8 @@ class RestaurantMenuActivity : AppCompatActivity() {
 
     lateinit var buttonProceedToCart:Button
 
+    lateinit var activity_restaurant_menu_Progressdialog:RelativeLayout
+
     var restaurantMenuList = arrayListOf<RestaurantMenu>()
 
 
@@ -54,6 +56,7 @@ class RestaurantMenuActivity : AppCompatActivity() {
 
         proceedToCartLayout=findViewById(R.id.relativeLayoutProceedToCart)
         buttonProceedToCart=findViewById(R.id.buttonProceedToCart)
+        activity_restaurant_menu_Progressdialog=findViewById(R.id.activity_restaurant_menu_Progressdialog)
 
         //openDashboard()
         toolbar=findViewById(R.id.toolBar)
@@ -75,6 +78,7 @@ class RestaurantMenuActivity : AppCompatActivity() {
 
         if (ConnectionManager().checkConnectivity(this)) {
 
+            activity_restaurant_menu_Progressdialog.visibility=View.VISIBLE
             try {
 
                 val queue = Volley.newRequestQueue(this)
@@ -98,6 +102,7 @@ class RestaurantMenuActivity : AppCompatActivity() {
                         val success = responseJsonObjectData.getBoolean("success")
 
                         if (success) {
+                            restaurantMenuList.clear()
 
                             val data = responseJsonObjectData.getJSONArray("data")
 
@@ -139,6 +144,7 @@ class RestaurantMenuActivity : AppCompatActivity() {
 
 
                         }
+                        activity_restaurant_menu_Progressdialog.visibility=View.INVISIBLE
                     },
                     Response.ErrorListener {
                         println("Error12menu is " + it)
@@ -148,6 +154,8 @@ class RestaurantMenuActivity : AppCompatActivity() {
                             "Some Error occurred!!!",
                             Toast.LENGTH_SHORT
                         ).show()
+
+                        activity_restaurant_menu_Progressdialog.visibility=View.INVISIBLE
                     }) {
                     override fun getHeaders(): MutableMap<String, String> {
                         val headers = HashMap<String, String>()

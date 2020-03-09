@@ -12,6 +12,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.RelativeLayout
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.core.app.ActivityCompat
@@ -39,6 +40,7 @@ class RegisterFragment(val contextParam:Context) : Fragment() {
     lateinit var editTextConfirmPassword:EditText
     lateinit var buttonRegister:Button
     lateinit var toolbar:Toolbar
+    lateinit var register_fragment_Progressdialog:RelativeLayout
 
 
     var insertSuccessfully=false
@@ -62,6 +64,7 @@ class RegisterFragment(val contextParam:Context) : Fragment() {
         editTextConfirmPassword=view.findViewById(R.id.editTextConfirmPassword)
         buttonRegister=view.findViewById(R.id.buttonSubmit)
         toolbar=view.findViewById(R.id.toolBar)
+        register_fragment_Progressdialog=view.findViewById(R.id.register_fragment_Progressdialog)
 
 
 
@@ -100,8 +103,10 @@ class RegisterFragment(val contextParam:Context) : Fragment() {
 
         if (ConnectionManager().checkConnectivity(activity as Context)) {
 
+
             if (checkForErrors()){
 
+                register_fragment_Progressdialog.visibility=View.VISIBLE
                 try {
 
                     val registerUser = JSONObject()
@@ -138,6 +143,7 @@ class RegisterFragment(val contextParam:Context) : Fragment() {
                                 sharedPreferencess.edit().putString("mobile_number", data.getString("mobile_number")).apply()
                                 sharedPreferencess.edit().putString("address", data.getString("address")).apply()
 
+                                register_fragment_Progressdialog.visibility=View.INVISIBLE
 
                                 Toast.makeText(
                                     contextParam,
@@ -161,6 +167,7 @@ class RegisterFragment(val contextParam:Context) : Fragment() {
                         },
                         Response.ErrorListener {
                             println("Error12 is " + it)
+                            register_fragment_Progressdialog.visibility=View.INVISIBLE
 
                             Toast.makeText(
                                 contextParam,

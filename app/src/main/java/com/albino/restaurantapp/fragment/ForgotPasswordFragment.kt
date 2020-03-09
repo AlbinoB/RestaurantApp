@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.RelativeLayout
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 
@@ -28,6 +29,7 @@ import org.json.JSONObject
 lateinit var editTextOTP:EditText
 lateinit var editTextNewPassword:EditText
 lateinit var editTextConfirmPasswordForgot:EditText
+lateinit var forgot_password_fragment_Progressdialog:RelativeLayout
 
 
 class ForgotPasswordFragment(val contextParam:Context,val mobile_number:String) : Fragment() {
@@ -45,6 +47,7 @@ class ForgotPasswordFragment(val contextParam:Context,val mobile_number:String) 
         editTextNewPassword=view.findViewById(R.id.editTextNewPassword)
         editTextConfirmPasswordForgot=view.findViewById(R.id.editTextConfirmPasswordForgot)
         buttonSubmit=view.findViewById(R.id.buttonSubmit)
+        forgot_password_fragment_Progressdialog=view.findViewById(R.id.forgot_password_fragment_Progressdialog)
 
 
 
@@ -63,6 +66,7 @@ class ForgotPasswordFragment(val contextParam:Context,val mobile_number:String) 
                         {
                             if (ConnectionManager().checkConnectivity(activity as Context)) {
 
+                                forgot_password_fragment_Progressdialog.visibility=View.VISIBLE
                                 try {
 
                                     val loginUser = JSONObject()
@@ -82,7 +86,6 @@ class ForgotPasswordFragment(val contextParam:Context,val mobile_number:String) 
                                         url,
                                         loginUser,
                                         Response.Listener {
-                                            println("Response12 is " + it)
 
                                             val responseJsonObjectData = it.getJSONObject("data")
 
@@ -98,6 +101,8 @@ class ForgotPasswordFragment(val contextParam:Context,val mobile_number:String) 
                                                     Toast.LENGTH_SHORT
                                                 ).show()
 
+                                                forgot_password_fragment_Progressdialog.visibility=View.INVISIBLE
+
                                                 passwordChanged()
 
 
@@ -109,10 +114,13 @@ class ForgotPasswordFragment(val contextParam:Context,val mobile_number:String) 
                                                     responseMessageServer.toString(),
                                                     Toast.LENGTH_SHORT
                                                 ).show()
+
+
                                             }
                                         },
                                         Response.ErrorListener {
-                                            println("Error12 is " + it)
+
+                                            forgot_password_fragment_Progressdialog.visibility=View.INVISIBLE
 
                                             Toast.makeText(
                                                 contextParam,

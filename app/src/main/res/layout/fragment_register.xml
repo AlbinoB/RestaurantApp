@@ -8,6 +8,22 @@
     tools:context=".fragment.RegisterFragment">
 
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:id="@+id/register_fragment_Progressdialog"
+        android:elevation="1dp"
+        android:visibility="invisible">
+
+        <ProgressBar
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_centerInParent="true"/>
+
+    </RelativeLayout>
+
+
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"

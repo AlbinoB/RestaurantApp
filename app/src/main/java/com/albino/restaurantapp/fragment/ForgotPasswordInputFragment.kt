@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.RelativeLayout
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 
@@ -27,6 +28,7 @@ import org.json.JSONObject
 lateinit var editTextMobileNumber:EditText
 lateinit var editTextEmail:EditText
 lateinit var buttonNext:Button
+lateinit var forgot_password_input_fragment_Progressdialog:RelativeLayout
 
 class ForgotPasswordInputFragment(val contextParam: Context) : Fragment() {
 
@@ -41,6 +43,7 @@ class ForgotPasswordInputFragment(val contextParam: Context) : Fragment() {
         editTextMobileNumber=view.findViewById(R.id.editTextMobileNumber)
         editTextEmail=view.findViewById(R.id.editTextEmail)
         buttonNext=view.findViewById(R.id.buttonNext)
+        forgot_password_input_fragment_Progressdialog=view.findViewById(R.id.forgot_password_input_fragment_Progressdialog)
 
         buttonNext.setOnClickListener(View.OnClickListener {
 
@@ -72,18 +75,17 @@ class ForgotPasswordInputFragment(val contextParam: Context) : Fragment() {
 
                             val url = "http://13.235.250.119/v2/forgot_password/fetch_result"
 
+                            forgot_password_input_fragment_Progressdialog.visibility=View.VISIBLE
+
                             val jsonObjectRequest = object : JsonObjectRequest(
                                 Request.Method.POST,
                                 url,
                                 loginUser,
                                 Response.Listener {
-                                    println("Response12 is " + it)
 
                                     val responseJsonObjectData = it.getJSONObject("data")
 
                                     val success = responseJsonObjectData.getBoolean("success")
-
-                                    println("jjjjjj")
 
                                     if (success) {
 
@@ -102,6 +104,9 @@ class ForgotPasswordInputFragment(val contextParam: Context) : Fragment() {
                                                 "OTP sent already",
                                                 Toast.LENGTH_SHORT
                                             ).show()
+
+                                            forgot_password_input_fragment_Progressdialog.visibility=View.INVISIBLE
+
                                             callChangePasswordFragment()
                                         }
 
@@ -116,7 +121,6 @@ class ForgotPasswordInputFragment(val contextParam: Context) : Fragment() {
                                     }
                                 },
                                 Response.ErrorListener {
-                                    println("Error12 is " + it)
 
                                     Toast.makeText(
                                         contextParam,
@@ -125,6 +129,7 @@ class ForgotPasswordInputFragment(val contextParam: Context) : Fragment() {
                                     ).show()
 
 
+                                    forgot_password_input_fragment_Progressdialog.visibility=View.INVISIBLE
 
                                 }) {
                                 override fun getHeaders(): MutableMap<String, String> {

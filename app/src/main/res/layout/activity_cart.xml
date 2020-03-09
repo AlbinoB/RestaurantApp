@@ -36,43 +36,20 @@
             <!--app:layout_scrollFlags="scroll|enterAlways" scrollBar scrolls along with the list-->
         </com.google.android.material.appbar.AppBarLayout>
 
+
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/white"
+            android:id="@+id/activity_cart_Progressdialog"
             android:visibility="invisible"
-            android:background="@color/colorPrimary"
-            android:id="@+id/orderSuccessfullyPlaced">
+            android:elevation="1dp">
 
-            <ImageView
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:background="@drawable/ic_order_placed"
-                android:layout_centerInParent="true"
-                android:id="@+id/imageViewOrderPlaced"
-                />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Your order has been successfully placed"
-                android:textColor="#fff"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:layout_centerHorizontal="true"
-                android:layout_below="@id/imageViewOrderPlaced"/>
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/buttonOkay"
-                android:text="Okay"
-                android:textColor="#fff"
-                android:background="@color/colorPrimary"
-                android:textSize="20sp"
-                android:layout_marginBottom="15dp"
-                android:layout_centerHorizontal="true"
-                android:layout_alignParentBottom="true"
-                />
-
+            <ProgressBar
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_centerInParent="true"/>
 
         </RelativeLayout>
 

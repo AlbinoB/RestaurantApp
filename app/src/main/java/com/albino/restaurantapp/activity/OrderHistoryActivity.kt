@@ -5,6 +5,9 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.Settings
+import android.view.MenuItem
+import android.view.View
+import android.widget.RelativeLayout
 import android.widget.Toast
 import android.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -23,6 +26,7 @@ lateinit var layoutManager1: RecyclerView.LayoutManager
 lateinit var menuAdapter1: OrderHistoryAdapter
 lateinit var recyclerViewAllOrders:RecyclerView
 lateinit var toolbarOrderHistroy:androidx.appcompat.widget.Toolbar
+lateinit var order_activity_history_Progressdialog:RelativeLayout
 
 
 class OrderHistoryActivity : AppCompatActivity() {
@@ -34,6 +38,8 @@ class OrderHistoryActivity : AppCompatActivity() {
         recyclerViewAllOrders=findViewById(R.id.recyclerViewAllOrders)
 
         toolbarOrderHistroy=findViewById(R.id.toolBar)
+
+        order_activity_history_Progressdialog=findViewById(R.id.order_activity_history_Progressdialog)
 
         setToolBar()
 
@@ -54,6 +60,8 @@ class OrderHistoryActivity : AppCompatActivity() {
         val user_id=sharedPreferencess.getString("user_id","000")
 
         if (ConnectionManager().checkConnectivity(this)) {
+
+            order_activity_history_Progressdialog.visibility=View.VISIBLE
 
             try {
 
@@ -107,12 +115,13 @@ class OrderHistoryActivity : AppCompatActivity() {
                                     recyclerViewAllOrders.layoutManager = layoutManager1 //bind the  recyclerView to the layoutManager
 
                                 }
+                                order_activity_history_Progressdialog.visibility=View.INVISIBLE
                             }
 
                         }
                     },
                     Response.ErrorListener {
-                        println("Error12menu is " + it)
+                        order_activity_history_Progressdialog.visibility=View.INVISIBLE
 
                         Toast.makeText(
                             this,
@@ -160,7 +169,20 @@ class OrderHistoryActivity : AppCompatActivity() {
         supportActionBar?.title="My Previous Orders"
         supportActionBar?.setHomeButtonEnabled(true)//enables the button on the tool bar
         supportActionBar?.setDisplayHomeAsUpEnabled(true)//displays the icon on the button
-        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_menu)//change icon to custom
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_back_arrow)//change icon to custom
     }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        val id=item.itemId
+
+        when(id){
+            android.R.id.home->{
+                super.onBackPressed()
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
 
 }
