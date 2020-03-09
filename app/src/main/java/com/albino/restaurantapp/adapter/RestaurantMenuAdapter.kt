@@ -88,7 +88,6 @@ class RestaurantMenuAdapter(val context:Context,val restaurantId:String,val rest
 
                 holder.buttonAddToCart.setBackgroundColor(Color.rgb(255, 61, 0))
 
-
             }
             else
             {
@@ -99,7 +98,7 @@ class RestaurantMenuAdapter(val context:Context,val restaurantId:String,val rest
 
                 holder.buttonAddToCart.text="Remove"
 
-                holder.buttonAddToCart.setBackgroundColor(Color.rgb(255, 235, 59))
+                holder.buttonAddToCart.setBackgroundColor(Color.rgb(244, 67, 54))
 
             }
 

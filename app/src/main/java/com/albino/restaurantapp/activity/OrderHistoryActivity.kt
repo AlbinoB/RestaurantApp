@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.Settings
 import android.widget.Toast
+import android.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.albino.restaurantapp.R
@@ -25,6 +26,7 @@ import org.json.JSONException
 lateinit var layoutManager1: RecyclerView.LayoutManager
 lateinit var menuAdapter1: OrderHistoryAdapter
 lateinit var recyclerViewAllOrders:RecyclerView
+lateinit var toolbarOrderHistroy:androidx.appcompat.widget.Toolbar
 
 
 class OrderHistoryActivity : AppCompatActivity() {
@@ -34,6 +36,12 @@ class OrderHistoryActivity : AppCompatActivity() {
         setContentView(R.layout.activity_order_history)
 
         recyclerViewAllOrders=findViewById(R.id.recyclerViewAllOrders)
+
+        toolbarOrderHistroy=findViewById(R.id.toolBar)
+
+        setToolBar()
+
+
 
         setItemsForEachRestaurant()
 
@@ -147,4 +155,14 @@ class OrderHistoryActivity : AppCompatActivity() {
 
 
     }
+
+    fun setToolBar(){
+        setSupportActionBar(toolbarOrderHistroy)
+        supportActionBar?.title="My Previous Orders"
+        supportActionBar?.setHomeButtonEnabled(true)//enables the button on the tool bar
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)//displays the icon on the button
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_menu)//change icon to custom
+    }
+
+
 }
