@@ -22,23 +22,23 @@
             android:layout_marginBottom="15dp"
             android:layout_centerHorizontal="true"
             android:padding="10dp"
-            android:src="@drawable/ic_person" />
+            android:src="@drawable/user1" />
 
 
         <TextView
             android:id="@+id/textViewMobileNumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/textViewEmail"
+            android:layout_below="@id/textViewName"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginBottom="20dp"
             android:background="#fff"
-            android:drawableLeft="@drawable/ic_phone"
             android:drawablePadding="4dp"
             android:inputType="number"
             android:padding="10dp"
 
+            android:textAlignment="center"
             android:textSize="20sp" />
 
 
@@ -51,29 +51,14 @@
             android:layout_marginRight="20dp"
             android:layout_marginBottom="20dp"
             android:background="#fff"
-            android:drawableLeft="@drawable/ic_person"
             android:drawablePadding="4dp"
             android:padding="10dp"
 
+            android:textAlignment="center"
             android:textSize="20sp" />
 
         <TextView
             android:id="@+id/textViewEmail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/textViewName"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="20dp"
-            android:background="#fff"
-            android:drawableLeft="@drawable/ic_email"
-            android:drawablePadding="4dp"
-            android:padding="10dp"
-
-            android:textSize="20sp" />
-
-        <TextView
-            android:id="@+id/textViewAddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/textViewMobileNumber"
@@ -81,12 +66,27 @@
             android:layout_marginRight="20dp"
             android:layout_marginBottom="20dp"
             android:background="#fff"
-            android:drawableLeft="@drawable/ic_location"
+            android:drawablePadding="4dp"
+            android:padding="10dp"
+
+            android:textAlignment="center"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/textViewAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textViewEmail"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="#fff"
             android:drawablePadding="4dp"
 
             android:inputType="text"
             android:padding="10dp"
 
+            android:textAlignment="center"
             android:textSize="20sp" />
 
 

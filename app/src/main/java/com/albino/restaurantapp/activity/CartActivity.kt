@@ -336,7 +336,7 @@ class CartActivity : AppCompatActivity() {
 
     fun setToolBar(){
         setSupportActionBar(toolbar)
-        supportActionBar?.title="Your Cart"
+        supportActionBar?.title="My Cart"
         supportActionBar?.setHomeButtonEnabled(true)//enables the button on the tool bar
         supportActionBar?.setDisplayHomeAsUpEnabled(true)//displays the icon on the button
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_back_arrow)//change icon to custom

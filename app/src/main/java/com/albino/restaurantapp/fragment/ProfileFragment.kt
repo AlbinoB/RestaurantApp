@@ -36,7 +36,7 @@ class ProfileFragment(val contextParam:Context) : Fragment() {
 
         textViewName.text=sharedPreferencess.getString("name","")
         textViewEmail.text=sharedPreferencess.getString("email","")
-        textViewMobileNumber.text=sharedPreferencess.getString("mobile_number","")
+        textViewMobileNumber.text="+91"+sharedPreferencess.getString("mobile_number","")
         textViewAddress.text=sharedPreferencess.getString("address","")
 
         return view

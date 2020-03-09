@@ -6,6 +6,7 @@
     android:layout_height="140dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_margin="6dp"
+    android:background="@color/white"
     app:cardCornerRadius="4dp">
 
 
