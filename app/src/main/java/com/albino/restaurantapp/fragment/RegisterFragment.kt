@@ -8,17 +8,20 @@ import android.os.Bundle
 import android.provider.Settings
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.RelativeLayout
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.app.ActivityCompat
 
 import com.albino.restaurantapp.R
 import com.albino.restaurantapp.activity.Dashboard
+import com.albino.restaurantapp.activity.toolbarOrderHistroy
 import com.albino.restaurantapp.utils.ConnectionManager
 import com.android.volley.Request
 import com.android.volley.Response
@@ -67,10 +70,7 @@ class RegisterFragment(val contextParam:Context) : Fragment() {
         register_fragment_Progressdialog=view.findViewById(R.id.register_fragment_Progressdialog)
 
 
-
-
-
-
+        setToolBar()
 
         buttonRegister.setOnClickListener(View.OnClickListener {
             registerUserFun()
@@ -199,7 +199,6 @@ class RegisterFragment(val contextParam:Context) : Fragment() {
 
                 }
 
-
             }
 
         }else
@@ -209,9 +208,9 @@ class RegisterFragment(val contextParam:Context) : Fragment() {
             alterDialog.setTitle("No Internet")
             alterDialog.setMessage("Internet Connection can't be establish!")
             alterDialog.setPositiveButton("Open Settings"){text,listener->
-                val settingsIntent= Intent(Settings.ACTION_WIRELESS_SETTINGS)//open wifi settings
+                val settingsIntent= Intent(Settings.ACTION_SETTINGS)//open wifi settings
                 startActivity(settingsIntent)
-                activity?.finish()
+
             }
 
             alterDialog.setNegativeButton("Exit"){ text,listener->
@@ -220,14 +219,8 @@ class RegisterFragment(val contextParam:Context) : Fragment() {
             alterDialog.create()
             alterDialog.show()
 
-
-
         }
-
-
     }
-
-
 
     fun checkForErrors():Boolean{
         var errorPassCount=0
@@ -282,8 +275,41 @@ class RegisterFragment(val contextParam:Context) : Fragment() {
 
     }
 
+    fun setToolBar(){
+
+        (activity as AppCompatActivity).setSupportActionBar(toolbar)
+        (activity as AppCompatActivity).supportActionBar?.title="Register Yourself"
+        (activity as AppCompatActivity).supportActionBar?.setHomeButtonEnabled(true)//enables the button on the tool bar
+        (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)//displays the icon on the button
+        (activity as AppCompatActivity).supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_back_arrow)//change icon to custom
+    }
 
 
+
+    override fun onResume() {
+
+        if (!ConnectionManager().checkConnectivity(activity as Context)) {
+
+            val alterDialog=androidx.appcompat.app.AlertDialog.Builder(activity as Context)
+            alterDialog.setTitle("No Internet")
+            alterDialog.setMessage("Internet Connection can't be establish!")
+            alterDialog.setPositiveButton("Open Settings"){text,listener->
+                val settingsIntent= Intent(Settings.ACTION_SETTINGS)//open wifi settings
+                startActivity(settingsIntent)
+            }
+
+            alterDialog.setNegativeButton("Exit"){ text,listener->
+                ActivityCompat.finishAffinity(activity as Activity)//closes all the instances of the app and the app closes completely
+            }
+            alterDialog.setCancelable(false)
+
+            alterDialog.create()
+            alterDialog.show()
+
+        }
+
+        super.onResume()
+    }
 
 
 

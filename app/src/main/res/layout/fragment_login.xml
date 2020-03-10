@@ -49,15 +49,15 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginBottom="20dp"
-            android:background="#fff"
+            android:background="@drawable/rounded_border_for_view"
             android:drawableLeft="@drawable/ic_phone"
             android:drawablePadding="4dp"
-            android:hint="Mobile Number"
+            android:hint="Mobile Number (10 digits)"
             android:inputType="number"
             android:maxLength="10"
 
             android:padding="10dp"
-            android:textSize="20sp" />
+            android:textSize="18sp" />
 
 
         <EditText
@@ -68,41 +68,41 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginBottom="20dp"
-            android:background="#fff"
+            android:background="@drawable/rounded_border_for_view"
             android:drawableLeft="@drawable/ic_lock"
             android:drawablePadding="4dp"
-            android:hint="Password (Min 6)"
+            android:hint="Password"
 
             android:inputType="numberPassword"
             android:maxLength="8"
 
             android:padding="10dp"
-            android:textSize="20sp" />
+            android:textSize="18sp" />
 
         <Button
             android:id="@+id/buttonLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Login"
-            android:textSize="20sp"
-            android:textColor="#fff"
-            android:textStyle="normal"
-            android:layout_marginBottom="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:background="@color/colorPrimaryDark"
             android:layout_below="@+id/editTextPassword"
-            />
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="@color/colorPrimaryDark"
+            android:text="Login"
+            android:textColor="#fff"
+            android:textSize="20sp"
+            android:textStyle="normal" />
 
         <TextView
             android:id="@+id/textViewForgotPassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#fff"
-            android:textSize="15sp"
-            android:text="Forgot Password?"
+            android:layout_below="@+id/buttonLogin"
             android:layout_centerHorizontal="true"
-            android:layout_below="@+id/buttonLogin"/>
+            android:text="Forgot Password?"
+            android:textColor="#fff"
+            android:textSize="20sp" />
 
 
 
@@ -114,14 +114,17 @@
         android:id="@+id/textViewSignUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="#fff"
-        android:textSize="15sp"
-
-
-        android:layout_margin="20dp"
-        android:text="Don't have account?Sign up now"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"/>
+
+
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:text="Don't have account?Sign up now"
+        android:textColor="#fff"
+        android:textSize="20sp" />
 
 
 

@@ -4,6 +4,7 @@ package com.albino.restaurantapp.fragment
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.graphics.Paint
 import android.os.Bundle
 import android.provider.Settings
 import androidx.fragment.app.Fragment
@@ -56,6 +57,9 @@ class LoginFragment(val contextParam:Context) : Fragment() {
 
         login_fragment_Progressdialog.visibility=View.INVISIBLE
 
+        textViewForgotPassword.paintFlags=Paint.UNDERLINE_TEXT_FLAG//under line text
+
+        textViewSignUp.paintFlags=Paint.UNDERLINE_TEXT_FLAG//under line text
 
 
         textViewForgotPassword.setOnClickListener(View.OnClickListener {
@@ -131,7 +135,6 @@ class LoginFragment(val contextParam:Context) : Fragment() {
                         url,
                         loginUser,
                         Response.Listener {
-                            println("Response12 is " + it)
 
                             val responseJsonObjectData = it.getJSONObject("data")
 
@@ -157,8 +160,6 @@ class LoginFragment(val contextParam:Context) : Fragment() {
                                 userSuccessfullyLoggedIn()//after we get a response we call the Log the user in
 
                             } else {
-
-
 
                                 val responseMessageServer =
                                     responseJsonObjectData.getString("errorMessage")
@@ -211,9 +212,9 @@ class LoginFragment(val contextParam:Context) : Fragment() {
             alterDialog.setTitle("No Internet")
             alterDialog.setMessage("Internet Connection can't be establish!")
             alterDialog.setPositiveButton("Open Settings"){text,listener->
-                val settingsIntent= Intent(Settings.ACTION_WIRELESS_SETTINGS)//open wifi settings
+                val settingsIntent= Intent(Settings.ACTION_SETTINGS)//open wifi settings
                 startActivity(settingsIntent)
-                activity?.finish()
+
             }
 
             alterDialog.setNegativeButton("Exit"){ text,listener->
@@ -222,10 +223,7 @@ class LoginFragment(val contextParam:Context) : Fragment() {
             alterDialog.create()
             alterDialog.show()
 
-
-
         }
-
 
     }
 
@@ -236,6 +234,32 @@ class LoginFragment(val contextParam:Context) : Fragment() {
     }
 
 
+
+    override fun onResume() {
+
+        if (!ConnectionManager().checkConnectivity(activity as Context))
+        {
+
+            val alterDialog=androidx.appcompat.app.AlertDialog.Builder(activity as Context)
+            alterDialog.setTitle("No Internet")
+            alterDialog.setMessage("Internet Connection can't be establish!")
+            alterDialog.setPositiveButton("Open Settings"){text,listener->
+                val settingsIntent= Intent(Settings.ACTION_SETTINGS)//open wifi settings
+                startActivity(settingsIntent)
+            }
+
+            alterDialog.setNegativeButton("Exit"){ text,listener->
+                ActivityCompat.finishAffinity(activity as Activity)//closes all the instances of the app and the app closes completely
+            }
+            alterDialog.setCancelable(false)
+
+            alterDialog.create()
+            alterDialog.show()
+
+        }
+
+        super.onResume()
+    }
 
 
 }

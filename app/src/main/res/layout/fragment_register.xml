@@ -74,17 +74,15 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_marginBottom="20dp"
-        android:background="#fff"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/rounded_border_for_view"
         android:drawableLeft="@drawable/ic_person"
         android:drawablePadding="4dp"
         android:hint="Name (Min 3 characters)"
         android:inputType="text"
         android:maxLength="20"
-
-
-        android:padding="4dp"
-        android:textSize="20sp" />
+        android:padding="10dp"
+        android:textSize="18sp" />
 
 
     <EditText
@@ -93,17 +91,15 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_marginBottom="20dp"
-        android:background="#fff"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/rounded_border_for_view"
         android:drawableLeft="@drawable/ic_email"
         android:drawablePadding="4dp"
         android:hint="Email Address"
         android:inputType="textEmailAddress"
         android:maxLength="30"
-
-
-        android:padding="4dp"
-        android:textSize="20sp" />
+        android:padding="10dp"
+        android:textSize="18sp" />
 
     <EditText
         android:id="@+id/editTextMobileNumber"
@@ -111,17 +107,15 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_marginBottom="20dp"
-        android:background="#fff"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/rounded_border_for_view"
         android:drawableLeft="@drawable/ic_phone"
         android:drawablePadding="4dp"
         android:hint="Mobile Number (10 digits)"
         android:inputType="number"
         android:maxLength="10"
-
-
-        android:padding="4dp"
-        android:textSize="20sp" />
+        android:padding="10dp"
+        android:textSize="18sp" />
 
 
     <EditText
@@ -130,17 +124,15 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_marginBottom="20dp"
-        android:background="#fff"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/rounded_border_for_view"
         android:drawableLeft="@drawable/ic_location"
         android:drawablePadding="4dp"
         android:hint="Delivery Address"
         android:inputType="text"
-        android:padding="4dp"
-
-
+        android:padding="10dp"
         android:singleLine="true"
-        android:textSize="20sp" />
+        android:textSize="18sp" />
 
 
     <EditText
@@ -150,17 +142,16 @@
         android:layout_below="@id/editTextMobileNumber"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_marginBottom="20dp"
-        android:background="#fff"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/rounded_border_for_view"
         android:drawableLeft="@drawable/ic_lock"
         android:drawablePadding="4dp"
         android:hint="Password(Min 6)"
         android:inputType="number|textPassword"
         android:maxLength="8"
-
-        android:padding="4dp"
+        android:padding="10dp"
         android:singleLine="true"
-        android:textSize="20sp" />
+        android:textSize="18sp" />
 
     <EditText
         android:id="@+id/editTextConfirmPassword"
@@ -169,29 +160,26 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="20dp"
-        android:background="#fff"
+        android:background="@drawable/rounded_border_for_view"
         android:drawableLeft="@drawable/ic_lock"
         android:drawablePadding="4dp"
-        android:hint="Confirm Password(Min 6)"
+        android:hint="Confirm Password"
         android:inputType="number|textPassword"
         android:maxLength="8"
-
-
-        android:padding="4dp"
-        android:textSize="20sp" />
-
+        android:padding="10dp"
+        android:textSize="18sp" />
 
     <Button
         android:id="@+id/buttonSubmit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="20dp"
         android:background="@color/colorPrimaryDark"
         android:text="Register"
         android:textColor="#fff"
-
         android:textStyle="bold" />
     </LinearLayout>
 

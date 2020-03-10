@@ -49,6 +49,7 @@ class DashboardFragment(val contextParam: Context) : Fragment() {
     lateinit var editTextSearch:EditText
     lateinit var radioButtonView:View
     lateinit var dashboard_fragment_Progressdialog:RelativeLayout
+    lateinit var dashboard_fragment_cant_find_restaurant:RelativeLayout
 
 
 
@@ -92,10 +93,7 @@ class DashboardFragment(val contextParam: Context) : Fragment() {
 
         dashboard_fragment_Progressdialog=view.findViewById(R.id.dashboard_fragment_Progressdialog)
 
-
-
-
-
+        dashboard_fragment_cant_find_restaurant=view.findViewById(R.id.dashboard_fragment_cant_find_restaurant)
 
         fun filterFun(strTyped:String){//to filter the recycler view depending on what is typed
             val filteredList= arrayListOf<Restaurant>()
@@ -105,15 +103,19 @@ class DashboardFragment(val contextParam: Context) : Fragment() {
 
                     filteredList.add(item)
 
-
                 }
             }
+
+            if(filteredList.size==0){
+                dashboard_fragment_cant_find_restaurant.visibility=View.VISIBLE
+            }
+            else{
+                dashboard_fragment_cant_find_restaurant.visibility=View.INVISIBLE
+            }
+
             dashboardAdapter.filterList(filteredList)
 
         }
-
-
-
 
         editTextSearch.addTextChangedListener(object :TextWatcher{
             override fun afterTextChanged(strTyped: Editable?) {
@@ -127,10 +129,16 @@ class DashboardFragment(val contextParam: Context) : Fragment() {
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
 
             }
-
         }
-
         )
+
+
+            return view
+
+    }
+
+
+    fun fetchData(){
 
         if (ConnectionManager().checkConnectivity(activity as Context)) {
 
@@ -207,30 +215,28 @@ class DashboardFragment(val contextParam: Context) : Fragment() {
                 queue.add(jsonObjectRequest)
 
             }catch (e: JSONException){
-                    Toast.makeText(activity as Context,"Some Unexpected error occured!!!",Toast.LENGTH_SHORT).show()
-                }
+                Toast.makeText(activity as Context,"Some Unexpected error occured!!!",Toast.LENGTH_SHORT).show()
+            }
+        }else
+        {
 
-            }else
-            {
-                val alterDialog=androidx.appcompat.app.AlertDialog.Builder(activity as Context)
-
-                alterDialog.setTitle("No Internet")
-                alterDialog.setMessage("Internet Connection can't be establish!")
-                alterDialog.setPositiveButton("Open Settings"){text,listener->
-                    val settingsIntent= Intent(Settings.ACTION_WIRELESS_SETTINGS)//open wifi settings
-                    startActivity(settingsIntent)
-                    activity?.finish()
-                }
-
-                alterDialog.setNegativeButton("Exit"){ text,listener->
-                    ActivityCompat.finishAffinity(activity as Activity)//closes all the instances of the app and the app closes completely
-                }
-                alterDialog.create()
-                alterDialog.show()
-
+            val alterDialog=androidx.appcompat.app.AlertDialog.Builder(activity as Context)
+            alterDialog.setTitle("No Internet")
+            alterDialog.setMessage("Internet Connection can't be establish!")
+            alterDialog.setPositiveButton("Open Settings"){text,listener->
+                val settingsIntent= Intent(Settings.ACTION_SETTINGS)//open wifi settings
+                startActivity(settingsIntent)
             }
 
-            return view
+            alterDialog.setNegativeButton("Exit"){ text,listener->
+                ActivityCompat.finishAffinity(activity as Activity)//closes all the instances of the app and the app closes completely
+            }
+            alterDialog.setCancelable(false)
+
+            alterDialog.create()
+            alterDialog.show()
+
+        }
 
     }
 
@@ -242,7 +248,6 @@ class DashboardFragment(val contextParam: Context) : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
         val id=item.itemId
-
 
         when(id){
 
@@ -275,36 +280,38 @@ class DashboardFragment(val contextParam: Context) : Fragment() {
             }
         }
 
-/*
-
-        when(id){
-            R.id.rating_sort->{
-                Collections.sort(restaurantInfoList,ratingComparator)
-                restaurantInfoList.reverse()
-                dashboardAdapter.notifyDataSetChanged()//updates the adapter
-
-            }
-            R.id.low_to_high_cost_sort->{
-                Collections.sort(restaurantInfoList,costComparator)
-                dashboardAdapter.notifyDataSetChanged()//updates the adapter
-
-            }
-            R.id.high_to_low_cost_sort->{
-                Collections.sort(restaurantInfoList,costComparator)
-                restaurantInfoList.reverse()
-                dashboardAdapter.notifyDataSetChanged()//updates the adapter
-
-            }
-
-        }
-*/
-
         return super.onOptionsItemSelected(item)
     }
 
 
+    override fun onResume() {
+
+        if (ConnectionManager().checkConnectivity(activity as Context)) {
+            fetchData()//if internet is available fetch data
+        }else
+        {
+
+            val alterDialog=androidx.appcompat.app.AlertDialog.Builder(activity as Context)
+            alterDialog.setTitle("No Internet")
+            alterDialog.setMessage("Internet Connection can't be establish!")
+            alterDialog.setPositiveButton("Open Settings"){text,listener->
+                val settingsIntent= Intent(Settings.ACTION_SETTINGS)//open wifi settings
+                startActivity(settingsIntent)
+            }
+
+            alterDialog.setNegativeButton("Exit"){ text,listener->
+                ActivityCompat.finishAffinity(activity as Activity)//closes all the instances of the app and the app closes completely
+            }
+            alterDialog.setCancelable(false)
+
+            alterDialog.create()
+            alterDialog.show()
 
         }
+
+        super.onResume()
+    }
+}
 
 
 
