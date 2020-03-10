@@ -58,7 +58,7 @@
             android:layout_marginBottom="5dp"
 
 
-            android:drawableLeft="@drawable/rupee24"
+            android:drawableLeft="@drawable/ic_rupee"
             android:padding="6dp"
             android:text="300/person"
             android:textSize="14sp" />

@@ -22,7 +22,7 @@
             android:layout_marginBottom="15dp"
             android:layout_centerHorizontal="true"
             android:padding="10dp"
-            android:src="@drawable/user1" />
+            android:src="@drawable/user_image" />
 
 
         <TextView
