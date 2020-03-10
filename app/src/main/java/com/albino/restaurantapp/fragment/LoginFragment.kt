@@ -74,6 +74,8 @@ class LoginFragment(val contextParam:Context) : Fragment() {
 
         buttonLogin.setOnClickListener(View.OnClickListener {
 
+            buttonLogin.visibility=View.INVISIBLE
+
             loginUserFun()
         })
         return view
@@ -116,7 +118,7 @@ class LoginFragment(val contextParam:Context) : Fragment() {
 
         if (ConnectionManager().checkConnectivity(activity as Context)) {
 
-            login_fragment_Progressdialog.visibility=View.VISIBLE
+            //login_fragment_Progressdialog.visibility=View.VISIBLE
                 try {
 
                     val loginUser = JSONObject()
@@ -161,6 +163,8 @@ class LoginFragment(val contextParam:Context) : Fragment() {
 
                             } else {
 
+                                buttonLogin.visibility=View.VISIBLE
+
                                 val responseMessageServer =
                                     responseJsonObjectData.getString("errorMessage")
                                 Toast.makeText(
@@ -173,6 +177,9 @@ class LoginFragment(val contextParam:Context) : Fragment() {
                             login_fragment_Progressdialog.visibility=View.INVISIBLE
                         },
                         Response.ErrorListener {
+
+                            buttonLogin.visibility=View.VISIBLE
+
                             login_fragment_Progressdialog.visibility=View.INVISIBLE
 
                             Toast.makeText(
@@ -197,6 +204,8 @@ class LoginFragment(val contextParam:Context) : Fragment() {
                     queue.add(jsonObjectRequest)
 
                 } catch (e: JSONException) {
+                    buttonLogin.visibility=View.VISIBLE
+
                     Toast.makeText(
                         contextParam,
                         "Some unexpected error occured!!!",
@@ -207,6 +216,8 @@ class LoginFragment(val contextParam:Context) : Fragment() {
 
         }else
         {
+            buttonLogin.visibility=View.VISIBLE
+
             val alterDialog=androidx.appcompat.app.AlertDialog.Builder(activity as Context)
 
             alterDialog.setTitle("No Internet")

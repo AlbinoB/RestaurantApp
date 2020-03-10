@@ -117,7 +117,7 @@ class DashboardFragment(val contextParam: Context) : Fragment() {
 
         }
 
-        editTextSearch.addTextChangedListener(object :TextWatcher{
+        editTextSearch.addTextChangedListener(object :TextWatcher{//as the user types the search filter is applied
             override fun afterTextChanged(strTyped: Editable?) {
                 filterFun(strTyped.toString())
             }
@@ -284,7 +284,7 @@ class DashboardFragment(val contextParam: Context) : Fragment() {
     }
 
 
-    override fun onResume() {
+    override fun onResume() {//once setting is opened to turn internet we again check for connection
 
         if (ConnectionManager().checkConnectivity(activity as Context)) {
             if(restaurantInfoList.isEmpty())//if no data is loaded previously load new data
