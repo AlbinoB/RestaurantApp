@@ -287,7 +287,8 @@ class DashboardFragment(val contextParam: Context) : Fragment() {
     override fun onResume() {
 
         if (ConnectionManager().checkConnectivity(activity as Context)) {
-            fetchData()//if internet is available fetch data
+            if(restaurantInfoList.isEmpty())//if no data is loaded previously load new data
+                fetchData()//if internet is available fetch data
         }else
         {
 
