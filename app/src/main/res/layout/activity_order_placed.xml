@@ -15,7 +15,7 @@
         <ImageView
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:background="@drawable/ic_order_placed"
+            android:background="@drawable/ic_order_placed_now"
             android:layout_centerInParent="true"
             android:id="@+id/imageViewOrderPlaced"
             />
@@ -42,7 +42,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/buttonOkay"
-                android:text="Okay"
+                android:text="OK"
                 android:textColor="#fff"
                 android:layout_margin="2dp"
                 android:background="@color/colorPrimary"

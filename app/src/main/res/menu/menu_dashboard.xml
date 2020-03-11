@@ -4,7 +4,7 @@
 
     <item android:title="sort"
         android:id="@+id/sort"
-        android:icon="@drawable/ic_sort"
+        android:icon="@drawable/ic_sort_filter"
         android:orderInCategory="100"
         app:showAsAction="always"
 

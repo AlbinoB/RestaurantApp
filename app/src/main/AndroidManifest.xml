@@ -7,22 +7,41 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/food_runner_app_icon"
+        android:icon="@mipmap/app_icon_food_runner"
         android:label="@string/app_name"
         android:networkSecurityConfig="@xml/network_security_config"
-        android:roundIcon="@mipmap/food_runner_app_icon_round"
+        android:roundIcon="@mipmap/app_icon_food_runner_round"
         android:supportsRtl="true"
+        android:resizeableActivity="false"
         android:theme="@style/AppTheme"
         android:windowSoftInputMode="stateHidden"
         >
-        <activity android:name=".activity.OrderPlacedActivity"></activity>
-        <activity android:name=".activity.ProfileActivity" />
-        <activity android:name=".activity.OrderHistoryActivity" />
-        <activity android:name=".activity.CartActivity" />
-        <activity android:name=".activity.RestaurantMenuActivity" />
-        <activity android:name=".activity.Dashboard" />
-        <activity android:name=".activity.LoginRegisterActivity" />
-        <activity android:name=".activity.SplashScreenActivity">
+        <activity android:name=".activity.OrderPlacedActivity"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|screenSize"
+            />
+        <activity android:name=".activity.ProfileActivity"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|screenSize"
+            />
+        <activity android:name=".activity.OrderHistoryActivity"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|screenSize"/>
+        <activity android:name=".activity.CartActivity"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|screenSize"/>
+        <activity android:name=".activity.RestaurantMenuActivity"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|screenSize"/>
+        <activity android:name=".activity.Dashboard"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|screenSize"/>
+        <activity android:name=".activity.LoginRegisterActivity"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|screenSize"/>
+        <activity android:name=".activity.SplashScreenActivity"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

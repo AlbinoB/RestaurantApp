@@ -48,7 +48,7 @@
             android:background="@color/white"
             android:id="@+id/order_activity_history_Progressdialog"
             android:visibility="invisible"
-            android:elevation="1dp">
+            android:elevation="2dp">
 
             <ProgressBar
                 android:layout_width="80dp"
@@ -87,13 +87,42 @@
                 />
 
 
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.9">
+
+
+
 
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.9"
+                android:layout_height="match_parent"
                 android:id="@+id/recyclerViewAllOrders"
                 />
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:id="@+id/order_history_fragment_no_orders"
+                android:visibility="invisible"
+                android:elevation="1dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/no_orders_placed"
+                    android:textSize="20sp"
+                    android:padding="15dp"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"/>
+
+            </RelativeLayout>
+
+            </RelativeLayout>
+
 
 
 

@@ -3,6 +3,7 @@ package com.albino.restaurantapp.activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
@@ -62,6 +63,19 @@ class LoginRegisterActivity : AppCompatActivity() {
             !is LoginFragment -> openLoginFragment()
             else ->super.onBackPressed()
         }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        val id=item.itemId
+
+        when(id){
+            android.R.id.home->{
+
+               openLoginFragment()
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
 }

@@ -66,14 +66,14 @@ class RestaurantMenuActivity : AppCompatActivity() {
 
         setToolBar()
 
-
-
-
-
         layoutManager = LinearLayoutManager(this)//set the layout manager
 
         recyclerView = findViewById(R.id.recyclerViewRestaurantMenu)
 
+
+    }
+
+    fun fetchData(){
 
 
         if (ConnectionManager().checkConnectivity(this)) {
@@ -177,20 +177,25 @@ class RestaurantMenuActivity : AppCompatActivity() {
                 ).show()
             }
 
-        } else {
-            val alterDialog = androidx.appcompat.app.AlertDialog.Builder(this)
+        }
+        else {
 
+            val alterDialog=androidx.appcompat.app.AlertDialog.Builder(this)
             alterDialog.setTitle("No Internet")
             alterDialog.setMessage("Internet Connection can't be establish!")
-            alterDialog.setPositiveButton("Open Settings") { text, listener ->
-                val settingsIntent = Intent(Settings.ACTION_WIRELESS_SETTINGS)//open wifi settings
+            alterDialog.setPositiveButton("Open Settings"){text,listener->
+                val settingsIntent= Intent(Settings.ACTION_SETTINGS)//open wifi settings
                 startActivity(settingsIntent)
-                finish()
             }
 
+            alterDialog.setNegativeButton("Exit"){ text,listener->
+                finishAffinity()//closes all the instances of the app and the app closes completely
+            }
+            alterDialog.setCancelable(false)
 
+            alterDialog.create()
+            alterDialog.show()
         }
-
 
     }
 
@@ -251,6 +256,36 @@ class RestaurantMenuActivity : AppCompatActivity() {
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onResume() {
+
+        if (ConnectionManager().checkConnectivity(this)) {
+            if(restaurantMenuList.isEmpty())
+                fetchData()//if internet is available fetch data
+        }else
+        {
+
+            val alterDialog=androidx.appcompat.app.AlertDialog.Builder(this)
+            alterDialog.setTitle("No Internet")
+            alterDialog.setMessage("Internet Connection can't be establish!")
+            alterDialog.setPositiveButton("Open Settings"){text,listener->
+                val settingsIntent= Intent(Settings.ACTION_SETTINGS)//open wifi settings
+                startActivity(settingsIntent)
+            }
+
+            alterDialog.setNegativeButton("Exit"){ text,listener->
+                finishAffinity()//closes all the instances of the app and the app closes completely
+            }
+            alterDialog.setCancelable(false)
+
+            alterDialog.create()
+            alterDialog.show()
+
+        }
+
+
+        super.onResume()
     }
 
 }

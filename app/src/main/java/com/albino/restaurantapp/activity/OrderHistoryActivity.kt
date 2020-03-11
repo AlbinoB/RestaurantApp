@@ -27,6 +27,7 @@ lateinit var menuAdapter1: OrderHistoryAdapter
 lateinit var recyclerViewAllOrders:RecyclerView
 lateinit var toolbarOrderHistroy:androidx.appcompat.widget.Toolbar
 lateinit var order_activity_history_Progressdialog:RelativeLayout
+lateinit var order_history_fragment_no_orders:RelativeLayout
 
 
 class OrderHistoryActivity : AppCompatActivity() {
@@ -41,9 +42,10 @@ class OrderHistoryActivity : AppCompatActivity() {
 
         order_activity_history_Progressdialog=findViewById(R.id.order_activity_history_Progressdialog)
 
+        order_history_fragment_no_orders=findViewById(R.id.order_history_fragment_no_orders)
+
         setToolBar()
 
-        setItemsForEachRestaurant()
 
     }
 
@@ -74,7 +76,6 @@ class OrderHistoryActivity : AppCompatActivity() {
                     url,
                     null,
                     Response.Listener {
-                        println("Response12menu is " + it)
 
                         val responseJsonObjectData = it.getJSONObject("data")
 
@@ -92,8 +93,14 @@ class OrderHistoryActivity : AppCompatActivity() {
                                     Toast.LENGTH_SHORT
                                 ).show()
 
+                                order_history_fragment_no_orders.visibility=View.VISIBLE
+
                             }else
                             {
+                                order_history_fragment_no_orders.visibility=View.INVISIBLE
+
+
+
                                 for (i in 0 until data.length()) {
                                     val restaurantItemJsonObject = data.getJSONObject(i)
 
@@ -151,15 +158,21 @@ class OrderHistoryActivity : AppCompatActivity() {
             }
 
         } else {
-            val alterDialog = androidx.appcompat.app.AlertDialog.Builder(this)
-
+            val alterDialog=androidx.appcompat.app.AlertDialog.Builder(this)
             alterDialog.setTitle("No Internet")
             alterDialog.setMessage("Internet Connection can't be establish!")
-            alterDialog.setPositiveButton("Open Settings") { text, listener ->
-                val settingsIntent = Intent(Settings.ACTION_WIRELESS_SETTINGS)//open wifi settings
+            alterDialog.setPositiveButton("Open Settings"){text,listener->
+                val settingsIntent= Intent(Settings.ACTION_SETTINGS)//open wifi settings
                 startActivity(settingsIntent)
-                finish()
             }
+
+            alterDialog.setNegativeButton("Exit"){ text,listener->
+                finishAffinity()//closes all the instances of the app and the app closes completely
+            }
+            alterDialog.setCancelable(false)
+
+            alterDialog.create()
+            alterDialog.show()
 
         }
 
@@ -183,6 +196,34 @@ class OrderHistoryActivity : AppCompatActivity() {
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onResume() {
+
+        if (ConnectionManager().checkConnectivity(this)) {
+            setItemsForEachRestaurant()//if internet is available fetch data
+        }else
+        {
+
+            val alterDialog=androidx.appcompat.app.AlertDialog.Builder(this)
+            alterDialog.setTitle("No Internet")
+            alterDialog.setMessage("Internet Connection can't be establish!")
+            alterDialog.setPositiveButton("Open Settings"){text,listener->
+                val settingsIntent= Intent(Settings.ACTION_SETTINGS)//open wifi settings
+                startActivity(settingsIntent)
+            }
+
+            alterDialog.setNegativeButton("Exit"){ text,listener->
+                finishAffinity()//closes all the instances of the app and the app closes completely
+            }
+            alterDialog.setCancelable(false)
+
+            alterDialog.create()
+            alterDialog.show()
+
+        }
+
+        super.onResume()
     }
 
 

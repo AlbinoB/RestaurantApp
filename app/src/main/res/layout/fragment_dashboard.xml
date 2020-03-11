@@ -23,6 +23,8 @@
     </RelativeLayout>
 
 
+
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
@@ -38,14 +40,37 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_centerInParent="true"
-            android:background="@drawable/bg_white_rounded"
-            android:drawableLeft="@drawable/search"
-            android:hint="    Search Restaurants"
+            android:background="@drawable/rounded_corner_search"
+            android:drawableLeft="@drawable/ic_search"
+            android:hint="   Search Restaurants"
             android:maxLines="1"
             android:padding="4dp"
             android:paddingStart="10dp"></EditText>
 
     </RelativeLayout>
+
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:id="@+id/dashboard_fragment_cant_find_restaurant"
+        android:visibility="invisible"
+        android:layout_below="@id/RLSearch"
+        android:elevation="1dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/can_t_find_any_restaurant_with_that_name"
+            android:textSize="20sp"
+            android:padding="15dp"
+            android:textColor="@color/black"/>
+
+    </RelativeLayout>
+
 
 
 

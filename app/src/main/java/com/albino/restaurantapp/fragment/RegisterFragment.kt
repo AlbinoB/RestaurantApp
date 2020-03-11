@@ -222,51 +222,52 @@ class RegisterFragment(val contextParam:Context) : Fragment() {
         }
     }
 
-    fun checkForErrors():Boolean{
-        var errorPassCount=0
-        if(editTextName.text.isBlank()) {
+    fun checkForErrors():Boolean {
+        var errorPassCount = 0
+        if (editTextName.text.isBlank()) {
 
             editTextName.setError("Field Missing!")
-        }else{
+        } else {
             errorPassCount++
         }
 
-        if(editTextMobileNumber.text.isBlank()){
+        if (editTextMobileNumber.text.isBlank()) {
             editTextMobileNumber.setError("Field Missing!")
-        }else{
+        } else {
             errorPassCount++
         }
 
-        if(editTextEmail.text.isBlank()){
+        if (editTextEmail.text.isBlank()) {
             editTextEmail.setError("Field Missing!")
-        }else{
+        } else {
             errorPassCount++
         }
 
-        if(editTextDeliveryAddress.text.isBlank()){
+        if (editTextDeliveryAddress.text.isBlank()) {
             editTextDeliveryAddress.setError("Field Missing!")
-        }else{
+        } else {
             errorPassCount++
         }
 
-        if(editTextConfirmPassword.text.isBlank()){
+        if (editTextConfirmPassword.text.isBlank()) {
             editTextConfirmPassword.setError("Field Missing!")
-        }else{
+        } else {
             errorPassCount++
         }
 
-        if(editTextPassword.text.isBlank()){
+        if (editTextPassword.text.isBlank()) {
             editTextPassword.setError("Field Missing!")
-        }else{
+        } else {
             errorPassCount++
         }
 
-        if(editTextPassword.text.toString().toInt()==editTextConfirmPassword.text.toString().toInt()){
-            errorPassCount++
-        }else{
-            editTextConfirmPassword.setError("Password don't match")
+        if (editTextPassword.text.isNotBlank() && editTextConfirmPassword.text.isNotBlank())
+        {   if (editTextPassword.text.toString().toInt() == editTextConfirmPassword.text.toString().toInt()) {
+                errorPassCount++
+            } else {
+                editTextConfirmPassword.setError("Password don't match")
+            }
         }
-
 
         if(errorPassCount==7)
             return true

@@ -59,7 +59,7 @@ class OrderHistoryAdapter(val context: Context, val orderedRestaurantList:ArrayL
 
 
         var layoutManager = LinearLayoutManager(context)
-        var orderedItemAdapter: CartAdapter
+        var orderedItemAdapter: CartAdapter// the same cart adapter can be used to fill the ordered items for each restaurant
 
         if (ConnectionManager().checkConnectivity(context)) {
 
@@ -73,7 +73,6 @@ class OrderHistoryAdapter(val context: Context, val orderedRestaurantList:ArrayL
 
                 val queue = Volley.newRequestQueue(context)
 
-
                 val url = "http://13.235.250.119/v2/orders/fetch_result/" + user_id
 
                 val jsonObjectRequest = object : JsonObjectRequest(
@@ -81,7 +80,6 @@ class OrderHistoryAdapter(val context: Context, val orderedRestaurantList:ArrayL
                     url,
                     null,
                     Response.Listener {
-                        println("Response12menu is " + it)
 
                         val responseJsonObjectData = it.getJSONObject("data")
 
@@ -91,11 +89,9 @@ class OrderHistoryAdapter(val context: Context, val orderedRestaurantList:ArrayL
 
                             val data = responseJsonObjectData.getJSONArray("data")
 
-                            for (i in 0 until data.length()) {//loop through all the restaurants
-                                val fetechedRestaurantJsonObject = data.getJSONObject(i)//each restaurant
+                                val fetechedRestaurantJsonObject = data.getJSONObject(position)//restaurant at index of position
 
-                                if (restaurantObject.restaurantName.contains(fetechedRestaurantJsonObject.getString("restaurant_name")))//if the fetched restaurant name matches we save
-                                {
+                                    orderItemsPerRestaurant.clear()
 
                                     val foodOrderedJsonArray=fetechedRestaurantJsonObject.getJSONArray("food_items")
 
@@ -113,9 +109,6 @@ class OrderHistoryAdapter(val context: Context, val orderedRestaurantList:ArrayL
 
                                     }
 
-
-                                }
-
                                 orderedItemAdapter = CartAdapter(
                                     context,//pass the relativelayout which has the button to enable it later
                                     orderItemsPerRestaurant
@@ -126,7 +119,7 @@ class OrderHistoryAdapter(val context: Context, val orderedRestaurantList:ArrayL
 
                                 holder.recyclerViewItemsOrdered.layoutManager = layoutManager //bind the  recyclerView to the layoutManager
 
-                            }
+
                         }
                     },
                     Response.ErrorListener {
@@ -158,17 +151,9 @@ class OrderHistoryAdapter(val context: Context, val orderedRestaurantList:ArrayL
                 ).show()
             }
 
-        } else {
-            val alterDialog = androidx.appcompat.app.AlertDialog.Builder(context)
-
-            alterDialog.setTitle("No Internet")
-            alterDialog.setMessage("Internet Connection can't be establish!")
-            alterDialog.setPositiveButton("Open Settings") { text, listener ->
-                val settingsIntent = Intent(Settings.ACTION_WIRELESS_SETTINGS)//open wifi settings
-                /*.startActivity(settingsIntent)
-                context.finish()*/
-            }
         }
+
+
 
     }
 }

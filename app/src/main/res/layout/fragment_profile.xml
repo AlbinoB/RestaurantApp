@@ -22,7 +22,7 @@
             android:layout_marginBottom="15dp"
             android:layout_centerHorizontal="true"
             android:padding="10dp"
-            android:src="@drawable/user_image" />
+            android:src="@drawable/ic_current_user" />
 
 
         <TextView
@@ -33,11 +33,10 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginBottom="20dp"
-            android:background="#fff"
+            android:background="@drawable/rounded_border_for_view"
             android:drawablePadding="4dp"
             android:inputType="number"
             android:padding="10dp"
-
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="20sp" />
@@ -51,10 +50,9 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginBottom="20dp"
-            android:background="#fff"
+            android:background="@drawable/rounded_border_for_view"
             android:drawablePadding="4dp"
             android:padding="10dp"
-
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="20sp"
@@ -68,7 +66,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginBottom="20dp"
-            android:background="#fff"
+            android:background="@drawable/rounded_border_for_view"
             android:drawablePadding="4dp"
             android:padding="10dp"
 
@@ -84,9 +82,8 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginBottom="20dp"
-            android:background="#fff"
+            android:background="@drawable/rounded_border_for_view"
             android:drawablePadding="4dp"
-
             android:inputType="text"
             android:padding="10dp"
 

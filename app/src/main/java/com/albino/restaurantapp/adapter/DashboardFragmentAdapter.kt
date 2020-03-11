@@ -6,10 +6,7 @@ import android.os.AsyncTask
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import androidx.room.Room
@@ -22,9 +19,12 @@ import com.albino.restaurantapp.model.Restaurant
 import com.albino.restaurantapp.model.RestaurantMenu
 import com.squareup.picasso.Picasso
 
+
+
 class DashboardFragmentAdapter(val context:Context,var itemList:ArrayList<Restaurant>):RecyclerView.Adapter<DashboardFragmentAdapter.ViewHolderDashboard>() {
 
     class ViewHolderDashboard(view: View) : RecyclerView.ViewHolder(view) {
+
 
         val imageViewRestaurant: ImageView = view.findViewById(R.id.imageViewRestaurant)
         val textViewRestaurantName: TextView = view.findViewById(R.id.textViewRestaurantName)
@@ -33,14 +33,11 @@ class DashboardFragmentAdapter(val context:Context,var itemList:ArrayList<Restau
         val llContent: LinearLayout = view.findViewById(R.id.llContent)
         val textViewfavourite: TextView = view.findViewById(R.id.textViewfavourite)
 
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderDashboard {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.dashboard_recycler_view_single_row, parent, false)
-
-
 
         return ViewHolderDashboard(view)
     }
@@ -97,11 +94,6 @@ class DashboardFragmentAdapter(val context:Context,var itemList:ArrayList<Restau
 
                 }
 
-
-
-
-
-
             }
         })
 
@@ -109,7 +101,6 @@ class DashboardFragmentAdapter(val context:Context,var itemList:ArrayList<Restau
         holder.llContent.setOnClickListener(View.OnClickListener {
 
             println(holder.textViewRestaurantName.getTag().toString())
-
 
             val intent = Intent(context, RestaurantMenuActivity::class.java)
 
@@ -122,8 +113,6 @@ class DashboardFragmentAdapter(val context:Context,var itemList:ArrayList<Restau
 
 
         })
-
-
 
 
         holder.textViewRestaurantName.setTag(restaurant.restaurantId + "")
@@ -149,9 +138,6 @@ class DashboardFragmentAdapter(val context:Context,var itemList:ArrayList<Restau
             holder.textViewfavourite.background =
                 context.resources.getDrawable(R.drawable.ic_fav_outline)
         }
-
-
-
 
     }
 

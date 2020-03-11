@@ -71,7 +71,9 @@
                 android:textColor="@color/black"
                 android:text="@string/choose_from_menu_listed_below"
                 android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:drawableEnd="@drawable/ic_fav_outline"
+                android:drawablePadding="10dp"/>
 
 
 

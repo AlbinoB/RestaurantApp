@@ -23,6 +23,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import com.albino.restaurantapp.R
 import com.albino.restaurantapp.adapter.DashboardFragmentAdapter
 import com.albino.restaurantapp.fragment.*
+import com.albino.restaurantapp.utils.ConnectionManager
 import com.google.android.material.navigation.NavigationView
 
 class Dashboard : AppCompatActivity() {
@@ -154,10 +155,13 @@ class Dashboard : AppCompatActivity() {
                     Toast.makeText(this@Dashboard,"FAQs", Toast.LENGTH_SHORT).show()
                 }
                 R.id.logout ->{
+
+                    drawerLayout.closeDrawers()
+
                     val alterDialog=androidx.appcompat.app.AlertDialog.Builder(this)
 
                     alterDialog.setTitle("Confirmation")
-                    alterDialog.setMessage("Are you sure you want to exit?")
+                    alterDialog.setMessage("Are you sure you want to log out?")
                     alterDialog.setPositiveButton("Yes"){text,listener->
                         sharedPreferencess.edit().putBoolean("user_logged_in",false).apply()
 
@@ -236,6 +240,7 @@ class Dashboard : AppCompatActivity() {
             LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         super.onResume()
     }
+
 
 
 

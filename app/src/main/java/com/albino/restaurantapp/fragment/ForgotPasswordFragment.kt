@@ -153,9 +153,9 @@ class ForgotPasswordFragment(val contextParam:Context,val mobile_number:String) 
                                 alterDialog.setTitle("No Internet")
                                 alterDialog.setMessage("Internet Connection can't be establish!")
                                 alterDialog.setPositiveButton("Open Settings"){text,listener->
-                                    val settingsIntent= Intent(Settings.ACTION_WIRELESS_SETTINGS)//open wifi settings
+                                    val settingsIntent= Intent(Settings.ACTION_SETTINGS)//open wifi settings
                                     startActivity(settingsIntent)
-                                    activity?.finish()
+
                                 }
 
                                 alterDialog.setNegativeButton("Exit"){ text,listener->
@@ -163,7 +163,6 @@ class ForgotPasswordFragment(val contextParam:Context,val mobile_number:String) 
                                 }
                                 alterDialog.create()
                                 alterDialog.show()
-
                             }
 
                         }else{
@@ -191,6 +190,32 @@ class ForgotPasswordFragment(val contextParam:Context,val mobile_number:String) 
         )//replace the old layout with the new frag  layout
 
         transaction?.commit()//apply changes
+    }
+
+
+    override fun onResume() {
+
+        if (!ConnectionManager().checkConnectivity(activity as Context)) {
+
+            val alterDialog=androidx.appcompat.app.AlertDialog.Builder(activity as Context)
+            alterDialog.setTitle("No Internet")
+            alterDialog.setMessage("Internet Connection can't be establish!")
+            alterDialog.setPositiveButton("Open Settings"){text,listener->
+                val settingsIntent= Intent(Settings.ACTION_SETTINGS)//open wifi settings
+                startActivity(settingsIntent)
+            }
+
+            alterDialog.setNegativeButton("Exit"){ text,listener->
+                ActivityCompat.finishAffinity(activity as Activity)//closes all the instances of the app and the app closes completely
+            }
+            alterDialog.setCancelable(false)
+
+            alterDialog.create()
+            alterDialog.show()
+
+        }
+
+        super.onResume()
     }
 
 

@@ -73,6 +73,7 @@ class CartActivity : AppCompatActivity() {
                     try {
 
                         val foodJsonArray=JSONArray()
+
                         for (foodItem in selectedItemsId){
                             val singleItemObject=JSONObject()
                             singleItemObject.put("food_item_id",foodItem)
@@ -96,12 +97,10 @@ class CartActivity : AppCompatActivity() {
                             url,
                             sendOrder,
                             Response.Listener {
-                                println("Response12 is " + it)
 
                                 val responseJsonObjectData = it.getJSONObject("data")
 
                                 val success = responseJsonObjectData.getBoolean("success")
-
 
                                 if (success) {
 
@@ -131,7 +130,6 @@ class CartActivity : AppCompatActivity() {
                                 activity_cart_Progressdialog.visibility=View.INVISIBLE
                             },
                             Response.ErrorListener {
-                                println("Error12 is " + it)
 
                                 Toast.makeText(
                                     this,
@@ -163,22 +161,22 @@ class CartActivity : AppCompatActivity() {
 
                 }else
                 {
-                    val alterDialog=androidx.appcompat.app.AlertDialog.Builder(this)
 
+                    val alterDialog=androidx.appcompat.app.AlertDialog.Builder(this)
                     alterDialog.setTitle("No Internet")
                     alterDialog.setMessage("Internet Connection can't be establish!")
                     alterDialog.setPositiveButton("Open Settings"){text,listener->
-                        val settingsIntent= Intent(Settings.ACTION_WIRELESS_SETTINGS)//open wifi settings
+                        val settingsIntent= Intent(Settings.ACTION_SETTINGS)//open wifi settings
                         startActivity(settingsIntent)
-
                     }
 
                     alterDialog.setNegativeButton("Exit"){ text,listener->
-                        ActivityCompat.finishAffinity(this)//closes all the instances of the app and the app closes completely
+                        finishAffinity()//closes all the instances of the app and the app closes completely
                     }
+                    alterDialog.setCancelable(false)
+
                     alterDialog.create()
                     alterDialog.show()
-
                 }
         })
 
@@ -188,6 +186,11 @@ class CartActivity : AppCompatActivity() {
         layoutManager = LinearLayoutManager(this)//set the layout manager
 
         recyclerView = findViewById(R.id.recyclerViewCart)
+
+
+    }
+
+    fun fetchData(){
 
         if (ConnectionManager().checkConnectivity(this)) {
 
@@ -222,20 +225,20 @@ class CartActivity : AppCompatActivity() {
                                 val cartItemJsonObject = data.getJSONObject(i)
 
                                 if(selectedItemsId.contains(cartItemJsonObject.getString("id")))//if the fetched id is present in the selected id save
-                                    {
+                                {
 
-                                            val menuObject = CartItems(
-                                            cartItemJsonObject.getString("id"),
-                                            cartItemJsonObject.getString("name"),
-                                            cartItemJsonObject.getString("cost_for_one"),
-                                            cartItemJsonObject.getString("restaurant_id"))
+                                    val menuObject = CartItems(
+                                        cartItemJsonObject.getString("id"),
+                                        cartItemJsonObject.getString("name"),
+                                        cartItemJsonObject.getString("cost_for_one"),
+                                        cartItemJsonObject.getString("restaurant_id"))
 
-                                        totalAmount= totalAmount+cartItemJsonObject.getString("cost_for_one").toString().toInt()
+                                    totalAmount= totalAmount+cartItemJsonObject.getString("cost_for_one").toString().toInt()
 
 
-                                        cartListItems.add(menuObject)
+                                    cartListItems.add(menuObject)
 
-                                    }
+                                }
                                 //progressBar.visibility = View.GONE
 
                                 menuAdapter = CartAdapter(
@@ -288,16 +291,24 @@ class CartActivity : AppCompatActivity() {
                 ).show()
             }
 
-        } else {
-            val alterDialog = androidx.appcompat.app.AlertDialog.Builder(this)
+        }
+        else {
 
+            val alterDialog=androidx.appcompat.app.AlertDialog.Builder(this)
             alterDialog.setTitle("No Internet")
             alterDialog.setMessage("Internet Connection can't be establish!")
-            alterDialog.setPositiveButton("Open Settings") { text, listener ->
-                val settingsIntent = Intent(Settings.ACTION_WIRELESS_SETTINGS)//open wifi settings
+            alterDialog.setPositiveButton("Open Settings"){text,listener->
+                val settingsIntent= Intent(Settings.ACTION_SETTINGS)//open wifi settings
                 startActivity(settingsIntent)
-                finish()
             }
+
+            alterDialog.setNegativeButton("Exit"){ text,listener->
+                finishAffinity()//closes all the instances of the app and the app closes completely
+            }
+            alterDialog.setCancelable(false)
+
+            alterDialog.create()
+            alterDialog.show()
 
         }
 
@@ -325,6 +336,35 @@ class CartActivity : AppCompatActivity() {
 
 
 
+    override fun onResume() {
 
+        if (ConnectionManager().checkConnectivity(this)) {
+            fetchData()//if internet is available fetch data
+        }else
+        {
+
+            val alterDialog=androidx.appcompat.app.AlertDialog.Builder(this)
+            alterDialog.setTitle("No Internet")
+            alterDialog.setMessage("Internet Connection can't be establish!")
+            alterDialog.setPositiveButton("Open Settings"){text,listener->
+                val settingsIntent= Intent(Settings.ACTION_SETTINGS)//open wifi settings
+                startActivity(settingsIntent)
+            }
+
+            alterDialog.setNegativeButton("Exit"){ text,listener->
+                finishAffinity()//closes all the instances of the app and the app closes completely
+            }
+            alterDialog.setCancelable(false)
+
+            alterDialog.create()
+            alterDialog.show()
+
+        }
+
+        super.onResume()
     }
+
+
+
+}
 

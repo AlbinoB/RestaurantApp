@@ -38,7 +38,7 @@
             android:layout_marginBottom="30dp"
             android:layout_centerHorizontal="true"
             android:padding="10dp"
-            android:src="@drawable/app_icon_log_white" />
+            android:src="@drawable/ic_app_icon_log" />
 
 
         <EditText

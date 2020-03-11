@@ -53,6 +53,16 @@ class FavouriteRestaurantFragment(val contextParam:Context) : Fragment() {
 
         favourite_restaurant_fragment_Progressdialog=view.findViewById(R.id.favourite_restaurant_fragment_Progressdialog)
 
+
+
+
+
+        return view
+    }
+
+    fun fetchData(){
+
+
         if (ConnectionManager().checkConnectivity(activity as Context)) {
 
             favourite_restaurant_fragment_Progressdialog.visibility=View.VISIBLE
@@ -91,26 +101,26 @@ class FavouriteRestaurantFragment(val contextParam:Context) : Fragment() {
                                 if(DBAsynTask(contextParam,restaurantEntity,1).execute().get())//if restaurant present add
                                 {
 
-                                val restaurantObject = Restaurant(
-                                    restaurantJsonObject.getString("id"),
-                                    restaurantJsonObject.getString("name"),
-                                    restaurantJsonObject.getString("rating"),
-                                    restaurantJsonObject.getString("cost_for_one"),
-                                    restaurantJsonObject.getString("image_url")
-                                )
+                                    val restaurantObject = Restaurant(
+                                        restaurantJsonObject.getString("id"),
+                                        restaurantJsonObject.getString("name"),
+                                        restaurantJsonObject.getString("rating"),
+                                        restaurantJsonObject.getString("cost_for_one"),
+                                        restaurantJsonObject.getString("image_url")
+                                    )
 
                                     restaurantInfoList.add(restaurantObject)
 
-                                //progressBar.visibility = View.GONE
+                                    //progressBar.visibility = View.GONE
 
-                                favouriteAdapter = DashboardFragmentAdapter(
-                                    activity as Context,
-                                    restaurantInfoList
-                                )//set the adapter with the data
+                                    favouriteAdapter = DashboardFragmentAdapter(
+                                        activity as Context,
+                                        restaurantInfoList
+                                    )//set the adapter with the data
 
-                                recyclerView.adapter = favouriteAdapter//bind the  recyclerView to the adapter
+                                    recyclerView.adapter = favouriteAdapter//bind the  recyclerView to the adapter
 
-                                recyclerView.layoutManager = layoutManager //bind the  recyclerView to the layoutManager
+                                    recyclerView.layoutManager = layoutManager //bind the  recyclerView to the layoutManager
 
                                 }
                             }
@@ -156,27 +166,24 @@ class FavouriteRestaurantFragment(val contextParam:Context) : Fragment() {
 
         }else
         {
-            val alterDialog=androidx.appcompat.app.AlertDialog.Builder(activity as Context)
 
+            val alterDialog=androidx.appcompat.app.AlertDialog.Builder(activity as Context)
             alterDialog.setTitle("No Internet")
             alterDialog.setMessage("Internet Connection can't be establish!")
             alterDialog.setPositiveButton("Open Settings"){text,listener->
-                val settingsIntent= Intent(Settings.ACTION_WIRELESS_SETTINGS)//open wifi settings
+                val settingsIntent= Intent(Settings.ACTION_SETTINGS)//open wifi settings
                 startActivity(settingsIntent)
-                activity?.finish()
             }
 
             alterDialog.setNegativeButton("Exit"){ text,listener->
                 ActivityCompat.finishAffinity(activity as Activity)//closes all the instances of the app and the app closes completely
             }
+            alterDialog.setCancelable(false)
+
             alterDialog.create()
             alterDialog.show()
-
         }
 
-
-
-        return view
     }
 
 
@@ -209,6 +216,34 @@ class FavouriteRestaurantFragment(val contextParam:Context) : Fragment() {
         }
 
 
+    }
+
+    override fun onResume() {
+
+        if (ConnectionManager().checkConnectivity(activity as Context)) {
+            fetchData()//if internet is available fetch data
+        }else
+        {
+
+            val alterDialog=androidx.appcompat.app.AlertDialog.Builder(activity as Context)
+            alterDialog.setTitle("No Internet")
+            alterDialog.setMessage("Internet Connection can't be establish!")
+            alterDialog.setPositiveButton("Open Settings"){text,listener->
+                val settingsIntent= Intent(Settings.ACTION_SETTINGS)//open wifi settings
+                startActivity(settingsIntent)
+            }
+
+            alterDialog.setNegativeButton("Exit"){ text,listener->
+                ActivityCompat.finishAffinity(activity as Activity)//closes all the instances of the app and the app closes completely
+            }
+            alterDialog.setCancelable(false)
+
+            alterDialog.create()
+            alterDialog.show()
+
+        }
+
+        super.onResume()
     }
 
 

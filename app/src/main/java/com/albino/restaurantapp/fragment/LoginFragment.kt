@@ -76,7 +76,20 @@ class LoginFragment(val contextParam:Context) : Fragment() {
 
             buttonLogin.visibility=View.INVISIBLE
 
-            loginUserFun()
+            if (editTextMobileNumber.text.isBlank()) {
+                editTextMobileNumber.setError("Mobile Number Missing")
+                buttonLogin.visibility=View.VISIBLE
+                }
+                else{
+                    if(editTextPassword.text.isBlank())
+                    {
+                        buttonLogin.visibility=View.VISIBLE
+                        editTextPassword.setError("Missing Password")
+                    }else{
+                        loginUserFun()
+                    }
+                }
+
         })
         return view
     }
@@ -125,7 +138,6 @@ class LoginFragment(val contextParam:Context) : Fragment() {
 
                     loginUser.put("mobile_number", editTextMobileNumber.text)
                     loginUser.put("password", editTextPassword.text)
-
 
 
                     val queue = Volley.newRequestQueue(activity as Context)
