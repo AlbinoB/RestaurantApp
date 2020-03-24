@@ -1,6 +1,7 @@
 package com.albino.restaurantapp.activity
 
 import android.app.Activity
+import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
@@ -378,21 +379,20 @@ class CartActivity : AppCompatActivity() {
         val notificationId=1;
         val channelId="personal_notification"
 
-        if(Build.VERSION.SDK_INT<=Build.VERSION_CODES.O)//less than oreo
-        {
+
             
             val notificationBulider=NotificationCompat.Builder(this,channelId)
             notificationBulider.setSmallIcon(R.drawable.ic_app_icon_log)
             notificationBulider.setContentTitle("Order Placed")
             notificationBulider.setContentText("Your order has been successfully placed!")
-            // Ordered from "+restaurantName+" and amounting to Rs."+ totalAmount
+            notificationBulider.setStyle(NotificationCompat.BigTextStyle().bigText("Ordered from "+restaurantName+" and amounting to Rs."+ totalAmount))
             notificationBulider.setPriority(NotificationCompat.PRIORITY_DEFAULT)
 
             val notificationManagerCompat=NotificationManagerCompat.from(this)
             notificationManagerCompat.notify(notificationId,notificationBulider.build())
-        }
-        else{
 
+        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.O)//less than oreo
+        {
             val name ="Order Placed"
             val description="Your order has been successfully placed!"
             val importance=NotificationManager.IMPORTANCE_DEFAULT
