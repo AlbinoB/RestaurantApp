@@ -392,9 +392,9 @@ class CartActivity : AppCompatActivity() {
             notificationManagerCompat.notify(notificationId,notificationBulider.build())
         }
         else{
-            
-            val name ="Personal Notifications"
-            val description="Include all the personal notifications"
+
+            val name ="Order Placed"
+            val description="Your order has been successfully placed!"
             val importance=NotificationManager.IMPORTANCE_DEFAULT
             
             val notificationChannel=NotificationChannel(channelId,name,importance)
