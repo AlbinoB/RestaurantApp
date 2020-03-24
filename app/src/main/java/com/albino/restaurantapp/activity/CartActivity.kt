@@ -1,8 +1,11 @@
 package com.albino.restaurantapp.activity
 
 import android.app.Activity
+import android.app.NotificationChannel
+import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.Settings
@@ -10,6 +13,8 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.*
 import androidx.core.app.ActivityCompat
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.albino.restaurantapp.R
@@ -109,6 +114,11 @@ class CartActivity : AppCompatActivity() {
                                         "Order Placed",
                                         Toast.LENGTH_SHORT
                                     ).show()
+
+                                    
+                                    createNotification()
+
+
 
                                     val intent= Intent(this,OrderPlacedActivity::class.java)
 
@@ -363,8 +373,39 @@ class CartActivity : AppCompatActivity() {
 
         super.onResume()
     }
+    
+    fun createNotification(){
+        val notificationId=1;
+        val channelId="personal_notification"
 
+        if(Build.VERSION.SDK_INT<=Build.VERSION_CODES.O)//less than oreo
+        {
+            
+            val notificationBulider=NotificationCompat.Builder(this,channelId)
+            notificationBulider.setSmallIcon(R.drawable.ic_app_icon_log)
+            notificationBulider.setContentTitle("Order Placed")
+            notificationBulider.setContentText("Your order has been successfully placed!")
+            // Ordered from "+restaurantName+" and amounting to Rs."+ totalAmount
+            notificationBulider.setPriority(NotificationCompat.PRIORITY_DEFAULT)
 
+            val notificationManagerCompat=NotificationManagerCompat.from(this)
+            notificationManagerCompat.notify(notificationId,notificationBulider.build())
+        }
+        else{
+            
+            val name ="Personal Notifications"
+            val description="Include all the personal notifications"
+            val importance=NotificationManager.IMPORTANCE_DEFAULT
+            
+            val notificationChannel=NotificationChannel(channelId,name,importance)
+            
+            notificationChannel.description=description
 
+            val notificationManager=  (getSystemService(Context.NOTIFICATION_SERVICE)) as NotificationManager
+
+            notificationManager.createNotificationChannel(notificationChannel)
+            
+        }
+    }
 }
 
