@@ -96,7 +96,7 @@ class CartActivity : AppCompatActivity() {
 
                         val queue = Volley.newRequestQueue(this)
 
-                        val url = "http://13.235.250.119/v2/place_order/fetch_result"
+                        val url = "http://"+getString(R.string.ip_address)+"/v2/place_order/fetch_result"
 
                         val jsonObjectRequest = object : JsonObjectRequest(
                             Request.Method.POST,
@@ -211,7 +211,7 @@ class CartActivity : AppCompatActivity() {
 
                 val queue = Volley.newRequestQueue(this)
 
-                val url = "http://13.235.250.119/v2/restaurants/fetch_result/" + restaurantId
+                val url = "http://"+getString(R.string.ip_address)+"/v2/restaurants/fetch_result/" + restaurantId
 
                 val jsonObjectRequest = object : JsonObjectRequest(
                     Request.Method.GET,
