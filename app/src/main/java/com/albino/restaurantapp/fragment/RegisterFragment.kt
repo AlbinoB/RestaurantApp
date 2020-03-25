@@ -119,7 +119,7 @@ class RegisterFragment(val contextParam:Context) : Fragment() {
 
                     val queue = Volley.newRequestQueue(activity as Context)
 
-                    val url = "http://13.235.250.119/v2/register/fetch_result"
+                    val url = "http://"+getString(R.string.ip_address)+"/v2/register/fetch_result"
 
                     val jsonObjectRequest = object : JsonObjectRequest(
                         Request.Method.POST,
@@ -168,7 +168,7 @@ class RegisterFragment(val contextParam:Context) : Fragment() {
                         Response.ErrorListener {
                             println("Error12 is " + it)
                             register_fragment_Progressdialog.visibility=View.INVISIBLE
-
+                            println(it)
                             Toast.makeText(
                                 contextParam,
                                 "Some Error occurred!!!",
@@ -182,7 +182,7 @@ class RegisterFragment(val contextParam:Context) : Fragment() {
                             val headers = HashMap<String, String>()
 
                             headers["Content-type"] = "application/json"
-                            headers["token"] = "acdc385cfd7264"
+                            headers["token"] = getString(R.string.token)
 
                             return headers
                         }

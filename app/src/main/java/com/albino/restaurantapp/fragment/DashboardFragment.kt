@@ -147,7 +147,7 @@ class DashboardFragment(val contextParam: Context) : Fragment() {
 
                 val queue = Volley.newRequestQueue(activity as Context)
 
-                val url = "http://13.235.250.119/v2/restaurants/fetch_result/"
+                val url = "http://"+getString(R.string.ip_address)+"/v2/restaurants/fetch_result_all"
 
                 val jsonObjectRequest = object : JsonObjectRequest(
                     Request.Method.GET,
@@ -196,7 +196,7 @@ class DashboardFragment(val contextParam: Context) : Fragment() {
 
                         Toast.makeText(
                             activity as Context,
-                            "mSome Error occurred!!!",
+                            "Some Error occurred!!!",
                             Toast.LENGTH_SHORT
                         ).show()
                     })
@@ -206,7 +206,7 @@ class DashboardFragment(val contextParam: Context) : Fragment() {
                         val headers=HashMap<String,String>()
 
                         headers["Content-type"]="application/json"
-                        headers["token"]="acdc385cfd7264"
+                        headers["token"]=getString(R.string.token)
 
                         return headers
                     }
