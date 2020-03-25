@@ -69,7 +69,7 @@ class OrderHistoryActivity : AppCompatActivity() {
 
                 val queue = Volley.newRequestQueue(this)
 
-                val url = "http://13.235.250.119/v2/orders/fetch_result/" + user_id
+                val url = "http://"+getString(R.string.ip_address)+"/v2/orders/fetch_result?userId=" + user_id
 
                 val jsonObjectRequest = object : JsonObjectRequest(
                     Request.Method.GET,
@@ -141,7 +141,7 @@ class OrderHistoryActivity : AppCompatActivity() {
                         val headers = HashMap<String, String>()
 
                         headers["Content-type"] = "application/json"
-                        headers["token"] = "acdc385cfd7264"
+                        headers["token"] = getString(R.string.token)
 
                         return headers
                     }

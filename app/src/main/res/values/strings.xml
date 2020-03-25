@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">Food Runner</string>
 
+    <string name="ip_address">192.168.2.6/FoodRunner-API/foodrunner</string>
+    <string name="token">test</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 

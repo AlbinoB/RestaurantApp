@@ -96,7 +96,7 @@ class CartActivity : AppCompatActivity() {
 
                         val queue = Volley.newRequestQueue(this)
 
-                        val url = "http://13.235.250.119/v2/place_order/fetch_result"
+                        val url = "http://"+getString(R.string.ip_address)+"/v2/place_order/fetch_result"
 
                         val jsonObjectRequest = object : JsonObjectRequest(
                             Request.Method.POST,
@@ -153,7 +153,7 @@ class CartActivity : AppCompatActivity() {
                                 val headers = HashMap<String, String>()
 
                                 headers["Content-type"] = "application/json"
-                                headers["token"] = "acdc385cfd7264"
+                                headers["token"] = getString(R.string.token)
 
                                 return headers
                             }
@@ -211,7 +211,7 @@ class CartActivity : AppCompatActivity() {
 
                 val queue = Volley.newRequestQueue(this)
 
-                val url = "http://13.235.250.119/v2/restaurants/fetch_result/" + restaurantId
+                val url = "http://"+getString(R.string.ip_address)+"/v2/restaurants/fetch_result/fetch_with_restaurant_id?restaurantId=" + restaurantId
 
                 val jsonObjectRequest = object : JsonObjectRequest(
                     Request.Method.GET,
@@ -286,7 +286,7 @@ class CartActivity : AppCompatActivity() {
                         val headers = HashMap<String, String>()
 
                         headers["Content-type"] = "application/json"
-                        headers["token"] = "acdc385cfd7264"
+                        headers["token"] = getString(R.string.token)
 
                         return headers
                     }
