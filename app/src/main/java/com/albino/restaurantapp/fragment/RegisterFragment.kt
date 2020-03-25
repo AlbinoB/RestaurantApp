@@ -168,7 +168,7 @@ class RegisterFragment(val contextParam:Context) : Fragment() {
                         Response.ErrorListener {
                             println("Error12 is " + it)
                             register_fragment_Progressdialog.visibility=View.INVISIBLE
-
+                            println(it)
                             Toast.makeText(
                                 contextParam,
                                 "Some Error occurred!!!",

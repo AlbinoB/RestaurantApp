@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Food Runner</string>
 
-    <string name="ip_address">192.168.2.6/FoodRunner-API/foodrunner</string>
+    <string name="ip_address">13.234.239.174/foodrunner</string>
     <string name="token">test</string>
 
     <!-- TODO: Remove or change this placeholder text -->
