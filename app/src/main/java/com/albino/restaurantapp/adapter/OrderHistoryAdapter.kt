@@ -73,7 +73,7 @@ class OrderHistoryAdapter(val context: Context, val orderedRestaurantList:ArrayL
 
                 val queue = Volley.newRequestQueue(context)
 
-                val url = "http://13.235.250.119/v2/orders/fetch_result/" + user_id
+                val url = "http://13.235.250.119/v2/orders/fetch_result?userId=" + user_id
 
                 val jsonObjectRequest = object : JsonObjectRequest(
                     Request.Method.GET,
