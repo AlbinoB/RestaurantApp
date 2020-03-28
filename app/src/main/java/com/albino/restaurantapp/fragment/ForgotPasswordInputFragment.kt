@@ -17,6 +17,7 @@ import androidx.core.app.ActivityCompat
 
 import com.albino.restaurantapp.R
 import com.albino.restaurantapp.utils.ConnectionManager
+import com.android.volley.DefaultRetryPolicy
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
@@ -123,7 +124,7 @@ class ForgotPasswordInputFragment(val contextParam: Context) : Fragment() {
                                     forgot_password_input_fragment_Progressdialog.visibility=View.INVISIBLE
                                 },
                                 Response.ErrorListener {
-
+                                    println(it)
                                     Toast.makeText(
                                         contextParam,
                                         "mSome Error occurred!!!",
@@ -143,6 +144,11 @@ class ForgotPasswordInputFragment(val contextParam: Context) : Fragment() {
                                     return headers
                                 }
                             }
+                            jsonObjectRequest.setRetryPolicy( DefaultRetryPolicy(15000,
+                                1,
+                                1f
+                            )
+                            )
 
                             queue.add(jsonObjectRequest)
 

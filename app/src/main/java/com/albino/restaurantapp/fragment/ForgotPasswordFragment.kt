@@ -18,6 +18,7 @@ import androidx.core.app.ActivityCompat
 import com.albino.restaurantapp.R
 import com.albino.restaurantapp.activity.Dashboard
 import com.albino.restaurantapp.utils.ConnectionManager
+import com.android.volley.DefaultRetryPolicy
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
@@ -75,8 +76,6 @@ class ForgotPasswordFragment(val contextParam:Context,val mobile_number:String) 
                                     loginUser.put("password", editTextNewPassword.text.toString())
                                     loginUser.put("otp", editTextOTP.text.toString())
 
-
-
                                     val queue = Volley.newRequestQueue(activity as Context)
 
                                     val url = "http://"+getString(R.string.ip_address)+"/v2/reset_password/fetch_result"
@@ -102,7 +101,6 @@ class ForgotPasswordFragment(val contextParam:Context,val mobile_number:String) 
                                                 ).show()
 
                                                 passwordChanged()
-
 
                                             } else {
                                                 val responseMessageServer =
@@ -136,6 +134,7 @@ class ForgotPasswordFragment(val contextParam:Context,val mobile_number:String) 
                                             return headers
                                         }
                                     }
+
 
                                     queue.add(jsonObjectRequest)
 
@@ -217,7 +216,6 @@ class ForgotPasswordFragment(val contextParam:Context,val mobile_number:String) 
 
         super.onResume()
     }
-
 
 
 }
