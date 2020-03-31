@@ -24,6 +24,7 @@ import com.albino.restaurantapp.adapter.RestaurantMenuAdapter
 import com.albino.restaurantapp.model.CartItems
 import com.albino.restaurantapp.model.RestaurantMenu
 import com.albino.restaurantapp.utils.ConnectionManager
+import com.android.volley.DefaultRetryPolicy
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
@@ -142,9 +143,11 @@ class CartActivity : AppCompatActivity() {
                             },
                             Response.ErrorListener {
 
+                                println("ssssss"+it)
+
                                 Toast.makeText(
                                     this,
-                                    "mSome Error occurred!!!",
+                                    "Some Error occurred!!!",
                                     Toast.LENGTH_SHORT
                                 ).show()
 
@@ -158,6 +161,10 @@ class CartActivity : AppCompatActivity() {
                                 return headers
                             }
                         }
+                        jsonObjectRequest.setRetryPolicy( DefaultRetryPolicy(15000,
+                        1,
+                            1f
+                        ))
 
                         queue.add(jsonObjectRequest)
 

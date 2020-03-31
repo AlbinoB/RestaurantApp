@@ -194,6 +194,7 @@ class DashboardFragment(val contextParam: Context) : Fragment() {
                     Response.ErrorListener {
                         dashboard_fragment_Progressdialog.visibility=View.INVISIBLE
 
+                        println("errrrror"+it)
                         Toast.makeText(
                             activity as Context,
                             "Some Error occurred!!!",

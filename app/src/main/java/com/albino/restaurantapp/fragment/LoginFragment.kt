@@ -177,6 +177,8 @@ class LoginFragment(val contextParam:Context) : Fragment() {
 
                                 buttonLogin.visibility=View.VISIBLE
 
+                                println(it)
+
                                 val responseMessageServer =
                                     responseJsonObjectData.getString("errorMessage")
                                 Toast.makeText(
@@ -189,7 +191,7 @@ class LoginFragment(val contextParam:Context) : Fragment() {
                             login_fragment_Progressdialog.visibility=View.INVISIBLE
                         },
                         Response.ErrorListener {
-
+                            println(it)
                             buttonLogin.visibility=View.VISIBLE
 
                             login_fragment_Progressdialog.visibility=View.INVISIBLE
