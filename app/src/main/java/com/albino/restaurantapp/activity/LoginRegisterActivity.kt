@@ -12,7 +12,7 @@ import com.albino.restaurantapp.R
 import com.albino.restaurantapp.fragment.LoginFragment
 import com.albino.restaurantapp.fragment.RegisterFragment
 
-
+//Login for restaurant admin
 
 class LoginRegisterActivity : AppCompatActivity() {
 
@@ -30,7 +30,7 @@ class LoginRegisterActivity : AppCompatActivity() {
         if(sharedPreferencess.getBoolean("user_logged_in",false)){
             val intent= Intent(this,Dashboard::class.java)
             startActivity(intent)
-            finish();
+            finish()
         }else{
             openLoginFragment()
         }
