@@ -51,7 +51,6 @@ class LoginFragment(val contextParam:Context) : Fragment() {
         editTextMobileNumber=view.findViewById(R.id.editTextMobileNumber)
         editTextPassword=view.findViewById(R.id.editTextPassword)
         textViewForgotPassword=view.findViewById(R.id.textViewForgotPassword)
-        textViewSignUp=view.findViewById(R.id.textViewSignUp)
         buttonLogin=view.findViewById(R.id.buttonLogin)
         login_fragment_Progressdialog=view.findViewById(R.id.login_fragment_Progressdialog)
 
@@ -59,18 +58,12 @@ class LoginFragment(val contextParam:Context) : Fragment() {
 
         textViewForgotPassword.paintFlags=Paint.UNDERLINE_TEXT_FLAG//under line text
 
-        textViewSignUp.paintFlags=Paint.UNDERLINE_TEXT_FLAG//under line text
+
 
 
         textViewForgotPassword.setOnClickListener(View.OnClickListener {
             openForgotPasswordInputFragment()
         })
-
-
-        textViewSignUp.setOnClickListener(View.OnClickListener {
-            openRegisterFragment()
-        })
-
 
         buttonLogin.setOnClickListener(View.OnClickListener {
 
@@ -142,7 +135,7 @@ class LoginFragment(val contextParam:Context) : Fragment() {
 
                     val queue = Volley.newRequestQueue(activity as Context)
 
-                    val url = "http://"+getString(R.string.ip_address)+"/v2/login/fetch_result"
+                    val url = "http://"+getString(R.string.ip_address)+"/v2/seller_login/fetch_result"
 
                     val jsonObjectRequest = object : JsonObjectRequest(
                         Request.Method.POST,
@@ -158,12 +151,14 @@ class LoginFragment(val contextParam:Context) : Fragment() {
                             if (success) {
 
                                 val data = responseJsonObjectData.getJSONObject("data")
-                                sharedPreferencess.edit().putBoolean("user_logged_in", true).commit()
-                                sharedPreferencess.edit().putString("user_id", data.getString("user_id")).commit()
+                                sharedPreferencess.edit().putBoolean("user_logged_in", true).apply()
+                                sharedPreferencess.edit().putString("user_id", data.getString("user_id")).apply()
                                 sharedPreferencess.edit().putString("name", data.getString("name")).apply()
                                 sharedPreferencess.edit().putString("email", data.getString("email")).apply()
                                 sharedPreferencess.edit().putString("mobile_number", data.getString("mobile_number")).apply()
                                 sharedPreferencess.edit().putString("address", data.getString("address")).apply()
+                                sharedPreferencess.edit().putString("restaurant_id", data.getString("restaurant_id")).apply()
+                                sharedPreferencess.edit().putString("restaurant_name", data.getString("restaurant_name")).apply()
 
                                 Toast.makeText(
                                     contextParam,
@@ -255,7 +250,7 @@ class LoginFragment(val contextParam:Context) : Fragment() {
     fun userSuccessfullyLoggedIn(){
         val intent=Intent(activity as Context,Dashboard::class.java)
         startActivity(intent)
-        getActivity()?.finish();
+        getActivity()?.finish()
     }
 
 
