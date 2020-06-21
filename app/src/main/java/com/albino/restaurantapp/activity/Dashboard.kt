@@ -165,7 +165,13 @@ class Dashboard : AppCompatActivity() {
                     alterDialog.setPositiveButton("Yes"){text,listener->
                         sharedPreferencess.edit().putBoolean("user_logged_in",false).apply()
 
-                        ActivityCompat.finishAffinity(this)//closes all the instances of the app and the app closes completely
+                        //ActivityCompat.finishAffinity(this)//closes all the instances of the app and the app closes completely
+                        val intent= Intent(this,LoginRegisterActivity::class.java)
+
+                        startActivity(intent)
+
+                        finishAffinity()//destory all previous activities
+
                     }
 
                     alterDialog.setNegativeButton("No"){ text,listener->

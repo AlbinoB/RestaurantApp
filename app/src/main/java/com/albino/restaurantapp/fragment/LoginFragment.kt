@@ -80,13 +80,17 @@ class LoginFragment(val contextParam:Context) : Fragment() {
                 editTextMobileNumber.setError("Mobile Number Missing")
                 buttonLogin.visibility=View.VISIBLE
                 }
-                else{
-                    if(editTextPassword.text.isBlank())
-                    {
+                else {
+                    if (editTextMobileNumber.text.length < 10) {
+                        editTextMobileNumber.setError("Mobile Number must have 10 digits")
                         buttonLogin.visibility=View.VISIBLE
-                        editTextPassword.setError("Missing Password")
-                    }else{
-                        loginUserFun()
+                    } else {
+                        if (editTextPassword.text.isBlank()) {
+                            buttonLogin.visibility = View.VISIBLE
+                            editTextPassword.setError("Missing Password")
+                        } else {
+                            loginUserFun()
+                        }
                     }
                 }
 

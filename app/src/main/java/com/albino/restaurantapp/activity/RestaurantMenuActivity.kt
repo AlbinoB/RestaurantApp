@@ -6,16 +6,15 @@ import android.os.Bundle
 import android.provider.Settings
 import android.view.MenuItem
 import android.view.View
-import android.widget.Button
-import android.widget.FrameLayout
-import android.widget.RelativeLayout
-import android.widget.Toast
+import android.widget.*
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.albino.restaurantapp.R
+import com.albino.restaurantapp.adapter.DashboardFragmentAdapter
 import com.albino.restaurantapp.adapter.RestaurantMenuAdapter
+import com.albino.restaurantapp.database.RestaurantEntity
 import com.albino.restaurantapp.model.RestaurantMenu
 import com.albino.restaurantapp.utils.ConnectionManager
 import com.android.volley.Request
@@ -43,11 +42,11 @@ class RestaurantMenuActivity : AppCompatActivity() {
 
     lateinit var buttonProceedToCart:Button
 
+    lateinit var textViewfavourite:TextView
+
     lateinit var activity_restaurant_menu_Progressdialog:RelativeLayout
 
     var restaurantMenuList = arrayListOf<RestaurantMenu>()
-
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -57,6 +56,30 @@ class RestaurantMenuActivity : AppCompatActivity() {
         proceedToCartLayout=findViewById(R.id.relativeLayoutProceedToCart)
         buttonProceedToCart=findViewById(R.id.buttonProceedToCart)
         activity_restaurant_menu_Progressdialog=findViewById(R.id.activity_restaurant_menu_Progressdialog)
+        textViewfavourite=findViewById(R.id.textViewfavourite)
+
+        val restaurantEntity= RestaurantEntity(
+            intent.getStringExtra("restaurantId"),
+            intent.getStringExtra("restaurantName")
+        )
+
+        if (!DashboardFragmentAdapter.DBAsynTask(this, restaurantEntity, 1).execute().get()) {
+            textViewfavourite.setTag("unliked")
+            textViewfavourite.background =
+                this.resources.getDrawable(R.drawable.ic_fav_outline)
+        }else{
+            textViewfavourite.setTag("liked")
+            textViewfavourite.background =
+                this.resources.getDrawable(R.drawable.ic_fav_fill)
+        }
+
+
+
+        textViewfavourite.setOnClickListener(View.OnClickListener {
+
+                setFavouriteRestaurant()
+
+        })
 
         //openDashboard()
         toolbar=findViewById(R.id.toolBar)
@@ -72,6 +95,54 @@ class RestaurantMenuActivity : AppCompatActivity() {
 
 
     }
+
+    fun setFavouriteRestaurant(){
+
+        val restaurantEntity= RestaurantEntity(
+            intent.getStringExtra("restaurantId"),
+            intent.getStringExtra("restaurantName")
+        )
+
+        if (!DashboardFragmentAdapter.DBAsynTask(this, restaurantEntity, 1).execute().get()) {
+
+            val result=
+                DashboardFragmentAdapter.DBAsynTask(this, restaurantEntity, 2).execute().get()
+
+            if(result){
+
+                Toast.makeText(this,"Added to favourites",Toast.LENGTH_SHORT).show()
+
+                textViewfavourite.setTag("liked")//new value
+                textViewfavourite.background =
+                    this.resources.getDrawable(R.drawable.ic_fav_fill)
+            }else{
+
+                Toast.makeText(this,"Some error occured",Toast.LENGTH_SHORT).show()
+
+            }
+
+        } else {
+
+            val result=
+                DashboardFragmentAdapter.DBAsynTask(this, restaurantEntity, 3).execute().get()
+
+            if(result){
+
+                Toast.makeText(this,"Removed favourites",Toast.LENGTH_SHORT).show()
+
+                textViewfavourite.setTag("unliked")
+                textViewfavourite.background =
+                    this.resources.getDrawable(R.drawable.ic_fav_outline)
+            }else{
+
+                Toast.makeText(this,"Some error occured",Toast.LENGTH_SHORT).show()
+
+            }
+
+        }
+
+    }
+
 
     fun fetchData(){
 

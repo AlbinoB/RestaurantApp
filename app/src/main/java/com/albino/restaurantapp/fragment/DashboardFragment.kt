@@ -32,6 +32,7 @@ import com.android.volley.toolbox.Volley
 import kotlinx.android.synthetic.main.fragment_dashboard.view.*
 import kotlinx.android.synthetic.main.sort_radio_button.view.*
 import org.json.JSONException
+import java.lang.Exception
 import java.util.*
 import kotlin.Comparator
 import kotlin.collections.HashMap
@@ -309,6 +310,12 @@ class DashboardFragment(val contextParam: Context) : Fragment() {
             alterDialog.show()
 
         }
+        try {
+                dashboardAdapter.notifyDataSetChanged()
+        }catch (e:Exception){
+
+        }
+
 
         super.onResume()
     }

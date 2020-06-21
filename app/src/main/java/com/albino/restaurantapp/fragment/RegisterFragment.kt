@@ -225,7 +225,6 @@ class RegisterFragment(val contextParam:Context) : Fragment() {
     fun checkForErrors():Boolean {
         var errorPassCount = 0
         if (editTextName.text.isBlank()) {
-
             editTextName.setError("Field Missing!")
         } else {
             errorPassCount++
@@ -234,6 +233,10 @@ class RegisterFragment(val contextParam:Context) : Fragment() {
         if (editTextMobileNumber.text.isBlank()) {
             editTextMobileNumber.setError("Field Missing!")
         } else {
+            if(editTextMobileNumber.text.length<10)
+            {
+                editTextMobileNumber.setError("Mobile Number must have 10 digits")
+            }
             errorPassCount++
         }
 

@@ -67,13 +67,25 @@
                 android:id="@+id/textViewChoose"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="40dp"
                 android:padding="10dp"
                 android:textColor="@color/black"
                 android:text="@string/choose_from_menu_listed_below"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:drawableEnd="@drawable/ic_fav_outline"
                 android:drawablePadding="10dp"/>
+
+            <TextView
+                android:id="@+id/textViewfavourite"
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/ic_fav_outline"
+                android:tag="unliked" />
 
 
 
