@@ -91,7 +91,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="56dp"
         android:layout_below="@+id/textViewChoose"
         android:id="@+id/recyclerViewRestaurantMenu"/>
 
@@ -102,7 +103,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/relativeLayoutProceedToCart"
-                android:visibility="invisible"
+                android:visibility="gone"
                 android:layout_alignParentBottom="true"
                 >
 
