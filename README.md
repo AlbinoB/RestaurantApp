@@ -1,7 +1,7 @@
 # RestaurantApp
 <br/>Android App for ordering food online
 <br/>
-https://raw.githubusercontent.com/AlbinoB/RestaurantApp/master/Screenshots/6-All%20Restaurants%20Screenshot.png
+![RestaurantApp](https://github.com/AlbinoB/RestaurantApp/blob/master/Screenshots/6-All%20Restaurants%20Screenshot.png)
 
 <br/>
 <br/>The app is built in kotlin and uses volley to send get and post request from the internshala serve through rest api calls.
