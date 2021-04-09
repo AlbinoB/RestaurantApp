@@ -596,34 +596,6 @@ INSERT INTO `seller` (`sellerId`, `fullName`, `fkrestaurantId`, `email`, `mobile
 
 -- --------------------------------------------------------
 
---
--- Table structure for table `time_slot`
---
-
-CREATE TABLE `time_slot` (
-  `fk_batch_id` int(2) NOT NULL,
-  `time_slot` varchar(10) NOT NULL,
-  `counselor_available_count` int(2) NOT NULL DEFAULT 0,
-  `id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `time_slot`
---
-
-INSERT INTO `time_slot` (`fk_batch_id`, `time_slot`, `counselor_available_count`, `id`) VALUES
-(1, '09:00AM', 0, 1),
-(1, '09:45AM', 0, 2),
-(1, '10:30AM', 0, 3),
-(1, '11:15AM', 0, 4),
-(2, '12:00PM', 0, 5),
-(2, '12:45PM', 0, 6),
-(2, '13:30PM', 0, 7),
-(2, '14:15PM', 0, 8),
-(3, '15:00PM', 0, 9),
-(3, '15:45PM', 0, 10),
-(3, '16:30PM', 0, 11),
-(3, '17:15PM', 0, 12);
 
 --
 -- Indexes for dumped tables
