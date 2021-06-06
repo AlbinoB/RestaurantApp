@@ -592,7 +592,7 @@ CREATE TABLE `seller` (
 --
 
 INSERT INTO `seller` (`sellerId`, `fullName`, `fkrestaurantId`, `email`, `mobileNumber`, `address`, `password`, `otp`) VALUES
-(1, 'Albino Seller', 1, 'albinobraganza21@gmail.com', 9850044062, 'Calangute', 123456, NULL);
+(1, 'Albino Seller', 1, 'albinobragan@gmail.com', 9855544062, 'Calangute', 123456, NULL);
 
 -- --------------------------------------------------------
 
